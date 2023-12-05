@@ -9,15 +9,22 @@ import { useContext } from "react";
 
 import Layout from "./Components/Layout/Layout";
 import Home from "./Components/Pages/Home.jsx";
+
 import About from "./Components/Pages/About.jsx";
 import Who from "./Components/AboutLayout/Who-are.jsx";
 import Location from "./Components/AboutLayout/Location.jsx";
 import History from "./Components/AboutLayout/History.jsx";
 import Getint from "./Components/AboutLayout/Getintouch.jsx";
 
+import Register from "./Components/authenticateUser/Register.jsx";
+import Login from "./Components/authenticateUser/Login.jsx";
+import Verified from "./Components/authenticateUser/Verified.jsx";
+
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
+  <>
       <Route
         path="/"
         element={<Layout />}
@@ -50,6 +57,18 @@ function App() {
           />
         </Route>
       </Route>
+
+    
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+        </Route>
+
+        <Route path="/user/register" element={<Register />} />
+
+        <Route path="/user/login" element={<Login />} />
+        <Route path="/user/confirm/:token" element={<Verified />} />
+      </>
+
     )
   );
 

@@ -1,3 +1,4 @@
+
 module.exports = (sequelize, DataTypes) => {
   const Users = sequelize.define(
     "User",
@@ -18,9 +19,18 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      token: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      valid: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
     },
 
     { timestamps: false }
   );
   return Users;
 };
+
