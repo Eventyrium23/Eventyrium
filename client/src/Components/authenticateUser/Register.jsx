@@ -12,6 +12,7 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import axios from "axios";
+
 function Register() {
   const mainColor = " #9ca38a";
   const [phone, setPhone] = useState("");

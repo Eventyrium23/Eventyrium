@@ -29,4 +29,5 @@ db.dotenv = dotenv;
 db.Users = require("./users_model.js")(sequelize, DataTypes);
 // db.sequelize.sync({ alter: true });
 
+// db.sequelize.sync({ alter: true });
 module.exports = db;
