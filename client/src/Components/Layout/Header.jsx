@@ -32,6 +32,11 @@ import {
   SparklesIcon,
 } from "@heroicons/react/24/solid";
 
+const disconnected = () => {
+  window.localStorage.clear("Token")
+  window.location.reload()
+}
+
 // let decoded;
 // profile menu component
 // if (!!window.localStorage.getItem("Token")) { decoded = jwtDecode(window.localStorage.getItem("Token")); }
@@ -62,7 +67,6 @@ function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const closeMenu = () => setIsMenuOpen(false);
-  // console.log("1");
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
@@ -74,9 +78,9 @@ function ProfileMenu() {
           <Avatar
             variant="circular"
             size="sm"
-            alt="tania andrew"
+            alt="userLog"
             className="border border-gray-900 p-0.5"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+            src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png"
           />
           <ChevronDownIcon
             strokeWidth={2.5}
@@ -102,6 +106,7 @@ function ProfileMenu() {
                 strokeWidth: 2,
               })}
               <Typography
+                onClick={disconnected}
                 as="span"
                 variant="small"
                 className="font-normal"
@@ -147,8 +152,8 @@ const navListMenuItems = [
 
 function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const renderItems = navListMenuItems.map(({ title, description,path }) => (
-    <a href="#" key={title} >
+  const renderItems = navListMenuItems.map(({ title, description, path }) => (
+    <NavLink href="#" key={title} to={path}>
       <MenuItem>
         <Typography variant="h6" color="blue-gray" className="mb-1">
           {title}
@@ -157,7 +162,7 @@ function NavListMenu() {
           {description}
         </Typography>
       </MenuItem>
-    </a>
+    </NavLink>
   ));
 
   return (
@@ -226,7 +231,7 @@ const navListItems = [
 ];
 
 function NavList() {
-  
+
   return (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
       <NavListMenu />
@@ -253,7 +258,7 @@ function Header() {
   const [isNavOpen, setIsNavOpen] = React.useState(false);
   const [token, setToken] = React.useState(false)
   const [user, setUser] = React.useState([]);
-console.log("3");
+  console.log("3");
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
 
   React.useEffect(() => {
