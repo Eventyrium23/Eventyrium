@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import LOGO from "../../assets/LOGO.png";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
+
 import {
   Card,
   Input,
@@ -17,22 +18,21 @@ function Register() {
   const [userName, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-const navigate =useNavigate()
+  const navigate = useNavigate();
   const Submit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const data = {
       phone,
       userName,
       email,
       password,
     };
-    console.log(data);
-    navigate("/user/login")
     try {
       const response = await axios.post(
         "http://localhost:8080/user/register",
         data
       );
+      navigate("/user/login");
       console.log(response);
     } catch (err) {
       console.log(err);
@@ -62,7 +62,11 @@ const navigate =useNavigate()
           <Typography color="gray" className="mt-1 font-normal">
             Nice to meet you! Enter your details to register.
           </Typography>
-          <form method="POST" onSubmit={Submit} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+          <form
+            method="POST"
+            onSubmit={Submit}
+            className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+          >
             <div className="mb-1 flex flex-col gap-6">
               <Typography
                 variant="h6"
@@ -164,8 +168,8 @@ const navigate =useNavigate()
             </Button>
             <Typography color="gray" className="mt-4 text-center font-normal">
               Already have an account?{" "}
-              <Link to="/signIn" className="font-medium text-gray-900">
-                Sign In
+              <Link to="/user/login" className="font-medium text-gray-900">
+                Login
               </Link>
             </Typography>
           </form>
