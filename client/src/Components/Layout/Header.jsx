@@ -258,7 +258,7 @@ function Header() {
   const [isNavOpen, setIsNavOpen] = React.useState(false);
   const [token, setToken] = React.useState(false)
   const [user, setUser] = React.useState([]);
-  console.log("3");
+
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
 
   React.useEffect(() => {

@@ -25,9 +25,9 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.dotenv = dotenv;
-
 /* Start here */
 db.Users = require("./users_model.js")(sequelize, DataTypes);
+// db.sequelize.sync({ alter: true });
 
 // db.sequelize.sync({ alter: true });
 module.exports = db;
