@@ -29,7 +29,7 @@ function App() {
             <Route path="getintouch" element={<Getint />} />
           </Route>
         </Route>
-        
+
         <Route path="/user/register" element={<Register />} />
         <Route path="/user/login" element={<Login />} />
         <Route path="/user/confirm/:token" element={<Verified />} />
