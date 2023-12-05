@@ -1,6 +1,10 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBuilding, faEnvelope, faPhone, faMapMarker } from "@fortawesome/free-solid-svg-icons";
+import { IoMdMailOpen } from "react-icons/io";
+import { FaMobileRetro } from "react-icons/fa6";
+import { VscOrganization } from "react-icons/vsc";
+import { MdLocationCity } from "react-icons/md";
+import { FaMobileAlt } from "react-icons/fa";
+
 
 const backgroundImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRryUaTbXJ-YSAFca7Ry_3KyOkz681-UzkW7w&usqp=CAU";
 
@@ -20,31 +24,31 @@ const GetinT = () => {
         <h2 className="text-3xl font-bold mb-2 text-gray-800">Contact Information</h2>
         <div className="space-y-2">
           <div className="flex items-center space-x-2">
-            <FontAwesomeIcon icon={faBuilding} className="text-gray-600" />
+          <VscOrganization className="text-gray-600" /> 
             <p className="text-lg font-semibold">
               <strong>Eventyruim</strong>
             </p>
           </div>
           <div className="flex items-center space-x-2">
-            <FontAwesomeIcon icon={faMapMarker} className="text-gray-600" />
+          <MdLocationCity className="text-gray-600" /> 
             <p>
               <strong className="text-gray-600">Address:</strong> Soussa 5055, Sahloul 1
             </p>
           </div>
           <div className="flex items-center space-x-2">
-            <FontAwesomeIcon icon={faEnvelope} className="text-gray-600" />
+            <IoMdMailOpen className="text-gray-600"/>  
             <p>
               <strong className="text-gray-600">Email:</strong> Eventyruim@gmail.com
             </p>
           </div>
           <div className="flex items-center space-x-2">
-            <FontAwesomeIcon icon={faPhone} className="text-gray-600" />
+            <FaMobileRetro className="text-gray-600"/>  
             <p>
               <strong className="text-gray-600">Phone (Fix):</strong> 73114854
             </p>
           </div>
           <div className="flex items-center space-x-2">
-            <FontAwesomeIcon icon={faPhone} className="text-gray-600" />
+          <FaMobileAlt className="text-gray-600" />
             <p>
               <strong className="text-gray-600">Mobile:</strong> 96107732 / 58012204
             </p>

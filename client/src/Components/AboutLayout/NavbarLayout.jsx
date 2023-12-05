@@ -1,7 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faEnvelope, faHistory, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { SiCyberdefenders } from "react-icons/si";
+import { MdContactMail } from "react-icons/md";
+import { MdOutlineHistoryEdu } from "react-icons/md";
+import { FaMapLocationDot } from "react-icons/fa6";
 const Navbar = () => {
   return (
     <div className="text-white p-4" style={{ background: "#9ca38a" }}>
@@ -12,7 +14,7 @@ const Navbar = () => {
             activeClassName="border-b-2 border-white"
             className="flex items-center text-lg font-semibold hover:text-gray-900 transition duration-300"
           >
-            <FontAwesomeIcon icon={faUser} className="mr-2" />
+            <SiCyberdefenders className="mr-2" /> 
             Who we are
           </NavLink>
           <NavLink
@@ -20,7 +22,7 @@ const Navbar = () => {
             activeClassName="border-b-2 border-white"
             className="flex items-center text-lg font-semibold hover:text-gray-900 transition duration-300"
           >
-            <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
+            <MdContactMail className="mr-2" /> 
             Get in Touch
           </NavLink>
           <NavLink
@@ -28,7 +30,7 @@ const Navbar = () => {
             activeClassName="border-b-2 border-white"
             className="flex items-center text-lg font-semibold hover:text-gray-900 transition duration-300"
           >
-            <FontAwesomeIcon icon={faHistory} className="mr-2" />
+           <MdOutlineHistoryEdu  className="mr-2" />
             History
           </NavLink>
           <NavLink
@@ -36,7 +38,7 @@ const Navbar = () => {
             activeClassName="border-b-2 border-white"
             className="flex items-center text-lg font-semibold hover:text-gray-900 transition duration-300"
           >
-            <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
+           <FaMapLocationDot  className="mr-2"  />
             Location
           </NavLink>
         </div>

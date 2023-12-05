@@ -25,7 +25,12 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
   <>
-      <Route
+      
+
+    
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route
         path="/"
         element={<Layout />}
       >
@@ -57,10 +62,6 @@ function App() {
           />
         </Route>
       </Route>
-
-    
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
         </Route>
 
         <Route path="/user/register" element={<Register />} />
