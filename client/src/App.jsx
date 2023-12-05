@@ -10,6 +10,7 @@ import { useContext } from "react";
 import Layout from "./Components/Layout/Layout";
 import Home from "./Components/Pages/Home.jsx";
 
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(

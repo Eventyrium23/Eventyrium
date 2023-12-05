@@ -1,7 +1,8 @@
 import { Outlet } from "react-router";
 import Header from "./Header.jsx";
 import Footer from "./Footer";
-function Layout() {
+
+function  Layout() {
   return (
     <>
       <Header />
