@@ -12,11 +12,10 @@ const Navbar = () => {
         <div className="flex items-center space-x-60">
           <NavLink
             to="/about"
-
             activeClassName="border-b-2 border-white"
             className="flex items-center text-lg font-semibold hover:text-gray-900 transition duration-300"
           >
-            <SiCyberdefenders className="mr-2" /> 
+            <SiCyberdefenders className="mr-2" />
             Who we are
           </NavLink>
           <NavLink
@@ -24,7 +23,7 @@ const Navbar = () => {
             activeClassName="border-b-2 border-white"
             className="flex items-center text-lg font-semibold hover:text-gray-900 transition duration-300"
           >
-            <MdContactMail className="mr-2" /> 
+            <MdContactMail className="mr-2" />
             Get in Touch
           </NavLink>
           <NavLink
@@ -32,7 +31,7 @@ const Navbar = () => {
             activeClassName="border-b-2 border-white"
             className="flex items-center text-lg font-semibold hover:text-gray-900 transition duration-300"
           >
-           <MdOutlineHistoryEdu  className="mr-2" />
+            <MdOutlineHistoryEdu className="mr-2" />
             History
           </NavLink>
           <NavLink
@@ -40,7 +39,7 @@ const Navbar = () => {
             activeClassName="border-b-2 border-white"
             className="flex items-center text-lg font-semibold hover:text-gray-900 transition duration-300"
           >
-           <FaMapLocationDot  className="mr-2"  />
+            <FaMapLocationDot className="mr-2" />
             Location
           </NavLink>
         </div>
@@ -50,6 +49,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-

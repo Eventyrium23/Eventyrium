@@ -23,14 +23,14 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />}>
-            <Route index element={<Who />} />
+            <Route index  element={<Who />} />
             <Route path="location" element={<Location />} />
             <Route path="history" element={<History />} />
             <Route path="getintouch" element={<Getint />} />
           </Route>
         </Route>
-        <Route path="/user/register" element={<Register />} />
 
+        <Route path="/user/register" element={<Register />} />
         <Route path="/user/login" element={<Login />} />
         <Route path="/user/confirm/:token" element={<Verified />} />
       </>
