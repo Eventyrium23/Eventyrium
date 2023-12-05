@@ -15,16 +15,17 @@ const sequelize = new Sequelize(dbNAME, dbUser, dbPassword, {
 });
 
 sequelize
-  .authenticate()
-  .then(() => console.log("Connected to the database NEVER GIVE UPPP"))
-  .catch((err) =>
-    console.error("Unable to connect to the database  NEVER GIVE UPPP:", err)
-  );
+.authenticate()
+.then(() => console.log("Connected to the database NEVER GIVE UPPP"))
+.catch((err) =>
+console.error("Unable to connect to the database  NEVER GIVE UPPP:", err)
+);
 
 const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.dotenv = dotenv;
+
 /* Start here */
 db.Users = require("./users_model.js")(sequelize, DataTypes);
 // db.sequelize.sync({ alter: true });

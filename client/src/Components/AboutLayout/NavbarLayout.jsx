@@ -6,11 +6,13 @@ import { MdOutlineHistoryEdu } from "react-icons/md";
 import { FaMapLocationDot } from "react-icons/fa6";
 const Navbar = () => {
   return (
+
     <div className="text-white p-4 w-full" style={{ background: "#9ca38a" }}>
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center space-x-60">
           <NavLink
             to="/about"
+
             activeClassName="border-b-2 border-white"
             className="flex items-center text-lg font-semibold hover:text-gray-900 transition duration-300"
           >
