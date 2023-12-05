@@ -33,10 +33,7 @@ exports.Register = async (req, res) => {
     if (existingUser.count !== 0) {
       return res.status(409).send("This email is already in use.");
     }
-    const token = jwt.sign(
-      { id: existingUser.id, userName: existingUser.userName },
-      privateKey
-    );
+    const token = jwt.sign({ userName: userName }, privateKey);
     const hashPassword = await bcrypt.hash(password, 10);
 
     await Users.create({
@@ -113,7 +110,6 @@ exports.ConfirmToken = async (req, res) => {
     const token = await Users.findOne({
       where: { token: req.params.token },
     });
-
 
     if (!token) {
       return res.status(404).send("Token not valid");
