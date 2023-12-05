@@ -18,6 +18,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      token: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      valid: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
     },
 
     { timestamps: false }

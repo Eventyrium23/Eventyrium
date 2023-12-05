@@ -10,7 +10,8 @@ import { useContext } from "react";
 import Layout from "./Components/Layout/Layout";
 import Home from "./Components/Pages/Home.jsx";
 import Register from "./Components/authenticateUser/Register.jsx";
-import Login from "./Components/authenticateUser/Login.jsx"
+import Login from "./Components/authenticateUser/Login.jsx";
+import Verified from "./Components/authenticateUser/Verified.jsx";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -21,6 +22,7 @@ function App() {
 
         <Route path="/user/register" element={<Register />} />
         <Route path="/user/login" element={<Login />} />
+        <Route path="/user/confirm/:token" element={<Verified />} />
       </>
     )
   );
