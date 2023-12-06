@@ -1,0 +1,34 @@
+[
+    {
+        "adminName":"Maamoun",
+        "image":"",
+        "password":"123456789",
+        "phone":"50274794",
+        "token":"",
+        "description":""
+    },
+    {
+        "adminName":"",
+        "image":"",
+        "password":"123456789",
+        "phone":"",
+        "token":"",
+        "description":""
+    },
+    {
+        "adminName":"",
+        "image":"",
+        "password":"123456789",
+        "phone":"",
+        "token":"",
+        "description":""
+    },
+    {
+        "adminName":"",
+        "image":"",
+        "password":"123456789",
+        "phone":"",
+        "token":"",
+        "description":""
+    }
+]

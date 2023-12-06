@@ -141,13 +141,13 @@ function Header() {
       title: "Food",
       description:
         "Learn how to use @material-tailwind/react, packed with rich components for React.",
-      path: "/events/food",
+      path: "/events/foods",
     },
     {
       title: "Decoration",
       description:
         "A complete set of UI Elements for building faster websites in less time.",
-      path: "/events/decorations",
+      path: "/events/decoration",
     },
     {
       title: "Pack",
