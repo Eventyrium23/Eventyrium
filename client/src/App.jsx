@@ -21,12 +21,15 @@ import Verified from "./Components/authenticateUser/Verified.jsx";
 //events
 import LayoutEvents from "./Components/Events/LayoutEvents.jsx";
 import Places from "./Components/Events/Places.jsx";
+//servecies i
+import Services from "./Components/Pages/services.jsx";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+
           <Route path="about" element={<About />}>
             <Route index element={<Who />} />
             <Route path="location" element={<Location />} />
@@ -37,6 +40,8 @@ function App() {
           <Route path="/events/:places" element={<LayoutEvents />}>
             <Route index element={<Places />} />
           </Route>
+          <Route path="services" element={<Services />} />
+
         </Route>
 
         <Route path="/user/register" element={<Register />} />
