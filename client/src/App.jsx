@@ -23,6 +23,7 @@ import LayoutEvents from "./Components/Events/LayoutEvents.jsx";
 import Places from "./Components/Events/Places.jsx";
 //servecies i
 import Services from "./Components/Pages/services.jsx";
+import Foods from "./Components/Events/Foods.jsx"
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -39,7 +40,9 @@ function App() {
 
           <Route path="/events/:places" element={<LayoutEvents />}>
             <Route index element={<Places />} />
+            <Route path="foods" element={<Foods />} />
           </Route>
+
           <Route path="services" element={<Services />} />
 
         </Route>

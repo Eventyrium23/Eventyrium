@@ -1,0 +1,72 @@
+[
+    {
+      "img":"https://lelocalapizzas.fr/wp-content/uploads/2022/02/recette-pizza-margherita.jpg",
+      "name": "Margherita Pizza",
+      "specialite": "Italian",
+      "price": 2000,
+      "review": 5
+    },
+    {
+      "img":"https://img.taste.com.au/V3yqWBhj/taste/2016/11/satay-chicken-18097-1.jpeg",
+      "name": "Chicken Satay Skewers",
+      "specialite": "Asian",
+      "price": 1500,
+      "review": 4.5
+    },
+    {
+      "img":"https://natashaskitchen.com/wp-content/uploads/2019/08/Caprese-Salad-6.jpg",
+      "name": "Caprese Salad",
+      "specialite": "Mediterranean",
+      "price": 1200,
+      "review": 4
+    },
+    {
+      "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC4JRdKT-XJlTiEs11QUvPzdcaCHCIkmM38Q&usqp=CAU",
+      "name": "Mini Sliders",
+      "specialite": "American",
+      "price": 1800,
+      "review": 4.2
+    },
+    {
+      "img":"https://healthynibblesandbits.com/wp-content/uploads/2018/01/Vegetable-Spring-Rolls-FF-1.jpg",
+      "name": "Vegetable Spring Rolls",
+      "specialite": "Asian",
+      "price": 1600,
+      "review": 4.3
+    },
+    {
+      "img":"https://i.ytimg.com/vi/Mf65StT9ep8/maxresdefault.jpg",
+      "name": "Chocolate Fondue",
+      "specialite": "Dessert",
+      "price": 2500,
+      "review": 4.8
+    },
+    {
+     "img":"https://cdn.loveandlemons.com/wp-content/uploads/2023/01/mushroom-risotto.jpg",
+      "name": "Mushroom Risotto",
+      "specialite": "Italian",
+      "price": 2200,
+      "review": 4.6
+    },
+    {
+      "img":"https://www.jessicagavin.com/wp-content/uploads/2023/05/shrimp-tacos-27-1200.jpg",
+      "name": "Shrimp Tacos",
+      "specialite": "Mexican",
+      "price": 1900,
+      "review": 4.4
+    },
+    {
+      "img":"https://i0.wp.com/myvegetarianroots.com/wp-content/uploads/2019/09/DSC_0014.jpg?fit=6016%2C4000&ssl=1",
+      "name": "Hummus Platter",
+      "specialite": "Middle Eastern",
+      "price": 1300,
+      "review": 4.1
+    },
+    {
+      "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-MV8jgmbyqJ6Tvdee3dYwTFDiQwELoKupDQ&usqp=CAU",
+      "name": "Fruit Skewers",
+      "specialite": "Healthy",
+      "price": 1000,
+      "review": 4.7
+    }
+  ]
