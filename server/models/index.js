@@ -1,5 +1,5 @@
 const dotenv = require("dotenv");
-const { Sequelize, DataTypes } = require("sequelize");
+const { Sequelize, DataTypes, HasMany } = require("sequelize");
 
 dotenv.config({ path: "./config.env" });
 
@@ -29,8 +29,14 @@ db.dotenv = dotenv;
 /* Start here */
 db.Users = require("./users_model.js")(sequelize, DataTypes);
 db.Places = require("./places_model.js")(sequelize, DataTypes);
+db.Deco = require("./deco_model.js")(sequelize, DataTypes);
+db.Foods = require("./food_model.js")(sequelize, DataTypes);
 
-//relation
+
+// db.sequelize.sync({ force: true });
+
+module.exports = db;
+// relations user &place
 db.Users.hasMany(db.Places, {
   foreignKey: "userId",
   as: "places",
@@ -40,6 +46,23 @@ db.Places.belongsTo(db.Users, {
   foreignKey: "userId",
   as: "user",
 });
+// relations user &Food
+db.Users.hasMany(db.Foods, {
+  foreignKey: "userId",
+  as: "Food",
+});
 
-// db.sequelize.sync({ force: true });
-module.exports = db;
+db.Foods.belongsTo(db.Users, {
+  foreignKey: "userId",
+  as: "user",
+});
+// relations user &Deco
+db.Users.hasMany(db.Deco, {
+  foreignKey: "userId",
+  as: "deco",
+});
+
+db.Deco.belongsTo(db.Users, {
+  foreignKey: "userId",
+  as: "user",
+});
