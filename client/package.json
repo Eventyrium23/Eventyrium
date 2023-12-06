@@ -23,11 +23,8 @@
     "react-international-phone": "^4.0.4",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.20.1",
-<<<<<<< HEAD
-    "react-slideshow-image": "^4.3.0"
-=======
+    "react-slideshow-image": "^4.3.0",
     "react-toastify": "^9.1.3"
->>>>>>> d6e055db1f3d2f510f38f41348dbd127ff68b8f8
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

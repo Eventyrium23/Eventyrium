@@ -7,8 +7,8 @@ import { useContext, useState } from "react";
 import { MyContext } from "../../MyContext.jsx";
 function Places() {
 
- const {places}=useContext(MyContext)
-console.log(places);
+  const { places } = useContext(MyContext)
+  console.log(places);
   const EventComponent = ({ event }) => {
     const [isHovered, setIsHovered] = useState(false);
 
@@ -20,9 +20,8 @@ console.log(places);
       >
         <Link to={`/events/places/${event.name}`}>
           <FaRegEye
-            className={`${
-              isHovered ? "opacity-100" : "opacity-0"
-            }  absolute w-20 top-1/2 left-1/2 text-5xl   text-[#ffffff99] transition-opacity translate-x-[-50%] translate-y-[-50%]`}
+            className={`${isHovered ? "opacity-100" : "opacity-0"
+              }  absolute w-20 top-1/2 left-1/2 text-5xl   text-[#ffffff99] transition-opacity translate-x-[-50%] translate-y-[-50%]`}
           />
 
           <img
@@ -44,33 +43,10 @@ console.log(places);
   };
 
   return (
-<<<<<<< HEAD
-    <div className="relative w-full  flex flex-col">
-      <nav className="border-[gray] border-b-2 sticky top-16 bg-[#f7f7f7d6]  h-20 flex items-center justify-around ">
-
-        <div className=" left-32 lg:text-lg md:left-96 flex items-center justify-center font-thin">
-          <h3 className="">Category</h3>
-          <IoIosArrowForward className=" " />
-          <h3 className="">{places}</h3>
-        </div>
-        <BsCalendarDate
-          className="text-2xl  right-10 md:right-20 cursor-pointer"
-          onClick={() => setCalander(!calander)}
-        />
-        <Calendar
-          className={`fixed  top-40 transition-all duration-200 right-5	 md:right-20    ${calander ? "visible " : "invisible opacity-0"
-            }`}
-          onChange={onChange}
-          value={value}
-        />
-      </nav>
-      <div className="box container	  grid grid-cols-1 auto-cols-fr	 md:grid-cols-2  xl:grid-cols-3  gap-10 p-10 justify-center   justify-items-center">{placee}</div>
-=======
-    <div className="box container	grid grid-cols-1 auto-cols-fr	 md:grid-cols-2  xl:grid-cols-3  gap-10 p-10 justify-center   justify-items-center z-20">
+    <div className="box container    grid grid-cols-1 auto-cols-fr     md:grid-cols-2  xl:grid-cols-3  gap-10 p-10 justify-center   justify-items-center z-20">
       {data.map((event, i) => (
         <EventComponent key={i} event={event} />
       ))}
->>>>>>> d6e055db1f3d2f510f38f41348dbd127ff68b8f8
     </div>
   );
 }
