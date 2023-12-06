@@ -29,6 +29,18 @@ db.dotenv = dotenv;
 /* Start here */
 db.Users = require("./users_model.js")(sequelize, DataTypes);
 db.Admins = require("./admins_model.js")(sequelize, DataTypes);
+db.Places = require("./places_model.js")(sequelize, DataTypes);
 
-// db.sequelize.sync({ alter: true });
+//relation
+db.Users.hasMany(db.Places, {
+  foreignKey: "userId",
+  as: "places",
+});
+
+db.Places.belongsTo(db.Users, {
+  foreignKey: "userId",
+  as: "user",
+});
+
+// db.sequelize.sync({ force: true });
 module.exports = db;
