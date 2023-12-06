@@ -20,3 +20,4 @@ app.use("/places", placeRouter);
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
 });
+// db.sequelize.sync({ force: true });

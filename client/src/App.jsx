@@ -10,6 +10,8 @@ import { MyContext } from "./MyContext.jsx";
 //
 import Layout from "./Components/Layout/Layout";
 import Home from "./Components/Pages/Home.jsx";
+import Services from "./Components/Pages/services.jsx";
+
 //About
 import About from "./Components/Pages/About.jsx";
 import Who from "./Components/AboutLayout/Who-are.jsx";
@@ -26,8 +28,7 @@ import Places from "./Components/Events/Places.jsx";
 import Foods from "./Components/Events/Foods.jsx";
 import Decoration from "./Components/Events/Decoration.jsx";
 import Packs from "./Components/Events/Packs.jsx";
-//servecies i
-import Services from "./Components/Pages/services.jsx";
+import EventsDetails from "./Components/Events/EventsDetails.jsx"; 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -44,7 +45,7 @@ function App() {
 
           <Route path="events/" element={<LayoutEvents />}>
             <Route path="places" index element={<Places />} />
-            <Route path="places/:place" index element={<Places />} />
+            <Route path="places/:place" index element={<EventsDetails />}  />
             <Route path="foods" element={<Foods />} />
             <Route path="foods/:food" element={<Foods />} />
             <Route path="decoration" element={<Decoration />} />
