@@ -15,11 +15,11 @@ const sequelize = new Sequelize(dbNAME, dbUser, dbPassword, {
 });
 
 sequelize
-.authenticate()
-.then(() => console.log("Connected to the database NEVER GIVE UPPP"))
-.catch((err) =>
-console.error("Unable to connect to the database  NEVER GIVE UPPP:", err)
-);
+  .authenticate()
+  .then(() => console.log("Connected to the database NEVER GIVE UPPP"))
+  .catch((err) =>
+    console.error("Unable to connect to the database  NEVER GIVE UPPP:", err)
+  );
 
 const db = {};
 db.Sequelize = Sequelize;
@@ -28,7 +28,18 @@ db.dotenv = dotenv;
 
 /* Start here */
 db.Users = require("./users_model.js")(sequelize, DataTypes);
-// db.sequelize.sync({ alter: true });
+db.Places = require("./places_model.js")(sequelize, DataTypes);
 
-// db.sequelize.sync({ alter: true });
+//relation
+db.Users.hasMany(db.Places, {
+  foreignKey: "userId",
+  as: "places",
+});
+
+db.Places.belongsTo(db.Users, {
+  foreignKey: "userId",
+  as: "user",
+});
+
+// db.sequelize.sync({ force: true });
 module.exports = db;
