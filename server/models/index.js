@@ -15,11 +15,11 @@ const sequelize = new Sequelize(dbNAME, dbUser, dbPassword, {
 });
 
 sequelize
-.authenticate()
-.then(() => console.log("Connected to the database NEVER GIVE UPPP"))
-.catch((err) =>
-console.error("Unable to connect to the database  NEVER GIVE UPPP:", err)
-);
+  .authenticate()
+  .then(() => console.log("Connected to the database NEVER GIVE UPPP"))
+  .catch((err) =>
+    console.error("Unable to connect to the database  NEVER GIVE UPPP:", err)
+  );
 
 const db = {};
 db.Sequelize = Sequelize;
@@ -28,19 +28,25 @@ db.dotenv = dotenv;
 
 /* Start here */
 db.Users = require("./users_model.js")(sequelize, DataTypes);
-db.Foods= require('./food_model.js')(sequelize , DataTypes)
-db.Deco= require('./deco_model.js')(sequelize , DataTypes)
+db.Places = require("./places_model.js")(sequelize, DataTypes);
+db.Deco = require("./deco_model.js")(sequelize, DataTypes);
+db.Foods = require("./food_model.js")(sequelize, DataTypes);
 
 
-// db.sequelize.sync({ alter: true });
-
-
+// db.sequelize.sync({ force: true });
 
 module.exports = db;
-// relations
+// relations user &place
+db.Users.hasMany(db.Places, {
+  foreignKey: "userId",
+  as: "places",
+});
 
-
-
+db.Places.belongsTo(db.Users, {
+  foreignKey: "userId",
+  as: "user",
+});
+// relations user &Food
 db.Users.hasMany(db.Foods, {
   foreignKey: "userId",
   as: "Food",
@@ -50,7 +56,7 @@ db.Foods.belongsTo(db.Users, {
   foreignKey: "userId",
   as: "user",
 });
-
+// relations user &Deco
 db.Users.hasMany(db.Deco, {
   foreignKey: "userId",
   as: "deco",
@@ -60,7 +66,3 @@ db.Deco.belongsTo(db.Users, {
   foreignKey: "userId",
   as: "user",
 });
-
-
-
-

@@ -1,6 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import LOGO from "../../assets/LOGO.png";
 import "react-international-phone/style.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   Card,
   Input,
@@ -30,7 +33,14 @@ function Login() {
       window.localStorage.setItem("Token", Token);
       navigate(`/`);
     } catch (err) {
-      console.log(err);
+      toast.error("Login failed. Please check your email and password.", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
     ClearData();
   };
@@ -88,6 +98,7 @@ function Login() {
               >
                 Password
               </Typography>
+
               <Input
                 type="password"
                 size="lg"
@@ -135,6 +146,7 @@ function Login() {
           </form>
         </Card>
       </div>
+      <ToastContainer />
     </div>
   );
 }

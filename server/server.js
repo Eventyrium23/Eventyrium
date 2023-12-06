@@ -14,7 +14,10 @@ const db = require("./models/index.js");
 /* send request with routes  */
 const userRouter = require("./routes/users_routes.js");
 app.use("/user", userRouter);
+const placeRouter = require("./routes/places_routes.js");
+app.use("/places", placeRouter);
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
 });
+// db.sequelize.sync({ force: true });
