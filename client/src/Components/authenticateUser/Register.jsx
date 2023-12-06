@@ -2,7 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import LOGO from "../../assets/LOGO.png";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Card,
   Input,
@@ -36,7 +37,14 @@ function Register() {
       navigate("/user/login");
       console.log(response);
     } catch (err) {
-      console.log(err);
+      toast.error("Register failed. Please check your information.", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
     ClearData();
   };
@@ -176,6 +184,8 @@ function Register() {
           </form>
         </Card>
       </div>
+      <ToastContainer />
+
     </div>
   );
 }
