@@ -3,7 +3,7 @@ import { IoIosArrowForward } from "react-icons/io";
 
 import Calendar from "react-calendar";
 import { BsCalendarDate } from "react-icons/bs";
-import { NavLink, useLocation, useParams } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 function SmallHead() {
   const [value, onChange] = useState(new Date());
