@@ -15,6 +15,10 @@ const db = require("./models/index.js");
 const userRouter = require("./routes/users_routes.js");
 app.use("/user", userRouter);
 
+// For Admin:
+const adminRouter = require("./routes/admins_routes.js");
+app.use("/admin", adminRouter);
+
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
 });

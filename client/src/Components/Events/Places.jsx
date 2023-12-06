@@ -28,7 +28,7 @@ function Places() {
   return (
     <div className="relative w-full  flex flex-col">
       <nav className="border-[gray] border-b-2 sticky top-16 bg-[#f7f7f7d6]  h-20 flex items-center justify-around ">
-   
+
         <div className=" left-32 lg:text-lg md:left-96 flex items-center justify-center font-thin">
           <h3 className="">Category</h3>
           <IoIosArrowForward className=" " />
@@ -39,9 +39,8 @@ function Places() {
           onClick={() => setCalander(!calander)}
         />
         <Calendar
-          className={`fixed  top-40 transition-all duration-200 right-5	 md:right-20    ${
-            calander ? "visible " : "invisible opacity-0"
-          }`}
+          className={`fixed  top-40 transition-all duration-200 right-5	 md:right-20    ${calander ? "visible " : "invisible opacity-0"
+            }`}
           onChange={onChange}
           value={value}
         />

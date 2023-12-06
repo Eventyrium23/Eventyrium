@@ -45,7 +45,7 @@ function CoverImage() {
 // The Descriptions:
 function Decriptions() {
   return (
-    <>
+    <div className="">
       <Typography variant="h3" color="gray" align="center">
         {" "}
         Eventyruim Planner{" "}
@@ -62,7 +62,7 @@ function Decriptions() {
       {CarouselTransition()}
       <br />
       <Typography variant="h5" color="red" className=" text-red-400 font-serif ml-16 font-bold" >Party Planner:</Typography>
-      <Typography color="gary" className="font-normal text-gray-600 text-center "> Our experienced party planners at The Italian Planners
+      <Typography color="gary" className="font-normal text-gray-600 text-center "> Our experienced party planners at The Tunisian Planners
         will work beside you to find the perfect venue and unique setting
         and atmosphere that caters to any of your celebration needs.We pride ourselves on managing every aspect of your party with creativity,
         elegance, and efficiency, without losing sight of your budget.
@@ -75,7 +75,7 @@ function Decriptions() {
         With each project, we hand select a team that will provide you with the highest level of personalization, service and assistance
         throughout the entire planning process, regardless of the complexity.</Typography>
       <br />
-    </>
+    </div>
   );
 }
 
@@ -173,10 +173,12 @@ function Home() {
         {CardDefault()}
       </div>
       <div className="flex justify-center gap-2 fixed right-0 bottom-20 z-20">
-          <NavLink to="events/places" size="lg" color="purple" variant="text">
+        <NavLink to="events/places">
+          <Button size="lg" color="purple">
             Make A Plan
-          </NavLink>
-        </div>
+          </Button>
+        </NavLink>
+      </div>
       {/* <h1>Hello From Home</h1> */}
     </div>
   );

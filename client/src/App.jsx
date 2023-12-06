@@ -21,27 +21,40 @@ import Verified from "./Components/authenticateUser/Verified.jsx";
 //events
 import LayoutEvents from "./Components/Events/LayoutEvents.jsx";
 import Places from "./Components/Events/Places.jsx";
+import Services from "./Components/Pages/services.jsx";
+// Admin:
+import LoginAdmin from "./Components/authenticateUser/Admin/Login.jsx";
+// import RegisterAdmin from "./Components/authenticateUser/Admin/Register.jsx"
+
+// Team:
+import Team from "./Components/Pages/OurTeam.jsx"
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="team" element={<Team />} />
           <Route path="about" element={<About />}>
             <Route index element={<Who />} />
             <Route path="location" element={<Location />} />
             <Route path="history" element={<History />} />
             <Route path="getintouch" element={<Getint />} />
           </Route>
-
+          <Route path="services" element={<Services />} />
           <Route path="/events/:places" element={<LayoutEvents />}>
             <Route index element={<Places />} />
           </Route>
         </Route>
-
         <Route path="/user/register" element={<Register />} />
         <Route path="/user/login" element={<Login />} />
         <Route path="/user/confirm/:token" element={<Verified />} />
+
+        {/* <Route path="/admin/register" element={<RegisterAdmin />} /> */}
+        <Route path="/admin/login" element={<LoginAdmin />} />
+        {/* <Route path="/admin/confirm/:token" element={<Verified />} /> */}
+
       </>
     )
   );
