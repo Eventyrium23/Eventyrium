@@ -7,7 +7,7 @@ exports.getAll = async (req, res) => {
     if (allplaces.length > 0) {
       res.status(200).send(allplaces);
     } else {
-      res.status(200).send("empty");
+      res.status(200).send([]);
     }
   } catch (err) {
     res.status(400).send(err.message);

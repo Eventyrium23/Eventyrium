@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
 import { RouterProvider } from "react-router";
+import { MyContext } from "./MyContext.jsx";
+
 //
 import Layout from "./Components/Layout/Layout";
 import Home from "./Components/Pages/Home.jsx";
