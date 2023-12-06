@@ -4,14 +4,14 @@ import 'leaflet/dist/leaflet.css';
 
 const Location = () => {
   const mapStyle = {
-    width: "200%",
-    height: "800px",
+    width: "100%",
+    height: "500px",
   };
 
   const defaultCenter = [51.505, -0.09]; // Default center coordinates
 
   return (
-    <div className="bg-gray-100 p-8 rounded-lg shadow-lg mt-8">
+    <div className="bg-gray-100 p-8 rounded-lg shadow-lg ">
       <h2 className="text-2xl font-bold mb-4"></h2>
       <MapContainer
         center={defaultCenter}

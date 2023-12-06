@@ -280,7 +280,7 @@ function Header() {
   }, []);
 
   return (
-    <nav className=" mx-auto  w-full p-2 fixed z-50 lg:pl-6  bg-mainHeader	 ">
+    <nav className=" mx-auto top-0 w-full p-2 fixed z-50 lg:pl-6  bg-mainHeader	 ">
       <div className="relative mx-auto flex items-center justify-between text-blue-gray-900">
         <img src={Logo} alt="LOGO" className="w-40 mx-8" />
         <div className="hidden lg:block">

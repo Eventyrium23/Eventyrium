@@ -8,8 +8,8 @@ const Navbar = () => {
   return (
 
     <div className="text-white p-4 w-full" style={{ background: "#9ca38a" }}>
-      <div className="container mx-auto flex items-center justify-between">
-        <div className="flex items-center space-x-60">
+      <div className="container mx-auto flex items-center justify-center ">
+        <div className="flex items-center  justify-around gap-10">
           <NavLink
             to="/about"
             activeClassName="border-b-2 border-white"
