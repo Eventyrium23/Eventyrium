@@ -21,6 +21,9 @@ import Verified from "./Components/authenticateUser/Verified.jsx";
 //events
 import LayoutEvents from "./Components/Events/LayoutEvents.jsx";
 import Places from "./Components/Events/Places.jsx";
+import Foods from "./Components/Events/Foods.jsx";
+import Decoration from "./Components/Events/Decoration.jsx";
+import Packs from "./Components/Events/Packs.jsx";
 //servecies i
 import Services from "./Components/Pages/services.jsx";
 function App() {
@@ -37,11 +40,17 @@ function App() {
             <Route path="getintouch" element={<Getint />} />
           </Route>
 
-          <Route path="/events/:places" element={<LayoutEvents />}>
-            <Route index element={<Places />} />
+          <Route path="events/" element={<LayoutEvents />}>
+            <Route path="places" index element={<Places />} />
+            <Route path="places/:place" index element={<Places />} />
+            <Route path="foods" element={<Foods />} />
+            <Route path="foods/:food" element={<Foods />} />
+            <Route path="decoration" element={<Decoration />} />
+            <Route path="decoration/:deco" element={<Decoration />} />
+            <Route path="packs" element={<Packs />} />
+            <Route path="packs/:pack" element={<Packs />} />
           </Route>
           <Route path="services" element={<Services />} />
-
         </Route>
 
         <Route path="/user/register" element={<Register />} />
