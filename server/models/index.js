@@ -1,5 +1,5 @@
 const dotenv = require("dotenv");
-const { Sequelize, DataTypes } = require("sequelize");
+const { Sequelize, DataTypes, HasMany } = require("sequelize");
 
 dotenv.config({ path: "./config.env" });
 
@@ -28,7 +28,39 @@ db.dotenv = dotenv;
 
 /* Start here */
 db.Users = require("./users_model.js")(sequelize, DataTypes);
-// db.sequelize.sync({ alter: true });
+db.Foods= require('./food_model.js')(sequelize , DataTypes)
+db.Deco= require('./deco_model.js')(sequelize , DataTypes)
+
 
 // db.sequelize.sync({ alter: true });
+
+
+
 module.exports = db;
+// relations
+
+
+
+db.Users.hasMany(db.Foods, {
+  foreignKey: "userId",
+  as: "Food",
+});
+
+db.Foods.belongsTo(db.Users, {
+  foreignKey: "userId",
+  as: "user",
+});
+
+db.Users.hasMany(db.Deco, {
+  foreignKey: "userId",
+  as: "deco",
+});
+
+db.Deco.belongsTo(db.Users, {
+  foreignKey: "userId",
+  as: "user",
+});
+
+
+
+
