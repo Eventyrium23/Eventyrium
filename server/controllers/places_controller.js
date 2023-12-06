@@ -4,7 +4,7 @@ const Places = db.Places;
 exports.getAll = async (req, res) => {
   try {
     const allplaces = await Places.findAll();
-    if (allplaces.length > 0) {
+    if (Object.keys(allplaces).length > 0) {
       res.status(200).send(allplaces);
     } else {
       res.status(200).send([]);
@@ -15,16 +15,16 @@ exports.getAll = async (req, res) => {
 };
 
 exports.getOne = async (req, res) => {
-  const { namePlace } = req.body;
+  const { place } = req.params;
   try {
-    const onePlace = await Places.findOne({ where: { namePlace: namePlace } });
-    if (onePlace.length > 0) {
+    const onePlace = await Places.findOne({ where: { namePlace: place } });
+    if (Object.keys(onePlace).length>0) {
       res.status(200).send(onePlace);
     } else {
       res.status(200).send("empty");
     }
   } catch (err) {
-    res.stats(400).send(err);
+    res.status(400).send(err);
   }
 };
 
@@ -49,7 +49,7 @@ exports.addPlace = async (req, res) => {
       }
     }
   } catch (err) {
-    res.stats(400).send(err);
+    res.status(400).send(err);
   }
 };
 exports.updatePlace = async (req, res) => {
@@ -78,6 +78,6 @@ exports.updatePlace = async (req, res) => {
       res.status(200).send(onePlace);
     }
   } catch (err) {
-    res.stats(400).send(err);
+    res.status(400).send(err);
   }
 };
