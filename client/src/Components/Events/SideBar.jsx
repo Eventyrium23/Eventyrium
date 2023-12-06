@@ -31,7 +31,7 @@ function SideBar() {
   ];
 
   return (
-    <div className=" md:flex truncate h-screen w-[75px] z-50 sticky top-0 min-w-[75px] md:w-full max-w-[20rem] flex-col rounded-xl bg-white bg-clip-border p-4 text-gray-700 shadow-xl shadow-blue-gray-900/5">
+    <div className=" md:flex truncate h-screen w-[75px] z-40 sticky top-[-4px] min-w-[75px] md:w-full max-w-[20rem] flex-col rounded-xl bg-white bg-clip-border p-4 text-gray-700 shadow-xl shadow-blue-gray-900/5">
       <div className="flex items-center gap-4 p-4 mb-2">
         <BiCategoryAlt />
 
