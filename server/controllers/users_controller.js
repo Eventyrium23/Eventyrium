@@ -1,5 +1,6 @@
 const db = require("../models/index.js");
 const Users = db.Users;
+const Place = db.Places;
 const bcrypt = require("bcrypt");
 const joi = require("joi");
 const jwt = require("jsonwebtoken");
@@ -33,10 +34,11 @@ exports.Register = async (req, res) => {
     if (existingUser.count !== 0) {
       return res.status(409).send("This email is already in use.");
     }
-    const token = jwt.sign({ userName: userName }, privateKey);
+    const id = crypto.randomUUID();
+    const token = jwt.sign({ userName: userName, id: id }, privateKey);
     const hashPassword = await bcrypt.hash(password, 10);
-
     await Users.create({
+      id,
       userName,
       password: hashPassword,
       email,
@@ -129,4 +131,24 @@ exports.ConfirmToken = async (req, res) => {
     console.error(err);
     res.status(500).send("Internal Server Error");
   }
+};
+
+exports.getUser = (req, res) => {
+  const { userId } = req.params;
+  db.Users.findByPk(userId, {
+    attributes: { exclude: ["password", "token"] },
+    include: [
+      {
+        model: db.Places,
+        as: "places",
+        attributes: { exclude: ["somePlaceField"] }, // Exclude specific fields from the Places model if needed
+      },
+    ],
+  })
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 };
