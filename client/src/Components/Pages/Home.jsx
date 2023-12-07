@@ -9,11 +9,16 @@ import {
   CardBody,
   CardFooter,
 } from "@material-tailwind/react";
-import { NavLink } from "react-router-dom";
+import { NavLink,Link } from "react-router-dom";
 
 // Rating stars in the image :
 function RatingStars() {
-  return <Rating value={4} />;
+  return(
+    <Link to={"/feedbacks"}>
+    <Rating value={4} />
+    </Link>
+    ) 
+    
 }
 // The cover image in the beginning:
 function CoverImage() {
@@ -77,7 +82,7 @@ function Decriptions() {
         className="font-normal text-gray-600 text-center "
       >
         {" "}
-        Our experienced party planners at The Italian Planners will work beside
+        Our experienced party planners at Eventyruim will work beside
         you to find the perfect venue and unique setting and atmosphere that
         caters to any of your celebration needs.We pride ourselves on managing
         every aspect of your party with creativity, elegance, and efficiency,

@@ -26,9 +26,11 @@ const Verified = lazy(() =>
   import("./Components/authenticateUser/Verified.jsx")
 );
 // Admin:
-const LoginAdmin=lazy(()=>import("./Components/authenticateUser/Admin/Login.jsx"))
+const LoginAdmin = lazy(() => import("./Components/authenticateUser/Admin/Login.jsx"))
 // Team:
-const Team=lazy(()=>import("./Components/Pages/OurTeam.jsx"));
+const OurTeam = lazy(() => import("./Components/Pages/OurTeam.jsx"));
+// FeedBacks & Ratings :
+const FeedBacks = lazy(() => import("./Components/Pages/FeedBacks.jsx"))
 //events
 const LayoutEvents = lazy(() => import("./Components/Events/LayoutEvents.jsx"));
 
@@ -48,7 +50,8 @@ function App() {
       <>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="team" element={<Team />} />
+          <Route path="team" element={<OurTeam />} />
+          <Route path="feedbacks" element={<FeedBacks />} />
 
           <Route path="about" element={<About />}>
             <Route index element={<Who />} />
