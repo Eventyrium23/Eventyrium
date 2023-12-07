@@ -18,6 +18,7 @@ app.use("/user", userRouter);
 const placeRouter = require("./routes/places_routes.js");
 app.use("/places", placeRouter);
 
+<<<<<<< HEAD
 const foodRouter = require("./routes/foods_routes.js");
 app.use("/foods", foodRouter);
 
@@ -26,6 +27,11 @@ app.use("/decorations", decorationRouter);
 
 const packRouter = require("./routes/packs_routes.js");
 app.use("/packs", packRouter);
+=======
+// For Admin:
+const adminRouter = require("./routes/admins_routes.js");
+app.use("/admin", adminRouter);
+>>>>>>> 970f9536432ab5375167b055eaa8e47567c4b759
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
