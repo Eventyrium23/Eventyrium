@@ -1,10 +1,12 @@
 import { FaRegEye } from "react-icons/fa";
 import "react-calendar/dist/Calendar.css";
-import data from "../../DataDeco.json";
+// import data from "../../DataDeco.json";
 import {  NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { MyContext } from "../../MyContext.jsx";
 
 function Decoration() {
+  const {decorations}=useContext(MyContext)
   const DecorationComponent = ({ decoration }) => {
     const [isHovered, setIsHovered] = useState(false);
 
@@ -14,7 +16,7 @@ function Decoration() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <NavLink to={`/events/decoration/${decoration.name}`}>
+        <NavLink to={`/events/decorations/${decoration.name}`}>
           <FaRegEye
             className={`${
               isHovered ? "opacity-100" : "opacity-0"
@@ -38,7 +40,7 @@ function Decoration() {
 
   return (
     <div className="box container grid grid-cols-1 auto-cols-fr md:grid-cols-2 xl:grid-cols-3 gap-10 p-10 justify-center justify-items-center z-20">
-      {data.map((decoration, i) => (
+      {decorations.map((decoration, i) => (
         <DecorationComponent key={i} decoration={decoration} />
       ))}
     </div>

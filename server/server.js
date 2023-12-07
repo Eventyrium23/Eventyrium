@@ -14,8 +14,19 @@ const db = require("./models/index.js");
 /* send request with routes  */
 const userRouter = require("./routes/users_routes.js");
 app.use("/user", userRouter);
+
 const placeRouter = require("./routes/places_routes.js");
 app.use("/places", placeRouter);
+
+
+const foodRouter = require("./routes/foods_routes.js");
+app.use("/foods", foodRouter);
+
+const decorationRouter = require("./routes/decorations_routes.js");
+app.use("/decorations", decorationRouter);
+
+const packRouter = require("./routes/packs_routes.js");
+app.use("/packs", packRouter);
 
 // For Admin:
 const adminRouter = require("./routes/admins_routes.js");

@@ -15,7 +15,7 @@ function SideBar() {
     },
     {
       label: "Decoration",
-      path: "/events/decoration",
+      path: "/events/decorations",
       icon: <GiClover className="md:hidden text-xl" />,
     },
     {
@@ -33,7 +33,7 @@ function SideBar() {
   return (
     <div className=" md:flex truncate h-screen w-[75px] z-40 sticky top-[-4px] min-w-[75px] md:w-full max-w-[20rem] flex-col rounded-xl bg-white bg-clip-border p-4 text-gray-700 shadow-xl shadow-blue-gray-900/5">
       <div className="flex items-center gap-4 p-4 mb-2">
-        <BiCategoryAlt />
+        <BiCategoryAlt className="-20" />
 
         <h5 className=" hidden md:block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
           Categories
