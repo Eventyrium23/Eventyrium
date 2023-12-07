@@ -1,7 +1,7 @@
 import { FaRegEye } from "react-icons/fa";
 import "react-calendar/dist/Calendar.css";
 import data from "../../DataDeco.json";
-import { Link } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import { useState } from "react";
 
 function Decoration() {
@@ -14,7 +14,7 @@ function Decoration() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <Link to={`/events/decorations/${decoration.id}`}>
+        <NavLink to={`/events/decoration/${decoration.name}`}>
           <FaRegEye
             className={`${
               isHovered ? "opacity-100" : "opacity-0"
@@ -31,7 +31,7 @@ function Decoration() {
   <p className="text-sm text-gray-600">{decoration.stack} in stock</p>
   <p className="text-lg font-bold text-green-600">${decoration.price}</p>
 </div>
-        </Link>
+        </NavLink>
       </div>
     );
   };

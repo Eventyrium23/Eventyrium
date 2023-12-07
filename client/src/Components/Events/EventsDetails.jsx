@@ -1,42 +1,103 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Load from "../Load/Load.jsx";
-import { useParams } from "react-router-dom";
-
+import { useLocation, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { MyContext } from "../../MyContext.jsx";
 export default function EventsDetails() {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-const {place}=useParams()
+  const { placeCheck, setPlaceCheck } = useContext(MyContext);
+  const location = useLocation();
+  const { route } = useParams();
+  const paths = location.pathname.split("/");
+  const url = paths.slice(2, paths.length - 1);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await axios.get(
-          `http://localhost:8080/places/place/${place.toLowerCase()}`
+          `http://localhost:8080/places/place/${route.toLowerCase()}`
         );
         setData(result.data);
       } catch (err) {
         console.error(err);
-      } finally {
-        setLoading(false);
-      }
+      } 
     };
 
     fetchData();
-  }, []);
+  }, [route]);
 
-  if (loading) {
-    return <Load />;
-  }
+
 
   if (!data) {
     return <p>Error loading data</p>;
   }
 
+  const Save = (event) => {
+    const token = window.localStorage.getItem("Token");
+
+    if (!token) {
+      showWarning("Please login before adding to inbox!");
+      return;
+    }
+
+    const boxElement = event.target.closest(".box");
+    if (!boxElement) {
+      console.error('No parent element with class "box" found.');
+      return;
+    }
+
+    const path = boxElement.getAttribute("data-value");
+
+    if (url === "places" && data.date) {
+      showWarning("Sorry, this place is reserved!");
+    } else {
+      const storageKey = `${url}`;
+      const alreadyAdded = placeCheck == path;
+
+      if (alreadyAdded) {
+        showWarning(`You already added this ${path}!`);
+      } else {
+        setPlaceCheck(data);
+        showSuccess(`This place has been added to your inbox!`);
+      }
+    }
+  };
+
+  const showWarning = (message) => {
+    toast.warn(message, getToastConfig("bg-[red]"));
+  };
+
+  const showSuccess = (message) => {
+    toast.warn(message, getToastConfig("bg-[blue]"));
+  };
+
+  const getToastConfig = (theme) => {
+    return {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      className: { theme },
+    };
+  };
+
   return (
-    <div className="box flex flex-col justify-center items-center pt-5">
-      <img className="w-2/3 lg:w-2/4" src={data.image} alt="" />
-      <div className="text">
-        <h1>{data.namePlace}</h1>
+    <div
+      className="box truncate flex flex-col lg:flex-row gap-10 justify-start lg:justify-start items-start pt-5 pl-5 md:pl-10"
+      data-value={data.namePlace}
+    >
+      <img
+        className="	 w-3/3 h-[300px] lg:w-2/4 lg:h-[350px]"
+        src={data.image}
+        alt=""
+      />
+      <div className="text text-xl flex flex-wrap leading-10	w-full max-w-[200px]">
+        <h1 className=" font-bold text-4xl capitalize">{data.namePlace}</h1>
         <h3>
           <strong>Location:</strong>
           {data.place}
@@ -46,16 +107,22 @@ const {place}=useParams()
           {data.description}
         </p>
         <p>
-          <strong>Price:</strong> {data.price}
+          <strong>Price:</strong> {data.price}DT
         </p>
         <p>
           <strong>Available:</strong>{" "}
           {data.date
-            ? "this place available "
-            : "sorry this place is not available"}
+            ? " sorry this place is not available "
+            : "this place available"}
         </p>
-        <button>Add To Organisation</button>
+        <button
+          onClick={Save}
+          className="bg-mainHeader text-white p-3 rounded pointer"
+        >
+          Add To Organisation
+        </button>
       </div>
+      <ToastContainer />
     </div>
   );
 }

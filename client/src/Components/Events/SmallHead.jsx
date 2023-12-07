@@ -11,7 +11,7 @@ function SmallHead() {
   const location = useLocation();
   const paths = location.pathname.split("/");
 
-  const path = paths.slice(2, -1); // Extract the relevant part of the paths array
+  const path = paths.slice(2, -1); 
 
   return (
     <nav className="border-[gray] border-b-2 sticky z-30 top-16 bg-[#f7f7f7d6]  h-20 flex items-center justify-around ">
