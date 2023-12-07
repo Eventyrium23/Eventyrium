@@ -32,6 +32,15 @@ function Load() {
       <div id="blurringTextG_7" className="blurringTextG">
         m
       </div>
+      <div id="blurringTextG_3" className="blurringTextG">
+        .
+      </div>
+      <div id="blurringTextG_5" className="blurringTextG">
+        .
+      </div>
+      <div id="blurringTextG_7" className="blurringTextG">
+        .
+      </div>
     </div>
   );
 }

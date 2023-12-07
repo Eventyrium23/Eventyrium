@@ -1,12 +1,16 @@
 #blurringTextG {
   text-align: center;
   margin: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
 }
 
 .blurringTextG {
   color: transparent;
   font-family: Arial;
-  font-size: 25px;
+  font-size: 30px;
   text-decoration: none;
   font-weight: normal;
   font-style: normal;

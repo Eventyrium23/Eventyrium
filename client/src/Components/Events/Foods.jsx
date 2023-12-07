@@ -1,7 +1,7 @@
 import { FaRegEye } from "react-icons/fa";
 import "react-calendar/dist/Calendar.css";
 import data from "../../Datafood.json";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 
 function Foods() {
@@ -14,7 +14,8 @@ function Foods() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <Link to={`/events/foods/${food.id}`}>
+        
+            <NavLink to={`/events/foods/${food.name}`}>
         <FaRegEye
             className={`${
               isHovered ? "opacity-100" : "opacity-0"
@@ -32,7 +33,7 @@ function Foods() {
             <p className="text-lg font-bold text-green-600">${food.price}</p>
             <p className="text-sm text-gray-600">{food.review}</p>
           </div>
-        </Link>
+        </NavLink>
       </div>
     );
   };

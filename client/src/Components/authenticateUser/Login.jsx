@@ -13,11 +13,13 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import axios from "axios";
+import Load from "../Load/Load";
 function Login() {
   const mainColor = " #9ca38a";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
   const Submit = async (e) => {
     e.preventDefault();
     const data = {
@@ -31,17 +33,31 @@ function Login() {
       );
       const Token = response.data;
       window.localStorage.setItem("Token", Token);
+
       navigate(`/`);
     } catch (err) {
-      toast.error("Login failed. Please check your email and password.", {
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-    }
+      if (err.response.status == 401) {
+        toast.success("🦄 Before Login Go Check Email to verifie Please! ", {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        toast.error("Login failed. Please check your email and password.", {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      }
+    } 
     ClearData();
   };
 
@@ -49,7 +65,7 @@ function Login() {
     setEmail("");
     setPassword("");
   };
-
+  
   return (
     <div className="Login  ">
       <div className="container grid grid-cols-1 auto-rows-auto	 items-center	h-screen w-screen md:px-20 md:grid-cols-2		">

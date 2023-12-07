@@ -30,9 +30,13 @@ import {
   SparklesIcon,
 } from "@heroicons/react/24/solid";
 
-const disconnected = () => {
-  window.localStorage.clear("Token");
-  window.location.reload();
+const disconnected = (event) => {
+
+  if (event.target.textContent == "Sign Out") {
+    window.localStorage.clear("Token");
+    window.location.reload();
+  }
+
 };
 
 function Header() {
@@ -49,22 +53,27 @@ function Header() {
     {
       label: user,
       icon: UserIcon,
+      path:"/"
     },
     {
       label: "Edit Profile",
       icon: Cog6ToothIcon,
+      path:"/editProfile"
     },
     {
       label: "Inbox",
       icon: InboxArrowDownIcon,
+      path:"/inbox"
     },
     {
       label: "Help",
       icon: LifebuoyIcon,
+      path:"/help"
     },
     {
       label: "Sign Out",
       icon: PowerIcon,
+      path:"/"
     },
   ];
 
@@ -96,7 +105,7 @@ function Header() {
           </Button>
         </MenuHandler>
         <MenuList className="p-1">
-          {profileMenuItems.map(({ label, icon }, key) => {
+          {profileMenuItems.map(({ label, icon,path }, key) => {
             const isLastItem = key === profileMenuItems.length - 1;
             return (
               <MenuItem
@@ -112,6 +121,8 @@ function Header() {
                   className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
                   strokeWidth: 2,
                 })}
+                <NavLink to={path}>
+
                 <Typography
                   onClick={disconnected}
                   as="span"
@@ -121,6 +132,8 @@ function Header() {
                 >
                   {label}
                 </Typography>
+                </NavLink>
+
               </MenuItem>
             );
           })}
@@ -282,7 +295,7 @@ function Header() {
   return (
     <nav className=" mx-auto top-0 w-full p-2 fixed z-50 lg:pl-6  bg-mainHeader	 ">
       <div className="relative mx-auto flex items-center justify-between text-blue-gray-900">
-        <img src={Logo} alt="LOGO" className="w-40 mx-8" />
+       <NavLink to="/"> <img src={Logo} alt="LOGO" className="w-40 mx-8" /></NavLink> 
         <div className="hidden lg:block">
           <NavList />
         </div>
