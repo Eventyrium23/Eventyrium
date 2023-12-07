@@ -17,7 +17,7 @@ exports.getAll = async (req, res) => {
 exports.getOne = async (req, res) => {
   const { place } = req.params;
   try {
-    const onePlace = await Places.findOne({ where: { namePlace: place } });
+    const onePlace = await Places.findOne({ where: { name: place } });
     if (Object.keys(onePlace).length > 0) {
       res.status(200).send(onePlace);
     } else {
