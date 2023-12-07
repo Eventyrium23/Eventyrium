@@ -5,10 +5,10 @@ import data from "../../data.json";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { MyContext } from "../../MyContext.jsx";
+
 function Places() {
 
-  const { places } = useContext(MyContext)
-  console.log(places);
+  const { places } = useContext(MyContext);
   const EventComponent = ({ event }) => {
     const [isHovered, setIsHovered] = useState(false);
 
