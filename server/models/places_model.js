@@ -1,13 +1,12 @@
-
 module.exports = (sequelize, DataTypes) => {
   const Places = sequelize.define(
     "Place",
     {
-      namePlace: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      place: {
+      location: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -34,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     { timestamps: false }
   );
-
 
   return Places;
 };

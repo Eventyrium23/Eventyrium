@@ -16,7 +16,7 @@ function Places() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <NavLink to={`/events/places/${event.namePlace}`}>
+        <NavLink to={`/events/places/${event.name}`}>
           <FaRegEye
             className={`${
               isHovered ? "opacity-100" : "opacity-0"
@@ -28,12 +28,12 @@ function Places() {
             src={event.image}
           />
           <div className="event-info mt-5">
-            <h2 className="font-bold text-xl text-center">{event.namePlace}</h2>
+            <h2 className="font-bold text-xl text-center">{event.name}</h2>
             <p className="text-lg">
               <strong>Price :</strong> ${event.price}
             </p>
             <p className="text-lg">
-              <strong>Place :</strong> {event.place}
+              <strong>Location :</strong> {event.location}
             </p>
 
             <p className="text-lg">

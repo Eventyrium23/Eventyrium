@@ -56,11 +56,11 @@ function App() {
             <Route path="places" index element={<Places />} />
             <Route path="places/:route" index element={<EventsDetails />} />
             <Route path="foods" element={<Foods />} />
-            <Route path="foods/:route" element={<Foods />} />
-            <Route path="decoration" element={<Decoration />} />
-            <Route path="decoration/:route" element={<Decoration />} />
+            <Route path="foods/:route" element={<EventsDetails />} />
+            <Route path="decorations" element={<Decoration />} />
+            <Route path="decorations/:route" element={<EventsDetails />} />
             <Route path="packs" element={<Packs />} />
-            <Route path="packs/:route" element={<Packs />} />
+            <Route path="packs/:route" element={<EventsDetails />} />
           </Route>
           <Route path="services" element={<Services />} />
           <Route path="inbox" element={<Inbox />} />
