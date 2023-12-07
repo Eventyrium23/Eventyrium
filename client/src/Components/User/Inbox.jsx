@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { MyContext } from "../../MyContext";
+import { MyContext } from "../../MyContext.jsx";
 
 function Inbox() {
   const { placeChecked, foodChecked, decorationChecked, packChecked } =

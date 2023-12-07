@@ -5,9 +5,9 @@ export const MyContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [user, setUser] = useState([]);
-  const [admins, setAdmins] = useState([])
   const [places, setPlaces] = useState([]);
   const [foods, setFoods] = useState([]);
+  const [admins, setAdmins] = useState([])
   const [decorations, setDecoretions] = useState([]);
   const [packs, setPacks] = useState([]);
   // --------------------
@@ -16,12 +16,11 @@ export const ContextProvider = ({ children }) => {
   const [decorationChecked, setDecorationChecked] = useState([]);
   const [packChecked, setPackChecked] = useState("");
   useEffect(() => {
-
     fetchPlaces(setPlaces);
     fetchDecoration(setDecoretions);
     fetchFoods(setFoods);
-     fetchAdmins(setAdmins);
     // fetchPacks(setPacks);
+    fetchAdmins(setAdmins);
   }, []);
 
   return (
@@ -81,12 +80,13 @@ const fetchPacks = async (setPacks) => {
 };
 
 const fetchAdmins = (setAdmins) => {
-  axios.get(`http://localhost:8080/admin/getAll`).then((response) => {
-    let adminData = response.data
-    setAdmins(adminData)
-  }).catch((err) => {
-    console.log(err);
-  })
-
-}
-
+  axios
+    .get(`http://localhost:8080/admin/getAll`)
+    .then((response) => {
+      let adminData = response.data;
+      setAdmins(adminData);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
