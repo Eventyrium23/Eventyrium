@@ -5,14 +5,13 @@ function Inbox() {
   const { placeChecked, foodChecked, decorationChecked, packChecked } =
     useContext(MyContext);
   // parse localstorge
-  const addedPlaces = JSON.parse(window.localStorage.getItem("places")) || [];
+  const addedPlaces = JSON.parse(window.localStorage.getItem("places"));
   const addedFoods = JSON.parse(window.localStorage.getItem("foods")) || [];
   const addedDecorations =
     JSON.parse(window.localStorage.getItem("decorations")) || [];
-  const addedPacks = JSON.parse(window.localStorage.getItem("packs")) || [];
-
+  const addedPacks = JSON.parse(window.localStorage.getItem("packs"));
   // Update local storage with the checked items
-  if (placeChecked.length) {
+  if (placeChecked) {
     window.localStorage.setItem("places", JSON.stringify(placeChecked));
   }
   if (foodChecked.length > 0) {
@@ -27,7 +26,7 @@ function Inbox() {
       JSON.stringify([...addedDecorations, decorationChecked])
     );
   }
-  if (packChecked.length) {
+  if (packChecked) {
     window.localStorage.setItem("packs", JSON.stringify(packChecked));
   }
 
@@ -35,9 +34,8 @@ function Inbox() {
     const targetElement = event.target;
     const itemName = targetElement.getAttribute("data-name");
 
-    if (addedPlaces.length && addedPlaces[0].name === itemName) {
-      const updatedPlaces = addedPlaces.slice(1);
-      window.localStorage.setItem("places", JSON.stringify(updatedPlaces));
+    if (addedPlaces && addedPlaces.name === itemName) {
+      window.localStorage.removeItem("places");
     } else if (
       addedDecorations.length &&
       addedDecorations[addedDecorations.length - 1].some(
@@ -59,9 +57,9 @@ function Inbox() {
         foodArray.filter((food) => food.name !== itemName)
       );
       window.localStorage.setItem("foods", JSON.stringify(updatedFoods));
-    } else if (addedPacks.length && addedPacks[0].name === itemName) {
-      const updatedPacks = addedPacks.slice(1);
-      window.localStorage.setItem("packs", JSON.stringify(updatedPacks));
+    } else if (addedPacks && addedPacks.name === itemName) {
+      
+      window.localStorage.removeItem("packs");
     }
     window.location.reload();
   };
@@ -75,7 +73,7 @@ function Inbox() {
               items
             </th>
             <th scope="col" className="px-6 py-3">
-              <div className="flex items-center">place</div>
+              <div className="flex items-center">Location</div>
             </th>
             <th scope="col" className="px-6 py-3">
               <div className="flex items-center">name of place</div>
@@ -90,19 +88,20 @@ function Inbox() {
         </thead>
         <tbody>
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            {addedPlaces.length ? (
+            {addedPlaces ? (
               <>
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
-                  {addedPlaces[0].name}
+                  Place
                 </th>
-                <td className="px-6 py-4">{addedPlaces[0].location}</td>
-                <td className="px-6 py-4">{addedPlaces[0].price}DT</td>
+                <td className="px-6 py-4">{addedPlaces.location}</td>
+                <td className="px-6 py-4">{addedPlaces.name}</td>
+                <td className="px-6 py-4">{addedPlaces.price}DT</td>
                 <td className="px-6 py-4 text-left">
                   <button
-                    data-name={addedPlaces[0].name}
+                    data-name={addedPlaces.name}
                     onClick={Delete}
                     className="text:lg text-center bg-none text-blue-600 dark:text-blue-500 hover:underline"
                   >
@@ -178,19 +177,19 @@ function Inbox() {
             : ""}
 
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            {addedPacks.length ? (
+            {addedPacks ? (
               <>
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
-                  {addedPacks[0].name}
+                  {addedPacks.name}
                 </th>
-                <td className="px-6 py-4">{addedPacks[0].location}</td>
-                <td className="px-6 py-4">{addedPacks[0].price}DT</td>
+                <td className="px-6 py-4">{addedPacks.location}</td>
+                <td className="px-6 py-4">{addedPacks.price}DT</td>
                 <td className="px-6 py-4 text-left">
                   <button
-                    data-name={addedPacks[0].name}
+                    data-name={addedPacks.name}
                     onClick={Delete}
                     className="text-lg bg-none text-blue-600 dark:text-blue-500 hover:underline"
                   >
@@ -207,5 +206,6 @@ function Inbox() {
     </div>
   );
 }
+
 
 export default Inbox;

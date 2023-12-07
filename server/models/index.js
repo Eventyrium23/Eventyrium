@@ -34,7 +34,7 @@ db.Deco = require("./deco_model.js")(sequelize, DataTypes);
 db.Foods = require("./food_model.js")(sequelize, DataTypes);
 
 
-// db.sequelize.sync({ force: true });
+// db.sequelize.sync({ alter: true });
 
 module.exports = db;
 // relations user &place
