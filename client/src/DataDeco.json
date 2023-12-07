@@ -1,92 +1,107 @@
 [
   {
-    "img": "https://funnfrolic.co.uk/cdn/shop/products/organicsulham_551x.jpg?v=1623766810",
-    "name": "Balloon-Arch",
-    "stack": 50,
-    "price": 5000
+      "img": "https://funnfrolic.co.uk/cdn/shop/products/organicsulham_551x.jpg?v=1623766810",
+      "name": "Balloon-Arch",
+      "stack": 50,
+      "price": 5000,
+      "description": "Create a festive atmosphere with this stunning balloon arch. Perfect for entrances or as a centerpiece."
   },
   {
-    "img": "https://i5.walmartimages.com/asr/cb286644-1267-45d1-8781-477e522b0ce2_1.488896c14c56bb65248d7e0c6b86efda.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
-    "name": "Fairy-Lights",
-    "stack": 80,
-    "price": 8000
+      "img": "https://i5.walmartimages.com/asr/cb286644-1267-45d1-8781-477e522b0ce2_1.488896c14c56bb65248d7e0c6b86efda.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
+      "name": "Fairy-Lights",
+      "stack": 80,
+      "price": 8000,
+      "description": "Add a magical touch to your event with these twinkling fairy lights. Ideal for indoor and outdoor decorations."
   },
   {
-    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2sbFpThN8NTC_2zXsw7HpRUyNWNrCFbQfLBuNQsSI_E24aSk0ipHbTMlgUezUE_uBWJo&usqp=CAU",
-    "name": "Tassel-Garland",
-    "stack": 30,
-    "price": 3500
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2sbFpThN8NTC_2zXsw7HpRUyNWNrCFbQfLBuNQsSI_E24aSk0ipHbTMlgUezUE_uBWJo&usqp=CAU",
+      "name": "Tassel-Garland",
+      "stack": 30,
+      "price": 3500,
+      "description": "Elevate your decor with this vibrant tassel garland. Perfect for creating a festive and celebratory atmosphere."
   },
   {
-    "img": "https://confettimaster.com/wp-content/uploads/2023/08/Confetti-outside-church.jpeg",
-    "name": "Confetti-Cannons",
-    "stack": 20,
-    "price": 6000
+      "img": "https://confettimaster.com/wp-content/uploads/2023/08/Confetti-outside-church.jpeg",
+      "name": "Confetti-Cannons",
+      "stack": 20,
+      "price": 6000,
+      "description": "Make your celebration memorable with confetti cannons. Shower your guests in a burst of joy and excitement."
   },
   {
-    "img": "https://m.media-amazon.com/images/I/81vcw-esYjL._AC_UF894,1000_QL80_.jpg",
-    "name": "Photo-Booth-Props",
-    "stack": 40,
-    "price": 4500
+      "img": "https://m.media-amazon.com/images/I/81vcw-esYjL._AC_UF894,1000_QL80_.jpg",
+      "name": "Photo-Booth-Props",
+      "stack": 40,
+      "price": 4500,
+      "description": "Entertain your guests with fun and quirky photo booth props. Capture the memories with laughter and creativity."
   },
   {
-    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdW6W4_E6eTvqkqwMHc6tZUJxgRX6cxwZUOQ&usqp=CAU",
-    "name": "Table-Centerpieces",
-    "stack": 60,
-    "price": 7000
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdW6W4_E6eTvqkqwMHc6tZUJxgRX6cxwZUOQ&usqp=CAU",
+      "name": "Table-Centerpieces",
+      "stack": 60,
+      "price": 7000,
+      "description": "Add a touch of elegance to your tables with these stunning centerpieces. Perfect for enhancing the overall decor."
   },
   {
-    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDGj82PYGor408K1iZv204x7ttnzsVEAsLaA&usqp=CAU",
-    "name": "Streamer-Curtains",
-    "stack": 25,
-    "price": 5500
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDGj82PYGor408K1iZv204x7ttnzsVEAsLaA&usqp=CAU",
+      "name": "Streamer-Curtains",
+      "stack": 25,
+      "price": 5500,
+      "description": "Create a dynamic and festive backdrop with these colorful streamer curtains. Ideal for photo booths and stage decorations."
   },
   {
-    "img": "https://eventechuk.co.uk/wp-content/uploads/2018/02/White-LED-Dancefloor.jpg",
-    "name": "LED-Dance-Floor",
-    "stack": 10,
-    "price": 15000
+      "img": "https://eventechuk.co.uk/wp-content/uploads/2018/02/White-LED-Dancefloor.jpg",
+      "name": "LED-Dance-Floor",
+      "stack": 10,
+      "price": 15000,
+      "description": "Transform your event with a dazzling LED dance floor. Set the stage for a night of celebration and dance."
   },
   {
-    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6qI7XIK3TSHPtaIbfUNklaD7HtG-ekHREKA&usqp=CAU",
-    "name": "Themed-Banners",
-    "stack": 45,
-    "price": 4000
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6qI7XIK3TSHPtaIbfUNklaD7HtG-ekHREKA&usqp=CAU",
+      "name": "Themed-Banners",
+      "stack": 45,
+      "price": 4000,
+      "description": "Personalize your space with themed banners. Choose from a variety of designs to suit your event."
   },
   {
-    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqwoFx9IrqLvBAe8Mxd--Lf78GIX2OPmXNSQ&usqp=CAU",
-    "name": "Hanging-Lanterns",
-    "stack": 35,
-    "price": 9000
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqwoFx9IrqLvBAe8Mxd--Lf78GIX2OPmXNSQ&usqp=CAU",
+      "name": "Hanging-Lanterns",
+      "stack": 35,
+      "price": 9000,
+      "description": "Create a whimsical ambiance with hanging lanterns. Perfect for outdoor events or rustic-themed parties."
   },
   {
-    "img": "https://i.etsystatic.com/11751361/r/il/e1b7d5/1591498330/il_570xN.1591498330_cr5l.jpg",
-    "name": "Chair-Covers-with-Sashes",
-    "stack": 70,
-    "price": 5500
+      "img": "https://i.etsystatic.com/11751361/r/il/e1b7d5/1591498330/il_570xN.1591498330_cr5l.jpg",
+      "name": "Chair-Covers-with-Sashes",
+      "stack": 70,
+      "price": 5500,
+      "description": "Elevate your seating arrangement with chair covers and sashes. Add a touch of sophistication to your event."
   },
   {
-    "img": "https://media.architecturaldigest.com/photos/56d60ca065e378730c184cbe/16:9/w_2560%2Cc_limit/1gorgeous-flower-arrangement-ideas-03.jpg",
-    "name": "Floral-Arrangements",
-    "stack": 55,
-    "price": 10000
+      "img": "https://media.architecturaldigest.com/photos/56d60ca065e378730c184cbe/16:9/w_2560%2Cc_limit/1gorgeous-flower-arrangement-ideas-03.jpg",
+      "name": "Floral-Arrangements",
+      "stack": 55,
+      "price": 10000,
+      "description": "Bring nature indoors with beautiful floral arrangements. Add freshness and elegance to your event."
   },
   {
-    "img": "https://www.peerspace.com/resources/wp-content/uploads/los-angeles-club-hills-1024x684.jpeg",
-    "name": "Glow-in-the-Dark-Decor",
-    "stack": 15,
-    "price": 12000
+      "img": "https://www.peerspace.com/resources/wp-content/uploads/los-angeles-club-hills-1024x684.jpeg",
+      "name": "Glow-in-the-Dark-Decor",
+      "stack": 15,
+      "price": 12000,
+      "description": "Create a mesmerizing atmosphere with glow-in-the-dark decor. Perfect for evening events and dance floors."
   },
   {
-    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbMf4BhBXD9HMNB3W5yFG9kyz6Q9QYtvt5vA&usqp=CAU",
-    "name": "Customized-Cake-Toppers",
-    "stack": 65,
-    "price": 3000
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbMf4BhBXD9HMNB3W5yFG9kyz6Q9QYtvt5vA&usqp=CAU",
+      "name": "Customized-Cake-Toppers",
+      "stack": 65,
+      "price": 3000,
+      "description": "Personalize your cake with customized cake toppers. Add a unique touch to your dessert centerpiece."
   },
   {
-    "img": "https://m.media-amazon.com/images/I/51%2BEwmgM3AL._AC_SY200_QL15_.jpg",
-    "name": "Candy-Buffet",
-    "stack": 90,
-    "price": 7500
+      "img": "https://m.media-amazon.com/images/I/51%2BEwmgM3AL._AC_SY200_QL15_.jpg",
+      "name": "Candy-Buffet",
+      "stack": 90,
+      "price": 7500,
+      "description": "Sweeten your event with a delightful candy buffet. A treat for both the eyes and taste buds."
   }
 ]

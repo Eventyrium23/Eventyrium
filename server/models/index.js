@@ -31,6 +31,7 @@ db.Users = require("./users_model.js")(sequelize, DataTypes);
 db.Places = require("./places_model.js")(sequelize, DataTypes);
 db.Deco = require("./deco_model.js")(sequelize, DataTypes);
 db.Foods = require("./food_model.js")(sequelize, DataTypes);
+db.Packs= require('./pack_model.js')(sequelize,DataTypes);
 
 
 // db.sequelize.sync({ force: true });
@@ -66,3 +67,13 @@ db.Deco.belongsTo(db.Users, {
   foreignKey: "userId",
   as: "user",
 });
+
+// relations user &Packs
+db.Users.hasMany(db.Packs,{
+  foreignKey:"userId",
+  as:"packs",
+});
+db.Packs.belongsTo(db.Users,{
+  foreignKey:"userId",
+  as:"user",
+})
