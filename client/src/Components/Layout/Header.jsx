@@ -2,6 +2,8 @@ import React from "react";
 import Logo from "../../assets/LOGO.png";
 import { NavLink } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import UserIconn from "../../assets/UserLogo.jsx";
+
 import {
   Collapse,
   Typography,
@@ -15,28 +17,24 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import {
-  UserCircleIcon,
   ChevronDownIcon,
   Cog6ToothIcon,
   InboxArrowDownIcon,
   LifebuoyIcon,
   PowerIcon,
+  UserIcon,
   Bars2Icon,
   UserPlusIcon,
-  UserIcon,
   MegaphoneIcon,
   HomeIcon,
   InformationCircleIcon,
   SparklesIcon,
 } from "@heroicons/react/24/solid";
-
 const disconnected = (event) => {
-
   if (event.target.textContent == "Sign Out") {
     window.localStorage.clear("Token");
     window.location.reload();
   }
-
 };
 
 function Header() {
@@ -53,27 +51,27 @@ function Header() {
     {
       label: user,
       icon: UserIcon,
-      path:"/"
+      path: "/",
     },
     {
       label: "Edit Profile",
       icon: Cog6ToothIcon,
-      path:"/editProfile"
+      path: "/editProfile",
     },
     {
       label: "Inbox",
       icon: InboxArrowDownIcon,
-      path:"/inbox"
+      path: "/inbox",
     },
     {
       label: "Help",
       icon: LifebuoyIcon,
-      path:"/help"
+      path: "/help",
     },
     {
       label: "Sign Out",
       icon: PowerIcon,
-      path:"/"
+      path: "/",
     },
   ];
 
@@ -89,13 +87,8 @@ function Header() {
             color="blue-gray"
             className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
           >
-            <Avatar
-              variant="circular"
-              size="sm"
-              alt="userLog"
-              className="border border-gray-900 p-0.5"
-              src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png"
-            />
+            <UserIconn />
+
             <ChevronDownIcon
               strokeWidth={2.5}
               className={`h-3 w-3 transition-transform ${
@@ -105,7 +98,7 @@ function Header() {
           </Button>
         </MenuHandler>
         <MenuList className="p-1">
-          {profileMenuItems.map(({ label, icon,path }, key) => {
+          {profileMenuItems.map(({ label, icon, path }, key) => {
             const isLastItem = key === profileMenuItems.length - 1;
             return (
               <MenuItem
@@ -121,19 +114,16 @@ function Header() {
                   className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
                   strokeWidth: 2,
                 })}
-                <NavLink to={path}>
-
-                <Typography
-                  onClick={disconnected}
-                  as="span"
-                  variant="small"
-                  className="font-normal"
-                  color={isLastItem ? "red" : "inherit"}
-                >
-                  {label}
-                </Typography>
+                <NavLink to={path} onClick={disconnected}>
+                  <Typography
+                    as="span"
+                    variant="small"
+                    className="font-normal"
+                    color={isLastItem ? "red" : "inherit"}
+                  >
+                    {label}
+                  </Typography>
                 </NavLink>
-
               </MenuItem>
             );
           })}
@@ -159,7 +149,7 @@ function Header() {
       title: "Decoration",
       description:
         "A complete set of UI Elements for building faster websites in less time.",
-      path: "/events/decoration",
+      path: "/events/decorations",
     },
     {
       title: "Pack",
@@ -290,12 +280,18 @@ function Header() {
       "resize",
       () => window.innerWidth >= 960 && setIsNavOpen(false)
     );
+    window.addEventListener("click", (e) =>
+      e.target.tagName != "svg" ? setIsNavOpen(false) : ""
+    );
   }, []);
 
   return (
     <nav className=" mx-auto top-0 w-full p-2 fixed z-50 lg:pl-6  bg-mainHeader	 ">
       <div className="relative mx-auto flex items-center justify-between text-blue-gray-900">
-       <NavLink to="/"> <img src={Logo} alt="LOGO" className="w-40 mx-8" /></NavLink> 
+        <NavLink to="/">
+          {" "}
+          <img src={Logo} alt="LOGO" className="w-40 mx-10" />
+        </NavLink>
         <div className="hidden lg:block">
           <NavList />
         </div>
@@ -318,7 +314,7 @@ function Header() {
               className="font-medium text-gray-900"
             >
               <MenuItem className="flex items-center gap-2 lg:rounded-full">
-                <UserCircleIcon className="h-[18px] w-[18px] text-blue-gray-500" />
+                <UserIcon className="h-[18px] w-[18px] text-blue-gray-500" />
                 Login
               </MenuItem>
             </NavLink>

@@ -28,6 +28,7 @@ db.dotenv = dotenv;
 
 /* Start here */
 db.Users = require("./users_model.js")(sequelize, DataTypes);
+db.Admins = require("./admins_model.js")(sequelize, DataTypes);
 db.Places = require("./places_model.js")(sequelize, DataTypes);
 db.Deco = require("./deco_model.js")(sequelize, DataTypes);
 db.Foods = require("./food_model.js")(sequelize, DataTypes);

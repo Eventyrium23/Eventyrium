@@ -25,6 +25,12 @@ const Login = lazy(() => import("./Components/authenticateUser/Login.jsx"));
 const Verified = lazy(() =>
   import("./Components/authenticateUser/Verified.jsx")
 );
+// Admin:
+const LoginAdmin = lazy(() => import("./Components/authenticateUser/Admin/Login.jsx"))
+// Team:
+const OurTeam = lazy(() => import("./Components/Pages/OurTeam.jsx"));
+// FeedBacks & Ratings :
+const FeedBacks = lazy(() => import("./Components/Pages/FeedBacks.jsx"))
 //events
 const LayoutEvents = lazy(() => import("./Components/Events/LayoutEvents.jsx"));
 
@@ -44,6 +50,8 @@ function App() {
       <>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="team" element={<OurTeam />} />
+          <Route path="feedbacks" element={<FeedBacks />} />
 
           <Route path="about" element={<About />}>
             <Route index element={<Who />} />
@@ -56,18 +64,22 @@ function App() {
             <Route path="places" index element={<Places />} />
             <Route path="places/:route" index element={<EventsDetails />} />
             <Route path="foods" element={<Foods />} />
-            <Route path="foods/:route" element={<Foods />} />
-            <Route path="decoration" element={<Decoration />} />
-            <Route path="decoration/:route" element={<Decoration />} />
+            <Route path="foods/:route" element={<EventsDetails />} />
+            <Route path="decorations" element={<Decoration />} />
+            <Route path="decorations/:route" element={<EventsDetails />} />
             <Route path="packs" element={<Packs />} />
-            <Route path="packs/:route" element={<Packs />} />
+            <Route path="packs/:route" element={<EventsDetails />} />
           </Route>
           <Route path="services" element={<Services />} />
           <Route path="inbox" element={<Inbox />} />
         </Route>
         <Route path="/user/register" element={<Register />} />
         <Route path="/user/login" element={<Login />} />
-        <Route path="/user/confirm/:token" element={<Verified />} />)
+        <Route path="/user/confirm/:token" element={<Verified />} />
+
+        {/* <Route path="/admin/register" element={<RegisterAdmin />} /> */}
+        <Route path="/admin/login" element={<LoginAdmin />} />
+        {/* <Route path="/admin/confirm/:token" element={<Verified />} /> */}
       </>
     )
   );
