@@ -1,39 +1,47 @@
-import React, { useContext } from "react";
+import React, { Suspense, lazy, useContext, useEffect, useState } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
 import { RouterProvider } from "react-router";
-import { MyContext } from "./MyContext.jsx";
 
 //
 import Layout from "./Components/Layout/Layout";
 import Home from "./Components/Pages/Home.jsx";
+const Services = lazy(() => import("./Components/Pages/services.jsx"));
+
 //About
-import About from "./Components/Pages/About.jsx";
-import Who from "./Components/AboutLayout/Who-are.jsx";
-import Location from "./Components/AboutLayout/Location.jsx";
-import History from "./Components/AboutLayout/History.jsx";
-import Getint from "./Components/AboutLayout/Getintouch.jsx";
-import Register from "./Components/authenticateUser/Register.jsx";
+const About = lazy(() => import("./Components/Pages/About.jsx"));
+const Who = lazy(() => import("./Components/AboutLayout/Who-are.jsx"));
+const Location = lazy(() => import("./Components/AboutLayout/Location.jsx"));
+const History = lazy(() => import("./Components/AboutLayout/History.jsx"));
+const Getint = lazy(() => import("./Components/AboutLayout/Getintouch.jsx"));
 //login
-import Login from "./Components/authenticateUser/Login.jsx";
-import Verified from "./Components/authenticateUser/Verified.jsx";
-//events
-import LayoutEvents from "./Components/Events/LayoutEvents.jsx";
-import Places from "./Components/Events/Places.jsx";
-import Services from "./Components/Pages/services.jsx";
+const Register = lazy(() =>
+  import("./Components/authenticateUser/Register.jsx")
+);
+const Login = lazy(() => import("./Components/authenticateUser/Login.jsx"));
+const Verified = lazy(() =>
+  import("./Components/authenticateUser/Verified.jsx")
+);
 // Admin:
-import LoginAdmin from "./Components/authenticateUser/Admin/Login.jsx";
-// import RegisterAdmin from "./Components/authenticateUser/Admin/Register.jsx"
-
+const LoginAdmin=lazy(()=>import("./Components/authenticateUser/Admin/Login.jsx"))
 // Team:
-import Team from "./Components/Pages/OurTeam.jsx"
+const Team=lazy(()=>import("./Components/Pages/OurTeam.jsx"));
+//events
+const LayoutEvents = lazy(() => import("./Components/Events/LayoutEvents.jsx"));
 
-import Foods from "./Components/Events/Foods.jsx";
-import Decoration from "./Components/Events/Decoration.jsx";
-import Packs from "./Components/Events/Packs.jsx";
+const Places = lazy(() => import("./Components/Events/Places.jsx"));
+const Foods = lazy(() => import("./Components/Events/Foods.jsx"));
+const Decoration = lazy(() => import("./Components/Events/Decoration.jsx"));
+const Packs = lazy(() => import("./Components/Events/Packs.jsx"));
+const EventsDetails = lazy(() =>
+  import("./Components/Events/EventsDetails.jsx")
+);
+const Inbox = lazy(() => import("./Components/User/Inbox.jsx"));
+
+import Load from "./Components/Load/Load.jsx";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -51,15 +59,16 @@ function App() {
 
           <Route path="events/" element={<LayoutEvents />}>
             <Route path="places" index element={<Places />} />
-            <Route path="places/:place" index element={<Places />} />
+            <Route path="places/:route" index element={<EventsDetails />} />
             <Route path="foods" element={<Foods />} />
-            <Route path="foods/:food" element={<Foods />} />
+            <Route path="foods/:route" element={<Foods />} />
             <Route path="decoration" element={<Decoration />} />
-            <Route path="decoration/:deco" element={<Decoration />} />
+            <Route path="decoration/:route" element={<Decoration />} />
             <Route path="packs" element={<Packs />} />
-            <Route path="packs/:pack" element={<Packs />} />
+            <Route path="packs/:route" element={<Packs />} />
           </Route>
           <Route path="services" element={<Services />} />
+          <Route path="inbox" element={<Inbox />} />
         </Route>
         <Route path="/user/register" element={<Register />} />
         <Route path="/user/login" element={<Login />} />
@@ -68,14 +77,14 @@ function App() {
         {/* <Route path="/admin/register" element={<RegisterAdmin />} /> */}
         <Route path="/admin/login" element={<LoginAdmin />} />
         {/* <Route path="/admin/confirm/:token" element={<Verified />} /> */}
-
       </>
     )
   );
-
   return (
     <div className="App ">
-      <RouterProvider router={router}></RouterProvider>
+      <Suspense fallback={<Load />}>
+        <RouterProvider router={router}></RouterProvider>
+      </Suspense>
     </div>
   );
 }

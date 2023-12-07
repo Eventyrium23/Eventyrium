@@ -36,10 +36,10 @@ function ProfileCard() {
             </CardHeader>
             <CardBody className="text-center">
                 <Typography variant="h4" color="blue-gray" className="mb-2">
-                    Natalie Paisley
+                   {admin.adminName}
                 </Typography>
                 <Typography color="blue-gray" className="font-medium" textGradient>
-                    CEO / Co-Founder
+                    {admin.description}
                 </Typography>
             </CardBody>
             <CardFooter className="flex justify-center gap-7 pt-2">

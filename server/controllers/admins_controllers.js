@@ -44,11 +44,12 @@ exports.Register = async (req, res) => {
             token,
             image,
             description,
+            projects,
             valid: false,
         });
 
-        const link = `http://localhost:5173/admin/confirm/${token}`;
-        await VerifEmail(email, link);
+        // const link = `http://localhost:5173/admin/confirm/${token}`;
+        // await VerifEmail(email, link);
 
         res.status(201).send("Message send check your Email");
     } catch (error) {
@@ -85,53 +86,53 @@ exports.Login = async (req, res) => {
     }
 };
 
-const VerifEmail = async (email, link) => {
-    try {
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: "haddadaahmed9@gmail.com",
-                pass: "wlpd vkxo mkfz cztg",
-            },
-        });
+// const VerifEmail = async (email, link) => {
+//     try {
+//         const transporter = nodemailer.createTransport({
+//             service: "gmail",
+//             auth: {
+//                 user: "haddadaahmed9@gmail.com",
+//                 pass: "wlpd vkxo mkfz cztg",
+//             },
+//         });
 
-        let info = await transporter.sendMail({
-            from: "haddadaahmed9@gmail.com",
-            to: email,
-            subject: "Account verification",
-            text: "welcome in Eventyrium",
-            html: ` <button style="background-color: rgb(102, 208, 102);padding: 20px;font-size: 20px;border:none"><a style="color:white;text-decoration:none" href=${link}>Active Your Account</a></button> `,
-        });
-    } catch (err) {
-        res.send(err);
-    }
-};
+//         let info = await transporter.sendMail({
+//             from: "haddadaahmed9@gmail.com",
+//             to: email,
+//             subject: "Account verification",
+//             text: "welcome in Eventyrium",
+//             html: ` <button style="background-color: rgb(102, 208, 102);padding: 20px;font-size: 20px;border:none"><a style="color:white;text-decoration:none" href=${link}>Active Your Account</a></button> `,
+//         });
+//     } catch (err) {
+//         res.send(err);
+//     }
+// };
 
-exports.ConfirmToken = async (req, res) => {
-    try {
-        const token = await Admins.findOne({
-            where: { token: req.params.token },
-        });
+// exports.ConfirmToken = async (req, res) => {
+//     try {
+//         const token = await Admins.findOne({
+//             where: { token: req.params.token },
+//         });
 
-        if (!token) {
-            return res.status(404).send("Token not valid");
-        }
+//         if (!token) {
+//             return res.status(404).send("Token not valid");
+//         }
 
-        await Admins.update(
-            { valid: true },
-            {
-                where: {
-                    token: token.token,
-                },
-            }
-        );
+//         await Admins.update(
+//             { valid: true },
+//             {
+//                 where: {
+//                     token: token.token,
+//                 },
+//             }
+//         );
 
-        res.status(200).send("Email verified");
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Internal Server Error");
-    }
-};
+//         res.status(200).send("Email verified");
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).send("Internal Server Error");
+//     }
+// };
 
 exports.getAll = async (req, res) => {
     try {
