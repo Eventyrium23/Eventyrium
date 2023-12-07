@@ -5,9 +5,9 @@ export const MyContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [user, setUser] = useState([]);
-  const [admins, setAdmins] = useState([])
   const [places, setPlaces] = useState([]);
   const [foods, setFoods] = useState([]);
+  const [admins, setAdmins] = useState([])
   const [decorations, setDecoretions] = useState([]);
   const [packs, setPacks] = useState([]);
   // --------------------
@@ -16,11 +16,11 @@ export const ContextProvider = ({ children }) => {
   const [decorationChecked, setDecorationChecked] = useState([]);
   const [packChecked, setPackChecked] = useState("");
   useEffect(() => {
-<<<<<<< HEAD
     fetchPlaces(setPlaces);
     fetchDecoration(setDecoretions);
     fetchFoods(setFoods);
     // fetchPacks(setPacks);
+    fetchAdmins(setAdmins);
   }, []);
 
   return (
@@ -37,21 +37,14 @@ export const ContextProvider = ({ children }) => {
         decorationChecked,
         setDecorationChecked,
         packChecked,
-        setPackChecked,
+        setPackChecked,admins
       }}
     >
-=======
-    fetchAdmins(setAdmins);
-  }, []);
-
-  return (
-    <MyContext.Provider value={{ admins, places, setPlaces, placeCheck, setPlaceCheck }}>
->>>>>>> 970f9536432ab5375167b055eaa8e47567c4b759
       {children}
     </MyContext.Provider>
   );
 };
-<<<<<<< HEAD
+
 
 const fetchPlaces = async (setPlaces) => {
   try {
@@ -85,14 +78,15 @@ const fetchPacks = async (setPacks) => {
     console.log(err);
   }
 };
-=======
-const fetchAdmins = (setAdmins) => {
-  axios.get(`http://localhost:8080/admin/getAll`).then((response) => {
-    let adminData = response.data
-    setAdmins(adminData)
-  }).catch((err) => {
-    console.log(err);
-  })
 
-}
->>>>>>> 970f9536432ab5375167b055eaa8e47567c4b759
+const fetchAdmins = (setAdmins) => {
+  axios
+    .get(`http://localhost:8080/admin/getAll`)
+    .then((response) => {
+      let adminData = response.data;
+      setAdmins(adminData);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
