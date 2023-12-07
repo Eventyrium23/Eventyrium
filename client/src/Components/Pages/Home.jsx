@@ -45,7 +45,7 @@ function CoverImage() {
 // The Descriptions:
 function Decriptions() {
   return (
-    <>
+    <div className="">
       <Typography variant="h3" color="gray" align="center">
         {" "}
         Eventyruim Planner{" "}
@@ -94,7 +94,7 @@ function Decriptions() {
         throughout the entire planning process, regardless of the complexity.
       </Typography>
       <br />
-    </>
+    </div>
   );
 }
 
@@ -188,8 +188,10 @@ function Home() {
         {CardDefault()}
       </div>
       <div className="flex justify-center gap-2 fixed right-0 bottom-20 z-20">
-        <NavLink to="events/places" size="lg" color="purple" variant="text">
-          Make A Plan
+        <NavLink to="events/places">
+          <Button size="lg" color="purple">
+            Make A Plan
+          </Button>
         </NavLink>
       </div>
       {/* <h1>Hello From Home</h1> */}

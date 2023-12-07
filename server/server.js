@@ -17,6 +17,10 @@ app.use("/user", userRouter);
 const placeRouter = require("./routes/places_routes.js");
 app.use("/places", placeRouter);
 
+// For Admin:
+const adminRouter = require("./routes/admins_routes.js");
+app.use("/admin", adminRouter);
+
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
 });
