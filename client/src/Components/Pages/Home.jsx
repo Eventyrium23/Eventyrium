@@ -9,11 +9,16 @@ import {
   CardBody,
   CardFooter,
 } from "@material-tailwind/react";
-import { NavLink } from "react-router-dom";
+import { NavLink,Link } from "react-router-dom";
 
 // Rating stars in the image :
 function RatingStars() {
-  return <Rating value={4} />;
+  return(
+    <Link to={"/feedbacks"}>
+    <Rating value={4} />
+    </Link>
+    ) 
+    
 }
 // The cover image in the beginning:
 function CoverImage() {
@@ -45,7 +50,7 @@ function CoverImage() {
 // The Descriptions:
 function Decriptions() {
   return (
-    <>
+    <div className="">
       <Typography variant="h3" color="gray" align="center">
         {" "}
         Eventyruim Planner{" "}
@@ -77,7 +82,7 @@ function Decriptions() {
         className="font-normal text-gray-600 text-center "
       >
         {" "}
-        Our experienced party planners at The Italian Planners will work beside
+        Our experienced party planners at Eventyruim will work beside
         you to find the perfect venue and unique setting and atmosphere that
         caters to any of your celebration needs.We pride ourselves on managing
         every aspect of your party with creativity, elegance, and efficiency,
@@ -94,7 +99,7 @@ function Decriptions() {
         throughout the entire planning process, regardless of the complexity.
       </Typography>
       <br />
-    </>
+    </div>
   );
 }
 
@@ -188,8 +193,10 @@ function Home() {
         {CardDefault()}
       </div>
       <div className="flex justify-center gap-2 fixed right-0 bottom-20 z-20">
-        <NavLink to="events/places" size="lg" color="purple" variant="text">
-          Make A Plan
+        <NavLink to="events/places">
+          <Button size="lg" color="purple">
+            Make A Plan
+          </Button>
         </NavLink>
       </div>
       {/* <h1>Hello From Home</h1> */}

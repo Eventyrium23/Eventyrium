@@ -5,6 +5,7 @@ export const MyContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [user, setUser] = useState([]);
+  const [admins, setAdmins] = useState([])
   const [places, setPlaces] = useState([]);
   const [foods, setFoods] = useState([]);
   const [decorations, setDecoretions] = useState([]);
@@ -15,9 +16,11 @@ export const ContextProvider = ({ children }) => {
   const [decorationChecked, setDecorationChecked] = useState([]);
   const [packChecked, setPackChecked] = useState("");
   useEffect(() => {
+
     fetchPlaces(setPlaces);
     fetchDecoration(setDecoretions);
     fetchFoods(setFoods);
+     fetchAdmins(setAdmins);
     // fetchPacks(setPacks);
   }, []);
 
@@ -35,13 +38,14 @@ export const ContextProvider = ({ children }) => {
         decorationChecked,
         setDecorationChecked,
         packChecked,
-        setPackChecked,
+        setPackChecked,admins
       }}
     >
       {children}
     </MyContext.Provider>
   );
 };
+
 
 const fetchPlaces = async (setPlaces) => {
   try {
@@ -75,3 +79,14 @@ const fetchPacks = async (setPacks) => {
     console.log(err);
   }
 };
+
+const fetchAdmins = (setAdmins) => {
+  axios.get(`http://localhost:8080/admin/getAll`).then((response) => {
+    let adminData = response.data
+    setAdmins(adminData)
+  }).catch((err) => {
+    console.log(err);
+  })
+
+}
+

@@ -18,9 +18,8 @@ function Places() {
       >
         <NavLink to={`/events/places/${event.name}`}>
           <FaRegEye
-            className={`${
-              isHovered ? "opacity-100" : "opacity-0"
-            }  absolute w-20 top-1/2 left-1/2 text-5xl   text-[#ffffff99] transition-opacity translate-x-[-50%] translate-y-[-50%]`}
+            className={`${isHovered ? "opacity-100" : "opacity-0"
+              }  absolute w-20 top-1/2 left-1/2 text-5xl   text-[#ffffff99] transition-opacity translate-x-[-50%] translate-y-[-50%]`}
           />
 
           <img

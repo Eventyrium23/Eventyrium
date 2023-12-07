@@ -25,6 +25,12 @@ const Login = lazy(() => import("./Components/authenticateUser/Login.jsx"));
 const Verified = lazy(() =>
   import("./Components/authenticateUser/Verified.jsx")
 );
+// Admin:
+const LoginAdmin = lazy(() => import("./Components/authenticateUser/Admin/Login.jsx"))
+// Team:
+const OurTeam = lazy(() => import("./Components/Pages/OurTeam.jsx"));
+// FeedBacks & Ratings :
+const FeedBacks = lazy(() => import("./Components/Pages/FeedBacks.jsx"))
 //events
 const LayoutEvents = lazy(() => import("./Components/Events/LayoutEvents.jsx"));
 
@@ -44,6 +50,8 @@ function App() {
       <>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="team" element={<OurTeam />} />
+          <Route path="feedbacks" element={<FeedBacks />} />
 
           <Route path="about" element={<About />}>
             <Route index element={<Who />} />
@@ -67,7 +75,11 @@ function App() {
         </Route>
         <Route path="/user/register" element={<Register />} />
         <Route path="/user/login" element={<Login />} />
-        <Route path="/user/confirm/:token" element={<Verified />} />)
+        <Route path="/user/confirm/:token" element={<Verified />} />
+
+        {/* <Route path="/admin/register" element={<RegisterAdmin />} /> */}
+        <Route path="/admin/login" element={<LoginAdmin />} />
+        {/* <Route path="/admin/confirm/:token" element={<Verified />} /> */}
       </>
     )
   );
