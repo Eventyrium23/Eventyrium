@@ -6,7 +6,7 @@ export const MyContext = createContext();
 export const ContextProvider = ({ children }) => {
   const [user, setUser] = useState([]);
   const [places, setPlaces] = useState([]);
-
+  const [placeCheck, setPlaceCheck] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -21,7 +21,7 @@ export const ContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <MyContext.Provider value={{ places, setPlaces }}>
+    <MyContext.Provider value={{ places, setPlaces ,placeCheck,setPlaceCheck}}>
       {children}
     </MyContext.Provider>
   );

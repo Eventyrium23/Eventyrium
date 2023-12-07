@@ -11,9 +11,9 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-
+import Load from "../Load/Load";
 function Register() {
   const mainColor = " #9ca38a";
   const [phone, setPhone] = useState("");
@@ -21,6 +21,8 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+
   const Submit = async (e) => {
     e.preventDefault();
     const data = {
@@ -34,8 +36,17 @@ function Register() {
         "http://localhost:8080/user/register",
         data
       );
+      toast.success("🦄 Go Check Email!", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       navigate("/user/login");
-      console.log(response);
     } catch (err) {
       toast.error("Register failed. Please check your information.", {
         position: "bottom-center",
@@ -185,7 +196,6 @@ function Register() {
         </Card>
       </div>
       <ToastContainer />
-
     </div>
   );
 }

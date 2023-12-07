@@ -18,7 +18,7 @@ exports.getOne = async (req, res) => {
   const { place } = req.params;
   try {
     const onePlace = await Places.findOne({ where: { namePlace: place } });
-    if (Object.keys(onePlace).length>0) {
+    if (Object.keys(onePlace).length > 0) {
       res.status(200).send(onePlace);
     } else {
       res.status(200).send("empty");
@@ -52,6 +52,7 @@ exports.addPlace = async (req, res) => {
     res.status(400).send(err);
   }
 };
+
 exports.updatePlace = async (req, res) => {
   const { namePlace, place, image, price, description, available, date } =
     req.body;
@@ -76,6 +77,29 @@ exports.updatePlace = async (req, res) => {
         }
       );
       res.status(200).send(onePlace);
+    }
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
+exports.reservedPlace = async (req, res) => {
+  const { namePlace, available, date } = req.body;
+
+  try {
+    const onePlace = await Places.findOne({ where: { namePlace: namePlace } });
+    if (onePlace.length > 0) {
+      await User.update(
+        {
+          available: true,
+          date: date,
+        },
+        {
+          where: {
+            namePlace: namePlace,
+          },
+        }
+      );
+      res.status(200).send("reserved");
     }
   } catch (err) {
     res.status(400).send(err);

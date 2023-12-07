@@ -78,6 +78,10 @@ exports.Login = async (req, res) => {
       } else {
         res.status(400).send("Invalid email and password");
       }
+      
+    }else{
+      res.status(401).send("Invalid email and password");
+
     }
   } catch (err) {
     console.error(err);
