@@ -58,7 +58,6 @@ function Inbox() {
       );
       window.localStorage.setItem("foods", JSON.stringify(updatedFoods));
     } else if (addedPacks && addedPacks.name === itemName) {
-      
       window.localStorage.removeItem("packs");
     }
     window.location.reload();
@@ -183,9 +182,10 @@ function Inbox() {
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
-                  {addedPacks.name}
+                  Pack
                 </th>
                 <td className="px-6 py-4">{addedPacks.location}</td>
+                <td className="px-6 py-4">{addedPacks.name}</td>
                 <td className="px-6 py-4">{addedPacks.price}DT</td>
                 <td className="px-6 py-4 text-left">
                   <button
@@ -206,6 +206,5 @@ function Inbox() {
     </div>
   );
 }
-
 
 export default Inbox;

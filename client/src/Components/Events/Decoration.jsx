@@ -25,7 +25,7 @@ function Decoration() {
 
           <img
             className="min-w-[230px] h-[250px] md:h-[300px] rounded"
-            src={decoration.img}
+            src={decoration.image}
             alt={decoration.name}
           />
           <div className="deco-info text-center mt-4">

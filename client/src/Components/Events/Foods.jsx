@@ -24,7 +24,7 @@ function Foods() {
 
           <img
             className="min-w-[230px] h-[250px] md:h-[300px] rounded"
-            src={food.img}
+            src={food.image}
             alt={food.name}
           />
           <div className="food-info">

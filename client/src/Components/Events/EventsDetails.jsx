@@ -189,7 +189,7 @@ function showDetailsFood(data, Save) {
     >
       <img
         className="	 w-3/3 h-[300px] lg:w-2/4 lg:h-[400px]"
-        src={data.img}
+        src={data.image}
         alt=""
       />
       <div className="text text-xl flex flex-wrap leading-10	w-full max-w-[200px]">
@@ -222,7 +222,7 @@ function showDetailsDeco(data, Save) {
     >
       <img
         className="	 w-3/3 h-[300px] lg:w-2/4 lg:h-[400px]"
-        src={data.img}
+        src={data.image}
         alt=""
       />
       <div className="text text-xl flex flex-wrap leading-10	w-full max-w-[200px]">
@@ -230,7 +230,7 @@ function showDetailsDeco(data, Save) {
 
         <p>
           <strong>Stock:</strong>
-          {data.stack}
+          {data.stock}
         </p>
         <p>
           <strong>Price:</strong> {data.price}DT
@@ -261,14 +261,27 @@ function showDetailsPack(data, Save) {
       <div className="text text-xl flex flex-wrap leading-10	w-full max-w-[200px]">
         <h1 className=" font-bold text-4xl capitalize">{data.name}</h1>
 
+        <h3>
+          <strong>Location: </strong>
+          {data.location}
+        </h3>
         <p>
-          <strong>Stock:</strong>
-          {data.stack}
+          <strong>Description: </strong>
+          {data.description}
+        </p>
+        <p>
+          <strong>Max Guests: </strong>
+          {data.max_guests}
         </p>
         <p>
           <strong>Price:</strong> {data.price}DT
         </p>
-
+        <p>
+          <strong>Available:</strong>{" "}
+          {data.date
+            ? " sorry this pack is not available "
+            : "this place available"}
+        </p>
         <button
           onClick={Save}
           className="bg-mainHeader text-white p-3 rounded pointer"
