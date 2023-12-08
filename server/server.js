@@ -35,4 +35,4 @@ app.use("/admin", adminRouter);
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
 });
-// db.sequelize.sync({ force: true });
+// db.sequelize.sync({ alter: true });
