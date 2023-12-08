@@ -10,7 +10,7 @@ function SmallHead() {
   const [calander, setCalander] = useState(false);
   const location = useLocation();
   const paths = location.pathname.split("/");
-
+console.log(value);
   const path = paths.slice(2, -1); 
 
   return (

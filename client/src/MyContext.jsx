@@ -7,7 +7,7 @@ export const ContextProvider = ({ children }) => {
   const [user, setUser] = useState([]);
   const [places, setPlaces] = useState([]);
   const [foods, setFoods] = useState([]);
-  const [admins, setAdmins] = useState([])
+  const [admins, setAdmins] = useState([]);
   const [decorations, setDecoretions] = useState([]);
   const [packs, setPacks] = useState([]);
   // --------------------
@@ -19,7 +19,7 @@ export const ContextProvider = ({ children }) => {
     fetchPlaces(setPlaces);
     fetchDecoration(setDecoretions);
     fetchFoods(setFoods);
-    // fetchPacks(setPacks);
+    fetchPacks(setPacks);
     fetchAdmins(setAdmins);
   }, []);
 
@@ -37,14 +37,14 @@ export const ContextProvider = ({ children }) => {
         decorationChecked,
         setDecorationChecked,
         packChecked,
-        setPackChecked,admins
+        setPackChecked,
+        admins,
       }}
     >
       {children}
     </MyContext.Provider>
   );
 };
-
 
 const fetchPlaces = async (setPlaces) => {
   try {

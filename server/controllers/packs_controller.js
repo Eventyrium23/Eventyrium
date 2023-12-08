@@ -1,5 +1,5 @@
 const db = require("../models/index.js");
-const Packs = db.Pack;
+const Packs = db.Packs;
 exports.getAll = async (req, res) => {
   try {
     const allPacks = await Packs.findAll();

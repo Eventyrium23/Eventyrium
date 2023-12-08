@@ -1,8 +1,10 @@
 import { FaRegEye } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
-import data from "../../dataPacks.json"
+import {  NavLink } from "react-router-dom";
+import { useContext, useState } from "react";
+import { MyContext } from "../../MyContext.jsx";
+
 function Packs() {
+  const { packs } = useContext(MyContext);
   const PackComponent = ({ pack }) => {
     const [isHovered, setIsHovered] = useState(false);
 
@@ -12,7 +14,7 @@ function Packs() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <NavLink to={`/events/packs/${pack.package_name}`}>
+        <NavLink to={`/events/packs/${pack.name}`}>
           <FaRegEye
             className={`${
               isHovered ? "opacity-100" : "opacity-0"
@@ -21,12 +23,12 @@ function Packs() {
 
           <img
             className="min-w-[230px] h-[250px] md:h-[300px] rounded"
-            src={pack.img}
-            alt={pack.package_name}
+            src={pack.image}
+            alt={pack.name}
           />
           <div className="pack-info">
             <h3 className="text-xl font-semibold text-gray-800">
-              {pack.package_name}
+              {pack.name}
             </h3>
             <p className="text-sm text-gray-600">{pack.description}</p>
             <p className="text-lg font-bold text-green-600">${pack.price}</p>
@@ -39,7 +41,7 @@ function Packs() {
 
   return (
     <div className="box container grid grid-cols-1 auto-cols-fr md:grid-cols-2 xl:grid-cols-3 gap-10 p-10 justify-center justify-items-center z-20">
-      {data.map((pack, i) => (
+      {packs.map((pack, i) => (
         <PackComponent key={i} pack={pack} />
       ))}
     </div>

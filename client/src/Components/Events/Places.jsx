@@ -37,7 +37,7 @@ function Places() {
 
             <p className="text-lg">
               <strong>Available:</strong>{" "}
-              {data.date
+              {event.date
                 ? "this place available "
                 : "sorry this place is not available"}
             </p>

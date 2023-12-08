@@ -1,61 +1,61 @@
 [
   {
     "name": "Margherita-Pizza",
-    "img": "https://lelocalapizzas.fr/wp-content/uploads/2022/02/recette-pizza-margherita.jpg",
+    "image": "https://lelocalapizzas.fr/wp-content/uploads/2022/02/recette-pizza-margherita.jpg",
     "specialite": "Italian",
     "price": 2000
   },
   {
     "name": "Chicken-Satay-Skewers",
-    "img": "https://img.taste.com.au/V3yqWBhj/taste/2016/11/satay-chicken-18097-1.jpeg",
+    "image": "https://img.taste.com.au/V3yqWBhj/taste/2016/11/satay-chicken-18097-1.jpeg",
     "specialite": "Asian",
     "price": 1500
   },
   {
     "name": "Caprese-Salad",
-    "img": "https://natashaskitchen.com/wp-content/uploads/2019/08/Caprese-Salad-6.jpg",
+    "image": "https://natashaskitchen.com/wp-content/uploads/2019/08/Caprese-Salad-6.jpg",
     "specialite": "Mediterranean",
     "price": 1200
   },
   {
     "name": "Mini-Sliders",
-    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC4JRdKT-XJlTiEs11QUvPzdcaCHCIkmM38Q&usqp=CAU",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC4JRdKT-XJlTiEs11QUvPzdcaCHCIkmM38Q&usqp=CAU",
     "specialite": "American",
     "price": 1800
   },
   {
     "name": "Vegetable-Spring-Rolls",
-    "img": "https://healthynibblesandbits.com/wp-content/uploads/2018/01/Vegetable-Spring-Rolls-FF-1.jpg",
+    "image": "https://healthynibblesandbits.com/wp-content/uploads/2018/01/Vegetable-Spring-Rolls-FF-1.jpg",
     "specialite": "Asian",
     "price": 1600
   },
   {
     "name": "Chocolate-Fondue",
-    "img": "https://i.ytimg.com/vi/Mf65StT9ep8/maxresdefault.jpg",
+    "image": "https://i.ytimg.com/vi/Mf65StT9ep8/maxresdefault.jpg",
     "specialite": "Dessert",
     "price": 2500
   },
   {
     "name": "Mushroom-Risotto",
-    "img": "https://cdn.loveandlemons.com/wp-content/uploads/2023/01/mushroom-risotto.jpg",
+    "image": "https://cdn.loveandlemons.com/wp-content/uploads/2023/01/mushroom-risotto.jpg",
     "specialite": "Italian",
     "price": 2200
   },
   {
     "name": "Shrimp-Tacos",
-    "img": "https://www.jessicagavin.com/wp-content/uploads/2023/05/shrimp-tacos-27-1200.jpg",
+    "image": "https://www.jessicagavin.com/wp-content/uploads/2023/05/shrimp-tacos-27-1200.jpg",
     "specialite": "Mexican",
     "price": 1900
   },
   {
     "name": "Hummus-Platter",
-    "img": "https://i0.wp.com/myvegetarianroots.com/wp-content/uploads/2019/09/DSC_0014.jpg?fit=6016%2C4000&ssl=1",
+    "image": "https://i0.wp.com/myvegetarianroots.com/wp-content/uploads/2019/09/DSC_0014.jpg?fit=6016%2C4000&ssl=1",
     "specialite": "Middle Eastern",
     "price": 1300
   },
   {
     "name": "Fruit-Skewers",
-    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-MV8jgmbyqJ6Tvdee3dYwTFDiQwELoKupDQ&usqp=CAU",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-MV8jgmbyqJ6Tvdee3dYwTFDiQwELoKupDQ&usqp=CAU",
     "specialite": "Healthy",
     "price": 1000
   }
