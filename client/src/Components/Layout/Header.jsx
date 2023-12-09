@@ -43,8 +43,12 @@ function Header() {
   React.useEffect(() => {
     const storedToken = window.localStorage.getItem("Token");
     if (!!storedToken) {
-      const decoded = jwtDecode(storedToken);
-      setUser(decoded.userName);
+      const decodedToken = jwtDecode(storedToken);
+      if (!!decodedToken.confirmed) {
+        window.localStorage.setItem("confirmed", true);
+      }
+
+      setUser(decodedToken.userName);
     }
   }, []);
   const profileMenuItems = [

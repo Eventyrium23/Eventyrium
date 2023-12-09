@@ -1,16 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import LOGO from "../../../assets/LOGO.png";
 import "react-international-phone/style.css";
 import {
   Card,
   Input,
-  Checkbox,
   Button,
   Typography,
 } from "@material-tailwind/react";
 import { useState } from "react";
 import axios from "axios";
-function Login() {
+function LoginAdmin() {
   const mainColor = " #9ca38a";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -52,7 +51,7 @@ function Login() {
           shadow={false}
         >
           <Typography variant="h4" color="blue-gray">
-            Login
+            Admin Login
           </Typography>
           <Typography color="gray" className="mt-1 font-normal">
             Enter your details to Login.
@@ -100,24 +99,7 @@ function Login() {
                 value={password}
               />
             </div>
-            <Checkbox
-              label={
-                <Typography
-                  variant="small"
-                  color="gray"
-                  className="flex items-center font-normal"
-                >
-                  I agree the
-                  <a
-                    href="#"
-                    className="font-medium transition-colors hover:text-gray-900"
-                  >
-                    &nbsp;Terms and Conditions
-                  </a>
-                </Typography>
-              }
-              containerProps={{ className: "-ml-2.5" }}
-            />
+
             <Button
               style={{ background: mainColor }}
               type="submit"
@@ -126,12 +108,6 @@ function Login() {
             >
               Login
             </Button>
-            <Typography color="gray" className="mt-4 text-center font-normal">
-              Don't have an account yet ?{" "}
-              <Link to="/user/register" className="font-medium text-gray-900">
-                Register now
-              </Link>
-            </Typography>
           </form>
         </Card>
       </div>
@@ -139,4 +115,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginAdmin;

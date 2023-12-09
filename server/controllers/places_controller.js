@@ -3,7 +3,11 @@ const Places = db.Places;
 
 exports.getAll = async (req, res) => {
   try {
-    const allplaces = await Places.findAll();
+    const allplaces = await Places.findAll({
+      where: {
+        userId: null,
+      },
+    });
     if (Object.keys(allplaces).length > 0) {
       res.status(200).send(allplaces);
     } else {
@@ -27,7 +31,6 @@ exports.getOne = async (req, res) => {
     res.status(400).send(err);
   }
 };
-
 exports.addPlace = async (req, res) => {
   const { name, image, price, description, date, location } = req.body;
   try {
@@ -82,6 +85,8 @@ exports.updatePlace = async (req, res) => {
     res.status(400).send(err);
   }
 };
+
+
 exports.reservedPlace = async (req, res) => {
   const { name, available, date } = req.body;
 

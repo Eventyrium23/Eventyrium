@@ -32,7 +32,11 @@ app.use("/packs", packRouter);
 const adminRouter = require("./routes/admins_routes.js");
 app.use("/admin", adminRouter);
 
+// invite 
+const InviteRouter = require('./routes/invitation_routes.js')
+ app.use("/invite",InviteRouter) 
+
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
 });
-// db.sequelize.sync({ force: true });
+// db.sequelize.sync({ alter: true });

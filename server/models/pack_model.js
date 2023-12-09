@@ -1,45 +1,45 @@
 module.exports = (sequelize, DataTypes) => {
-  const Users = sequelize.define(
-    "User",
+  const Packs = sequelize.define(
+    "pack",
     {
-      id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
-        primaryKey: true,
-      },
-      userName: {
+      image: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      email: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      password: {
+      description: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      phone: {
+      price: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      token: {
-        type: DataTypes.TEXT,
+      max_guests: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
-      valid: {
+      location: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      available: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
-      confirmed: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
+      date: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      persons: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
     },
     { timestamps: false }
-
-    
   );
-  return Users;
+  return Packs;
 };

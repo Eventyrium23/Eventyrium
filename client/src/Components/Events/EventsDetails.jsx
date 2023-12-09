@@ -3,6 +3,8 @@ import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { jwtDecode } from "jwt-decode";
+
 import { MyContext } from "../../MyContext.jsx";
 export default function EventsDetails() {
   const [data, setData] = useState(null);
@@ -15,17 +17,20 @@ export default function EventsDetails() {
     setDecorationChecked,
     packChecked,
     setPackChecked,
+    reserved,
+    setItemDetails,
   } = useContext(MyContext);
   const location = useLocation();
   const { route } = useParams();
   const paths = location.pathname.split("/");
   const url = paths.slice(2, paths.length - 1);
-
+  const decodedToken = jwtDecode(window.localStorage.getItem("Token"));
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await axios.get(`http://localhost:8080/${url}/${route}`);
         setData(result.data);
+        setItemDetails(route);
       } catch (err) {
         console.error(err);
       }
@@ -55,91 +60,105 @@ export default function EventsDetails() {
     } else if (url == "foods") {
       return food(path);
     } else if (url == "packs") {
-      if (packStored) {
-        return pack(path);
-      }
+      return pack(path);
     }
   };
   // checked items
   const place = (path) => {
-    if (data.date) {
-      return showWarning("Sorry, this place is reserved!");
+    const alreadyAdded = placeChecked.name == path;
+    if (alreadyAdded) {
+      return showWarning(`You already added this ${path}!`);
     } else {
-      const alreadyAdded = placeChecked.name == path;
-      if (alreadyAdded) {
-        return showWarning(`You already added this ${path}!`);
-      } else {
-        setPlaceChecked(data);
-        return showSuccess(`This place has been added to your inbox!`);
+      if (packChecked) {
+        setPackChecked({});
+        window.localStorage.removeItem("packs");
       }
+
+      setPlaceChecked({ ...data, userId: decodedToken.id });
+      return showSuccess(`This place has been added to your inbox!`);
     }
   };
   const food = (path) => {
-    const alreadyAdded = foodChecked.some((ele) => {
-      return ele.name == path;
-    });
+    const alreadyAdded = foodChecked.some((ele) => ele.name === path);
     if (alreadyAdded) {
       return showWarning(`You already added this ${path}!`);
     } else {
-      setFoodChecked([...foodChecked, data]);
+      const withoutId = data;
+      delete withoutId.id;
+      setFoodChecked([
+        ...foodChecked,
+        { ...withoutId, userId: decodedToken.id },
+      ]);
       return showSuccess(`This Food has been added to your inbox!`);
     }
   };
+
   const decoration = (path) => {
-    const alreadyAdded = decorationChecked.some((ele) => {
-      return ele.name == path;
-    });
+    const alreadyAdded = decorationChecked.some((ele) => ele.name === path);
     if (alreadyAdded) {
       return showWarning(`You already added this ${path}!`);
     } else {
-      setDecorationChecked([...decorationChecked, data]);
-      return showSuccess(`This Decoretion has been added to your inbox!`);
+      const withoutId = data;
+      delete withoutId.id;
+      setDecorationChecked([
+        ...decorationChecked,
+        { ...withoutId, userId: decodedToken.id },
+      ]);
+      return showSuccess(`This Decoration has been added to your inbox!`);
     }
   };
+
   const pack = (path) => {
-    const alreadyAdded = packChecked.name == path;
+    const alreadyAdded = packChecked.name === path;
     if (alreadyAdded) {
       return showWarning(`You already added this ${path}!`);
     } else {
-      setPackChecked(data);
+      if (placeChecked) {
+        setPlaceChecked({});
+        window.localStorage.removeItem("places");
+      }
+      setPackChecked({ ...data, userId: decodedToken.id });
       return showSuccess(`This pack has been Update in your inbox!`);
     }
   };
 
   const showWarning = (message) => {
-    toast.warn(message, getToastConfig("bg-[red]"));
+    toast.error(message, getToastConfig());
   };
 
   const showSuccess = (message) => {
-    toast.warn(message, getToastConfig("bg-[blue]"));
+    toast.success(message, getToastConfig());
   };
 
-  const getToastConfig = (theme) => {
+  const getToastConfig = () => {
     return {
       position: "bottom-center",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      className: `${theme}  w-[400px]`,
+      className: `w-[450px]`,
+      theme: "colored",
     };
   };
 
   //check url to show details
   if (url == "places") {
-    return showDetailsPlace(data, Save);
+    return showDetailsPlace(data, Save, reserved, showWarning);
   } else if (url == "decorations") {
     return showDetailsDeco(data, Save);
   } else if (url == "foods") {
     return showDetailsFood(data, Save);
   } else if (url == "packs") {
-    return showDetailsPack(data, Save);
+    return showDetailsPack(data, Save, reserved);
   }
 }
+
+
 //show details items...
-function showDetailsPlace(data, Save) {
+function showDetailsPlace(data, Save, reserved, showWarning) {
   return (
     <div
       className="box truncate flex flex-col lg:flex-row gap-10 justify-start lg:justify-start items-start pt-5 pl-5 md:pl-10"
@@ -166,18 +185,25 @@ function showDetailsPlace(data, Save) {
         </p>
         <p>
           <strong>Available:</strong>{" "}
-          {data.date
+          {reserved
             ? " sorry this place is not available "
             : "this place available"}
         </p>
-        <button
-          onClick={Save}
-          className="bg-mainHeader text-white p-3 rounded pointer"
-        >
-          Add To Organisation
-        </button>
+        {!reserved && (
+          <button
+            onClick={Save}
+            className="bg-mainHeader text-white p-3 rounded pointer"
+          >
+            Add To Organisation
+          </button>
+        )}
       </div>
       <ToastContainer />
+      {/* {reserved&&reserved
+          ? showWarning(
+              "Sorry, this Place is reserved for this day check Calender!"
+            )
+          : ""} */}
     </div>
   );
 }
@@ -189,7 +215,7 @@ function showDetailsFood(data, Save) {
     >
       <img
         className="	 w-3/3 h-[300px] lg:w-2/4 lg:h-[400px]"
-        src={data.img}
+        src={data.image}
         alt=""
       />
       <div className="text text-xl flex flex-wrap leading-10	w-full max-w-[200px]">
@@ -222,7 +248,7 @@ function showDetailsDeco(data, Save) {
     >
       <img
         className="	 w-3/3 h-[300px] lg:w-2/4 lg:h-[400px]"
-        src={data.img}
+        src={data.image}
         alt=""
       />
       <div className="text text-xl flex flex-wrap leading-10	w-full max-w-[200px]">
@@ -230,7 +256,7 @@ function showDetailsDeco(data, Save) {
 
         <p>
           <strong>Stock:</strong>
-          {data.stack}
+          {data.stock}
         </p>
         <p>
           <strong>Price:</strong> {data.price}DT
@@ -247,7 +273,7 @@ function showDetailsDeco(data, Save) {
     </div>
   );
 }
-function showDetailsPack(data, Save) {
+function showDetailsPack(data, Save, reserved) {
   return (
     <div
       className="box truncate flex flex-col lg:flex-row gap-10 justify-start lg:justify-start items-start pt-5 pl-5 md:pl-10"
@@ -261,20 +287,35 @@ function showDetailsPack(data, Save) {
       <div className="text text-xl flex flex-wrap leading-10	w-full max-w-[200px]">
         <h1 className=" font-bold text-4xl capitalize">{data.name}</h1>
 
+        <h3>
+          <strong>Location: </strong>
+          {data.location}
+        </h3>
         <p>
-          <strong>Stock:</strong>
-          {data.stack}
+          <strong>Description: </strong>
+          {data.description}
+        </p>
+        <p>
+          <strong>Max Guests: </strong>
+          {data.max_guests}
         </p>
         <p>
           <strong>Price:</strong> {data.price}DT
         </p>
-
-        <button
-          onClick={Save}
-          className="bg-mainHeader text-white p-3 rounded pointer"
-        >
-          Add To Organisation
-        </button>
+        <p>
+          <strong>Available:</strong>{" "}
+          {reserved
+            ? " sorry this pack is not available "
+            : "this pack available"}
+        </p>
+        {!reserved && (
+          <button
+            onClick={Save}
+            className="bg-mainHeader text-white p-3 rounded pointer"
+          >
+            Add To Organisation
+          </button>
+        )}
       </div>
       <ToastContainer />
     </div>

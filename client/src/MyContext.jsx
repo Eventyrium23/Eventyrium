@@ -5,9 +5,12 @@ export const MyContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [user, setUser] = useState([]);
+  const [date, setDate] = useState(new Date().toLocaleDateString());
+  const [reserved, setReserved] = useState(true);
+  const [itemDetails,setItemDetails]=useState(null)
   const [places, setPlaces] = useState([]);
   const [foods, setFoods] = useState([]);
-  const [admins, setAdmins] = useState([])
+  const [admins, setAdmins] = useState([]);
   const [decorations, setDecoretions] = useState([]);
   const [packs, setPacks] = useState([]);
   // --------------------
@@ -19,10 +22,14 @@ export const ContextProvider = ({ children }) => {
     fetchPlaces(setPlaces);
     fetchDecoration(setDecoretions);
     fetchFoods(setFoods);
-    // fetchPacks(setPacks);
+    fetchPacks(setPacks);
     fetchAdmins(setAdmins);
   }, []);
+  useEffect(()=>{
+    fetchCheckReservedPack(date, itemDetails, setReserved);
+    fetchCheckReservedPlace(date, itemDetails, setReserved);
 
+  },[date,itemDetails])
   return (
     <MyContext.Provider
       value={{
@@ -37,14 +44,19 @@ export const ContextProvider = ({ children }) => {
         decorationChecked,
         setDecorationChecked,
         packChecked,
-        setPackChecked,admins
+        setPackChecked,
+        admins,
+        date,
+        setDate,
+        reserved,
+        setReserved,
+        setItemDetails,itemDetails
       }}
     >
       {children}
     </MyContext.Provider>
   );
 };
-
 
 const fetchPlaces = async (setPlaces) => {
   try {
@@ -90,3 +102,42 @@ const fetchAdmins = (setAdmins) => {
       console.log(err);
     });
 };
+
+const fetchCheckReservedPack = async (date, itemDetails, setReserved) => {
+  try {
+    const response = await axios.post(
+      'http://localhost:8080/packs/checkReserved',
+      { date, name: itemDetails }
+    );
+
+
+    if (response.status === 200) {
+      setReserved(false);
+    } else if (response.status === 230) {
+      setReserved(true);
+    } else {
+      console.error(`Unexpected response status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error('Error during reservation check:', error.message);
+  }
+};
+
+
+const fetchCheckReservedPlace = async (date, itemDetails, setReserved) => {
+  try {
+    const response = await axios.post(
+      'http://localhost:8080/places/checkReserved',
+      { date, name: itemDetails }
+    );
+
+    if (response.status === 200) {
+      setReserved(false);
+    } else if (response.status === 230) {
+      setReserved(true);
+    }
+  } catch (error) {
+    console.error('Error during reservation check:', error.message);
+  }
+};
+

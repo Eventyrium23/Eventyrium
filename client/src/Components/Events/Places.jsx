@@ -1,12 +1,13 @@
 import { FaRegEye } from "react-icons/fa";
 
 // import data from "../../data.json";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
 import { MyContext } from "../../MyContext.jsx";
 
 function Places() {
-  const { places } = useContext(MyContext);
+  const { places ,reserved} = useContext(MyContext);
+
   const EventComponent = ({ event }) => {
     const [isHovered, setIsHovered] = useState(false);
 
@@ -35,12 +36,7 @@ function Places() {
               <strong>Location :</strong> {event.location}
             </p>
 
-            <p className="text-lg">
-              <strong>Available:</strong>{" "}
-              {data.date
-                ? "this place available "
-                : "sorry this place is not available"}
-            </p>
+         
           </div>
         </NavLink>
       </div>

@@ -2,7 +2,11 @@ const db = require("../models/index.js");
 const Decoration = db.Deco;
 exports.getAll = async (req, res) => {
   try {
-    const allDecoration = await Decoration.findAll();
+    const allDecoration = await Decoration.findAll({
+      where: {
+        userId: null,
+      },
+    });
     if (Object.keys(allDecoration).length > 0) {
       res.status(200).send(allDecoration);
     } else {
