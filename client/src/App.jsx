@@ -17,20 +17,25 @@ const Who = lazy(() => import("./Components/AboutLayout/Who-are.jsx"));
 const Location = lazy(() => import("./Components/AboutLayout/Location.jsx"));
 const History = lazy(() => import("./Components/AboutLayout/History.jsx"));
 const Getint = lazy(() => import("./Components/AboutLayout/Getintouch.jsx"));
-//login
+//User login && register
 const Register = lazy(() =>
-  import("./Components/authenticateUser/Register.jsx")
+  import("./Components/authenticateUser/UserRegister.jsx")
 );
-const Login = lazy(() => import("./Components/authenticateUser/Login.jsx"));
+const Login = lazy(() => import("./Components/authenticateUser/UserLogin.jsx"));
 const Verified = lazy(() =>
   import("./Components/authenticateUser/Verified.jsx")
 );
 // Admin:
-const LoginAdmin = lazy(() => import("./Components/authenticateUser/Admin/Login.jsx"))
+const LoginAdmin = lazy(() =>
+  import("./Components/authenticateUser/Admin/LoginAdmin.jsx")
+);
+const RegisterAdmin = lazy(() =>
+  import("./Components/authenticateUser/Admin/RegisterAdmin.jsx")
+);
 // Team:
 const OurTeam = lazy(() => import("./Components/Pages/OurTeam.jsx"));
 // FeedBacks & Ratings :
-const FeedBacks = lazy(() => import("./Components/Pages/FeedBacks.jsx"))
+const FeedBacks = lazy(() => import("./Components/Pages/FeedBacks.jsx"));
 //events
 const LayoutEvents = lazy(() => import("./Components/Events/LayoutEvents.jsx"));
 
@@ -42,6 +47,7 @@ const EventsDetails = lazy(() =>
   import("./Components/Events/EventsDetails.jsx")
 );
 const Inbox = lazy(() => import("./Components/User/Inbox.jsx"));
+
 
 import Load from "./Components/Load/Load.jsx";
 function App() {
@@ -77,9 +83,10 @@ function App() {
         <Route path="/user/login" element={<Login />} />
         <Route path="/user/confirm/:token" element={<Verified />} />
 
-        {/* <Route path="/admin/register" element={<RegisterAdmin />} /> */}
+        <Route path="/admin/register" element={<RegisterAdmin />} />
         <Route path="/admin/login" element={<LoginAdmin />} />
-        {/* <Route path="/admin/confirm/:token" element={<Verified />} /> */}
+     
+     
       </>
     )
   );

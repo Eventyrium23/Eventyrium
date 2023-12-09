@@ -1,14 +1,14 @@
 [
   {
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUNomi2r3Bcz733ji5pxLSFXMAInW_bUxbTA&usqp=CAU",
-    "name": "Garden City",
+    "name": "Garden-City",
     "location": "Akouda,Sousse,Tunisia",
     "price": "2850",
     "description": "test",
     "available": 1
   },
   {
-    "name": "Le Sérail",
+    "name": "Le-Serail",
     "location": "Sousse,Tunisia",
     "image": "https://i2.wp.com/www.events-places.com/wp-content/uploads/2020/12/10.jpg",
     "price": "6580",
@@ -16,7 +16,7 @@
     "available": 1
   },
   {
-    "name": "Golden Tulip",
+    "name": "Golden-Tulip",
     "location": "Gammarth,Tunis",
     "image": "https://tapisrouge.tn/wp-content/uploads/2021/06/DJI_0712-5-16-770x550.jpg",
     "price": "8000",
@@ -24,7 +24,7 @@
     "available": 1
   },
   {
-    "name": "Star Wars",
+    "name": "Star-Wars",
     "location": "Matmata,Touzeur,Tunisia",
     "image": "https://cdn.getyourguide.com/img/tour/6445ad93769fc.jpeg/145.jpg",
     "price": "3250",

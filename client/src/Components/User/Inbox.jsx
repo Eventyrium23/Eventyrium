@@ -1,17 +1,26 @@
-import { useContext, useRef } from "react";
+import { useContext, useState } from "react";
 import { MyContext } from "../../MyContext.jsx";
+import { ToastContainer, toast } from "react-toastify";
 
+import ConfirmeOrganization from "./ConfirmeOrganization.jsx";
 function Inbox() {
+  const [isCardOpen, setCardOpen] = useState(false);
+
   const { placeChecked, foodChecked, decorationChecked, packChecked } =
     useContext(MyContext);
+
+  // ------------------------------------------------------------------
+
   // parse localstorge
   const addedPlaces = JSON.parse(window.localStorage.getItem("places"));
   const addedFoods = JSON.parse(window.localStorage.getItem("foods")) || [];
   const addedDecorations =
     JSON.parse(window.localStorage.getItem("decorations")) || [];
   const addedPacks = JSON.parse(window.localStorage.getItem("packs"));
+
+  // ------------------------------------------------------------
   // Update local storage with the checked items
-  if (placeChecked) {
+  if (Object.keys(placeChecked).length) {
     window.localStorage.setItem("places", JSON.stringify(placeChecked));
   }
   if (foodChecked.length > 0) {
@@ -26,10 +35,10 @@ function Inbox() {
       JSON.stringify([...addedDecorations, decorationChecked])
     );
   }
-  if (packChecked) {
+  if (Object.keys(packChecked).length) {
     window.localStorage.setItem("packs", JSON.stringify(packChecked));
   }
-
+  // ------------------------------------------------------------------
   const Delete = (event) => {
     const targetElement = event.target;
     const itemName = targetElement.getAttribute("data-name");
@@ -62,59 +71,108 @@ function Inbox() {
     }
     window.location.reload();
   };
-
+  // ------------------------------------------------------------------
+  const confirmLocalStorge = window.localStorage.getItem("confirmed");
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg h-screen p-10">
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" className="px-6 py-3 text-md">
-              items
-            </th>
-            <th scope="col" className="px-6 py-3">
-              <div className="flex items-center">Location</div>
-            </th>
-            <th scope="col" className="px-6 py-3">
-              <div className="flex items-center">name of place</div>
-            </th>
-            <th scope="col" className="px-6 py-3">
-              <div className="flex items-center">Price</div>
-            </th>
-            <th scope="col" className="px-6 py-3">
-              <div className="flex items-center">edit</div>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            {addedPlaces ? (
-              <>
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Place
-                </th>
-                <td className="px-6 py-4">{addedPlaces.location}</td>
-                <td className="px-6 py-4">{addedPlaces.name}</td>
-                <td className="px-6 py-4">{addedPlaces.price}DT</td>
-                <td className="px-6 py-4 text-left">
-                  <button
-                    data-name={addedPlaces.name}
-                    onClick={Delete}
-                    className="text:lg text-center bg-none text-blue-600 dark:text-blue-500 hover:underline"
+    <>
+      <ToastContainer />
+
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg h-screen p-10 text-center">
+        {isCardOpen && (
+          <ConfirmeOrganization
+            confirm={{
+              isCardOpen,
+              setCardOpen,
+            }}
+          />
+        )}
+
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" className="px-6 py-3 text-md">
+                items
+              </th>
+              <th scope="col" className="px-6 py-3">
+                <div className="flex items-center">Location</div>
+              </th>
+              <th scope="col" className="px-6 py-3">
+                <div className="flex items-center">name of place</div>
+              </th>
+              <th scope="col" className="px-6 py-3">
+                <div className="flex items-center">Price</div>
+              </th>
+              <th scope="col" className="px-6 py-3">
+                <div className="flex items-center">edit</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              {addedPlaces ? (
+                <>
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    delete
-                  </button>
-                </td>
-              </>
-            ) : (
-              ""
-            )}
-          </tr>
-          {addedDecorations.length
-            ? addedDecorations[addedDecorations.length - 1].map(
-                (deco, index) => (
+                    Place
+                  </th>
+                  <td className="px-6 py-4">{addedPlaces.location}</td>
+                  <td className="px-6 py-4">{addedPlaces.name}</td>
+                  <td className="px-6 py-4">{addedPlaces.price}DT</td>
+                  {!confirmLocalStorge && (
+                    <td className="px-6 py-4 text-left">
+                      <button
+                        data-location={addedPlaces.name}
+                        data-name={addedPlaces.name}
+                        onClick={Delete}
+                        className="text-lg bg-none text-blue-600 dark:text-blue-500 hover:underline"
+                      >
+                        delete
+                      </button>
+                    </td>
+                  )}
+                </>
+              ) : (
+                ""
+              )}
+            </tr>
+            {addedDecorations.length
+              ? addedDecorations[addedDecorations.length - 1].map(
+                  (deco, index) => (
+                    <tr
+                      key={index}
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    >
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        {deco.name}
+                      </th>
+
+                      <td className="px-6 py-4 ">-</td>
+                      <td className="px-6 py-4">-</td>
+                      <td className="px-6 py-4">{deco.price}DT</td>
+
+                      {!confirmLocalStorge && (
+                        <td className="px-6 py-4 text-left">
+                          <button
+                            data-location={deco.name}
+                            data-name={deco.name}
+                            onClick={Delete}
+                            className="text-lg bg-none text-blue-600 dark:text-blue-500 hover:underline"
+                          >
+                            delete
+                          </button>
+                        </td>
+                      )}
+                    </tr>
+                  )
+                )
+              : ""}
+            {addedFoods.length
+              ? addedFoods[addedFoods.length - 1].map((food, index) => (
                   <tr
                     key={index}
                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
@@ -123,87 +181,75 @@ function Inbox() {
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
-                      {deco.name}
+                      {food.name}
                     </th>
 
-                    <td className="px-6 py-4">empty</td>
-                    <td className="px-6 py-4">empty</td>
-                    <td className="px-6 py-4">{deco.price}DT</td>
+                    <td className="px-6 py-4">-</td>
+                    <td className="px-6 py-4">-</td>
+                    <td className="px-6 py-4">{food.price}DT</td>
 
+                    {!confirmLocalStorge && (
+                      <td className="px-6 py-4 text-left">
+                        <button
+                          data-location={food.name}
+                          data-name={food.name}
+                          onClick={Delete}
+                          className="text-lg bg-none text-blue-600 dark:text-blue-500 hover:underline"
+                        >
+                          delete
+                        </button>
+                      </td>
+                    )}
+                  </tr>
+                ))
+              : ""}
+
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              {addedPacks ? (
+                <>
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    Pack
+                  </th>
+                  <td className="px-6 py-4">{addedPacks.location}</td>
+                  <td className="px-6 py-4">{addedPacks.name}</td>
+                  <td className="px-6 py-4">{addedPacks.price}DT</td>
+                  {!confirmLocalStorge && (
                     <td className="px-6 py-4 text-left">
                       <button
-                        data-location={deco.name}
-                        data-name={deco.name}
+                        data-location={addedPacks.name}
+                        data-name={addedPacks.name}
                         onClick={Delete}
                         className="text-lg bg-none text-blue-600 dark:text-blue-500 hover:underline"
                       >
                         delete
                       </button>
                     </td>
-                  </tr>
-                )
-              )
-            : ""}
-          {addedFoods.length
-            ? addedFoods[addedFoods.length - 1].map((food, index) => (
-                <tr
-                  key={index}
-                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                >
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    {food.name}
-                  </th>
-
-                  <td className="px-6 py-4">empty</td>
-                  <td className="px-6 py-4">empty</td>
-                  <td className="px-6 py-4">{food.price}DT</td>
-
-                  <td className="px-6 py-4 text-left">
-                    <button
-                      data-location={food.name}
-                      data-name={food.name}
-                      onClick={Delete}
-                      className="text-lg bg-none text-blue-600 dark:text-blue-500 hover:underline"
-                    >
-                      delete
-                    </button>
-                  </td>
-                </tr>
-              ))
-            : ""}
-
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            {addedPacks ? (
-              <>
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Pack
-                </th>
-                <td className="px-6 py-4">{addedPacks.location}</td>
-                <td className="px-6 py-4">{addedPacks.name}</td>
-                <td className="px-6 py-4">{addedPacks.price}DT</td>
-                <td className="px-6 py-4 text-left">
-                  <button
-                    data-name={addedPacks.name}
-                    onClick={Delete}
-                    className="text-lg bg-none text-blue-600 dark:text-blue-500 hover:underline"
-                  >
-                    delete
-                  </button>
-                </td>
-              </>
-            ) : (
-              ""
-            )}
-          </tr>
-        </tbody>
-      </table>
-    </div>
+                  )}
+                </>
+              ) : (
+                ""
+              )}
+            </tr>
+          </tbody>
+        </table>
+        {addedPacks ||
+        addedPlaces ||
+        addedFoods.length ||
+        addedDecorations.length ? (
+          <button
+            className="mt-10 bg-mainHeader text-white p-3 rounded-md"
+            onClick={() => setCardOpen(true)}
+          >
+            Confirm Your Organization
+          </button>
+        ) : (
+          ""
+        )}
+      </div>
+    </>
   );
 }
 
