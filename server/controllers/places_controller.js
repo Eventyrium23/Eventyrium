@@ -15,9 +15,9 @@ exports.getAll = async (req, res) => {
 };
 
 exports.getOne = async (req, res) => {
-  const { place } = req.params;
+  const { location } = req.params;
   try {
-    const onePlace = await Places.findOne({ where: { name: place } });
+    const onePlace = await Places.findOne({ where: { name: location } });
     if (Object.keys(onePlace).length > 0) {
       res.status(200).send(onePlace);
     } else {
@@ -29,23 +29,23 @@ exports.getOne = async (req, res) => {
 };
 
 exports.addPlace = async (req, res) => {
-  const { namePlace, image, price, description, date } = req.body;
+  const { name, image, price, description, date, location } = req.body;
   try {
-    const place = await Places.findOne({ where: { namePlace: namePlace } });
-    if (place) {
-      res.status(200).send("this place is exists");
+    const chechkPlace = await Places.findOne({ where: { name: name } });
+    if (chechkPlace) {
+      res.status(200).send("this location is exists");
     } else {
-      if (place.length < 0) {
+      if (location.length < 0) {
         await Places.create({
-          namePlace: namePlace,
-          place: place,
+          name: name,
+          location: location,
           image: image,
           price: price,
           description: description,
           available: true,
           date: date,
         });
-        res.status(200).send(place);
+        res.status(200).send(location);
       }
     }
   } catch (err) {
@@ -54,16 +54,16 @@ exports.addPlace = async (req, res) => {
 };
 
 exports.updatePlace = async (req, res) => {
-  const { namePlace, place, image, price, description, available, date } =
+  const { name, location, image, price, description, available, date } =
     req.body;
 
   try {
-    const onePlace = await Places.findOne({ where: { namePlace: namePlace } });
+    const onePlace = await Places.findOne({ where: { name: name } });
     if (onePlace.length > 0) {
       await User.update(
         {
-          namePlace: namePlace,
-          place: place,
+          name: name,
+          location: location,
           image: image,
           price: price,
           description: description,
@@ -72,7 +72,7 @@ exports.updatePlace = async (req, res) => {
         },
         {
           where: {
-            namePlace: namePlace,
+            name: name,
           },
         }
       );
@@ -83,19 +83,19 @@ exports.updatePlace = async (req, res) => {
   }
 };
 exports.reservedPlace = async (req, res) => {
-  const { namePlace, available, date } = req.body;
+  const { name, available, date } = req.body;
 
   try {
-    const onePlace = await Places.findOne({ where: { namePlace: namePlace } });
+    const onePlace = await Places.findOne({ where: { name: name } });
     if (onePlace.length > 0) {
       await User.update(
         {
-          available: true,
+          available: !available,
           date: date,
         },
         {
           where: {
-            namePlace: namePlace,
+            name: name,
           },
         }
       );

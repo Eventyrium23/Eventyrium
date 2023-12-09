@@ -32,7 +32,7 @@
   {
     "name": "Chocolate-Fondue",
     "img": "https://i.ytimg.com/vi/Mf65StT9ep8/maxresdefault.jpg",
-    "specialite": "Dessert",
+    "specialite": "Frensh",
     "price": 2500
   },
   {
@@ -58,5 +58,11 @@
     "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-MV8jgmbyqJ6Tvdee3dYwTFDiQwELoKupDQ&usqp=CAU",
     "specialite": "Healthy",
     "price": 1000
+  },
+  {
+    "name": "Macaron",
+    "img": "https://hips.hearstapps.com/hmg-prod/images/macaroon-vs-macaron-1676039139.jpeg?crop=0.667xw:1.00xh;0.163xw,0&resize=1200:*",
+    "specialite": "Frensh",
+    "price": 2000
   }
 ]

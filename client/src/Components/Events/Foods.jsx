@@ -30,7 +30,7 @@ function Foods() {
           <div className="food-info">
             <h3 className="text-xl font-semibold text-gray-800">{food.name}</h3>
             <p className="text-sm text-gray-600">{food.specialite}</p>
-            <p className="text-lg font-bold text-green-600">${food.price}</p>
+            <p className="text-lg font-bold text-green-600">{food.price}DT</p>
             <p className="text-sm text-gray-600">{food.review}</p>
           </div>
         </NavLink>
