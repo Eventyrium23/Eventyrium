@@ -34,6 +34,7 @@ db.Places = require("./places_model.js")(sequelize, DataTypes);
 db.Deco = require("./deco_model.js")(sequelize, DataTypes);
 db.Foods = require("./food_model.js")(sequelize, DataTypes);
 db.Packs = require("./pack_model.js")(sequelize, DataTypes);
+db.invitation = require('./invitation_model.js')(sequelize,DataTypes);
 
 // db.sequelize.sync({ force: true });
 
