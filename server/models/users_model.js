@@ -32,6 +32,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
+      confirmed: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
     },
     { timestamps: false }
 

@@ -1,21 +1,22 @@
 import { Link, useNavigate } from "react-router-dom";
 import LOGO from "../../assets/LOGO.png";
+import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import {
   Card,
   Input,
-  Checkbox,
   Button,
   Typography,
 } from "@material-tailwind/react";
 import { useState } from "react";
 import axios from "axios";
-import Load from "../Load/Load";
-function Login() {
+
+function RegisterAdmin() {
   const mainColor = " #9ca38a";
+  const [phone, setPhone] = useState("");
+  const [userName, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -23,52 +24,48 @@ function Login() {
   const Submit = async (e) => {
     e.preventDefault();
     const data = {
+      phone,
+      userName,
       email,
       password,
     };
     try {
       const response = await axios.post(
-        "http://localhost:8080/user/login",
+        "http://localhost:8080/admin/register",
         data
       );
-      const Token = response.data;
-      window.localStorage.setItem("Token", Token);
-
-      navigate(`/`);
+      toast.success("🦄 Go Check Email!", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      navigate("/user/login");
     } catch (err) {
-      if (err.response.status == 401) {
-        toast.success("🦄 Before Login Go Check Email to verifie Please! ", {
-          position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      } else {
-        toast.error("Login failed. Please check your email and password.", {
-          position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-      }
-    } 
+      toast.error("Register failed. Please check your information.", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
     ClearData();
   };
-
   const ClearData = () => {
     setEmail("");
     setPassword("");
+    setPhone("");
+    setUsername("");
   };
-  
   return (
-    <div className="Login  ">
-      <div className="container grid grid-cols-1 auto-rows-auto	 items-center	h-screen w-screen md:px-20 md:grid-cols-2		">
+    <div className="register  ">
+      <div className="container grid grid-cols-1 auto-rows-auto	 items-center	 h-screen w-screen md:px-20 md:grid-cols-2		">
         <div className="logo max-w-fit col-span-1  justify-self-center		">
           <img className="w-62 md:w-3/3 " src={LOGO} alt="" />
         </div>
@@ -78,10 +75,10 @@ function Login() {
           shadow={false}
         >
           <Typography variant="h4" color="blue-gray">
-            Login
+            Admin Register
           </Typography>
           <Typography color="gray" className="mt-1 font-normal">
-            Enter your details to Login.
+            Nice to meet you! Enter your details to register.
           </Typography>
           <form
             method="POST"
@@ -89,6 +86,23 @@ function Login() {
             className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
           >
             <div className="mb-1 flex flex-col gap-6">
+              <Typography
+                variant="h6"
+                style={{ color: { mainColor } }}
+                className="-mb-3"
+              >
+                Your Name
+              </Typography>
+              <Input
+                size="lg"
+                placeholder="Your Name"
+                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                labelProps={{
+                  className: "before:content-none after:content-none",
+                }}
+                onChange={(e) => setUsername(e.target.value)}
+                value={userName}
+              />
               <Typography
                 variant="h6"
                 style={{ color: { mainColor } }}
@@ -106,6 +120,24 @@ function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
               />
+              <Typography
+                variant="h6"
+                style={{ color: { mainColor } }}
+                className="-mb-3"
+              >
+                Your Phone
+              </Typography>
+
+              <PhoneInput
+                defaultCountry="tn"
+                value={phone}
+                onChange={(phone) => setPhone(phone)}
+                size="lg"
+                className=" !border-t-blue-gray-200 focus:!border-t-gray-900 w-full"
+                labelProps={{
+                  className: "before:content-none after:content-none",
+                }}
+              />
 
               <Typography
                 variant="h6"
@@ -114,7 +146,6 @@ function Login() {
               >
                 Password
               </Typography>
-
               <Input
                 type="password"
                 size="lg"
@@ -127,36 +158,19 @@ function Login() {
                 value={password}
               />
             </div>
-            <Checkbox
-              label={
-                <Typography
-                  variant="small"
-                  color="gray"
-                  className="flex items-center font-normal"
-                >
-                  I agree the
-                  <a
-                    href="#"
-                    className="font-medium transition-colors hover:text-gray-900"
-                  >
-                    &nbsp;Terms and Conditions
-                  </a>
-                </Typography>
-              }
-              containerProps={{ className: "-ml-2.5" }}
-            />
+
             <Button
               style={{ background: mainColor }}
               type="submit"
               className="mt-6 "
               fullWidth
             >
-              Login
+              sign up
             </Button>
             <Typography color="gray" className="mt-4 text-center font-normal">
-              Don't have an account yet ?{" "}
-              <Link to="/user/register" className="font-medium text-gray-900">
-                Register now
+              Already have an account?{" "}
+              <Link to="/user/login" className="font-medium text-gray-900">
+                Login
               </Link>
             </Typography>
           </form>
@@ -167,4 +181,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default RegisterAdmin;

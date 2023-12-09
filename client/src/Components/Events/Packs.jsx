@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { MyContext } from "../../MyContext.jsx";
 
 function Packs() {
-  const { packs } = useContext(MyContext);
+  const { packs,date } = useContext(MyContext);
   const PackComponent = ({ pack }) => {
     const [isHovered, setIsHovered] = useState(false);
 

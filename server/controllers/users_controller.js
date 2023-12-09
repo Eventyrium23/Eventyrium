@@ -1,6 +1,11 @@
 const db = require("../models/index.js");
 const Users = db.Users;
 const Place = db.Places;
+const Decoration = db.Deco;
+const Pack = db.Packs;
+const Food = db.Foods;
+const twilio = require("twilio");
+
 const bcrypt = require("bcrypt");
 const joi = require("joi");
 const jwt = require("jsonwebtoken");
@@ -35,8 +40,12 @@ exports.Register = async (req, res) => {
       return res.status(409).send("This email is already in use.");
     }
     const id = crypto.randomUUID();
-    const token = jwt.sign({ userName: userName, id: id }, privateKey);
+  
     const hashPassword = await bcrypt.hash(password, 10);
+    const token = jwt.sign(
+      { userName: userName, id: id, confirmed: false},
+      privateKey
+    );
     await Users.create({
       id,
       userName,
@@ -45,6 +54,7 @@ exports.Register = async (req, res) => {
       phone,
       token,
       valid: false,
+      confirmed: false,
     });
 
     const link = `http://localhost:5173/user/confirm/${token}`;
@@ -78,10 +88,8 @@ exports.Login = async (req, res) => {
       } else {
         res.status(400).send("Invalid email and password");
       }
-      
-    }else{
+    } else {
       res.status(401).send("Invalid email and password");
-
     }
   } catch (err) {
     console.error(err);
@@ -140,12 +148,23 @@ exports.ConfirmToken = async (req, res) => {
 exports.getUser = (req, res) => {
   const { userId } = req.params;
   db.Users.findByPk(userId, {
-    attributes: { exclude: ["password", "token"] },
+    attributes: { exclude: ["password", "token", "valid"] },
     include: [
       {
-        model: db.Places,
-        as: "places",
-        attributes: { exclude: ["somePlaceField"] }, // Exclude specific fields from the Places model if needed
+        model: Place,
+        as: "place",
+      },
+      {
+        model: Food,
+        as: "food",
+      },
+      {
+        model: Decoration,
+        as: "deco",
+      },
+      {
+        model: Pack,
+        as: "pack",
       },
     ],
   })
@@ -155,4 +174,137 @@ exports.getUser = (req, res) => {
     .catch((error) => {
       console.error(error);
     });
+};
+
+exports.updateUserConfimation = async (req, res) => {
+  const {userId} = req.body;
+  try {
+    const user = await Users.update(
+      {
+        confirmed: true,
+      },
+      { where: { id: userId } }
+    );
+    res.status(200).send("done")
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
+
+//send SMS
+async function sendSMS(phoneNumber) {
+  const client = new twilio(
+    process.env.TWILIO_SID,
+    process.env.TWILIO_AUTH_TOKEN
+  );
+
+  try {
+    const message = await client.messages.create({
+      body: "Welcome to Eventyrium! 🎉 Get ready for unforgettable moments and incredible experiences. Whether you're a valued client or cherished guest, your presence makes our events special. Let's create memories together! #EventyriumMagic ✨",
+      from: "+12017620178",
+      to: `+216${phoneNumber}`,
+    });
+
+    console.log(message.sid);
+    return message.sid; 
+  } catch (error) {
+    console.error("Error sending SMS:", error);
+    throw error; 
+  }
+}
+
+
+// food
+exports.createFood = async (req, res) => {
+  try {
+    const data = req.body;
+    const foodItem = await Food.bulkCreate(data);
+
+    console.log("Food item created for user:", foodItem);
+
+    res.send(foodItem);
+  } catch (error) {
+    console.error("Error creating food item:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+// deco
+exports.createDeco = async (req, res) => {
+  try {
+    const data = req.body;
+    const decoItem = await Decoration.bulkCreate(data);
+
+    console.log("Deco item created for user:", decoItem);
+
+    res.send(decoItem);
+  } catch (error) {
+    console.error("Error creating deco item:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+// pack
+exports.createPack = async (req, res) => {
+  try {
+    const {
+      image,
+      name,
+      description,
+      price,
+      max_guests,
+      location,
+      date,
+      persons,
+      userId,
+      phoneNumber,
+    } = req.body;
+
+    const packItem = await Pack.create({
+      image,
+      name,
+      description,
+      price,
+      max_guests,
+      location,
+      available: false,
+      date,
+      persons,
+      userId,
+    });
+
+    console.log("Pack item created for user:", packItem);
+    // sendSMS(phoneNumber);
+    res.send(packItem);
+  } catch (error) {
+    console.error("Error creating pack item:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+// place
+exports.createPlace = async (req, res) => {
+  try {
+    const { name, location, image, price, description, phoneNumber  ,date, persons, userId } =
+      req.body;
+
+    const placeItem = await Place.create({
+      name,
+      location,
+      image,
+      price,
+      description,
+      available: false,
+      date,
+      persons,
+        userId,
+    });
+
+    console.log("Place item created for user:", placeItem);
+    res.send(placeItem);
+    // sendSMS(phoneNumber);
+  } catch (error) {
+    console.error("Error creating place item:", error);
+    res.status(500).send("Internal Server Error");
+  }
 };
