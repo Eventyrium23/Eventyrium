@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { RouterProvider } from "react-router";
 
-//
+//Layout
 import Layout from "./Components/Layout/Layout";
 import Home from "./Components/Pages/Home.jsx";
 const Services = lazy(() => import("./Components/Pages/services.jsx"));
