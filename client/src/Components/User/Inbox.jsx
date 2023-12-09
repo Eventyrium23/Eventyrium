@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { MyContext } from "../../MyContext.jsx";
 import { ToastContainer, toast } from "react-toastify";
-
+import Invitation from '../Pages/Invitations/Invitation.jsx'
 import ConfirmeOrganization from "./ConfirmeOrganization.jsx";
 function Inbox() {
   const [isCardOpen, setCardOpen] = useState(false);
@@ -76,7 +76,7 @@ function Inbox() {
   return (
     <>
       <ToastContainer />
-
+      <Invitation/>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg h-screen p-10 text-center">
         {isCardOpen && (
           <ConfirmeOrganization
