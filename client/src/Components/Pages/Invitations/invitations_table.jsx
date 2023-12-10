@@ -3,10 +3,7 @@ import React, { useState } from "react";
 import {
   Drawer,
   Button,
-  Typography,
-  IconButton,
-  Input,
-  Textarea,
+
 } from "@material-tailwind/react";
 import LOGO from "../../../assets/LOGO.png"
 import InvitationList from "./invList";

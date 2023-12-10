@@ -11,8 +11,9 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import {  useState } from "react";
+import { useState } from "react";
 import axios from "axios";
+
 function Register() {
   const mainColor = " #9ca38a";
   const [phone, setPhone] = useState("");
@@ -86,6 +87,13 @@ function Register() {
             onSubmit={Submit}
             className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
           >
+
+
+
+
+
+
+
             <div className="mb-1 flex flex-col gap-6">
               <Typography
                 variant="h6"

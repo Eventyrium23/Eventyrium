@@ -227,7 +227,7 @@ const createUserPack = async (pack, date, persons, phoneNumber) => {
     price: pack.price,
     description: pack.description,
     date,
-    persons,
+    max_guests:persons,
     userId: pack.userId,
     phoneNumber: phoneNumber,
   };

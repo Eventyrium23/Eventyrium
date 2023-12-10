@@ -186,7 +186,7 @@ function showDetailsPlace(data, Save, reserved, showWarning) {
         <p>
           <strong>Available:</strong>{" "}
           {reserved
-            ? " sorry this place is not available "
+            ? " sorry this place is not available for this day "
             : "this place available"}
         </p>
         {!reserved && (
@@ -305,8 +305,8 @@ function showDetailsPack(data, Save, reserved) {
         <p>
           <strong>Available:</strong>{" "}
           {reserved
-            ? " sorry this pack is not available "
-            : "this pack available"}
+            ? " sorry this place is not available for this day "
+            : "this place available"}
         </p>
         {!reserved && (
           <button

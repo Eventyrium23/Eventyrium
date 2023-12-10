@@ -90,3 +90,12 @@ exports.getAll = async (req, res) => {
     res.status(400).json("error happen in getAll Admins", err);
   }
 };
+exports.getOne = async (req, res) => {
+  const { adminName } = req.params;
+  try {
+    const adminData = await Admins.findOne({ where: { adminName: adminName } });
+    res.status(200).json(adminData);
+  } catch (err) {
+    res.status(400).json("error happen in getAll Admins", err);
+  }
+};
