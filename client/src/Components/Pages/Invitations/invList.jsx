@@ -12,7 +12,7 @@ import { FaRegCircleDot } from "react-icons/fa6";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 const InvitationList = () =>{
-  const [list,setList] = useState()
+  const [list,setList] = useState(null)
   const {userName} = jwtDecode(JSON.stringify(window.localStorage.getItem("Token")))
 useEffect(()=>{
  const getList = ()=>{

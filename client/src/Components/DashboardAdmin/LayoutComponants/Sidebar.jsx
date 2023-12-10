@@ -26,7 +26,7 @@ const SideBardDashboard = () => {
         <ul className=" relative flex w-full flex-col gap-10 text-md mt-8">
           <li className="pl-10 relative ml-7 rounded-l-md bg-mainHeader text-white text-xl rounded-sm hover:bg-[#eee] hover:text-[#383030] cursor-pointer transition-colors h-12 flex items-center">
             <NavLink
-              to="/dashboard"
+              to=""
               className={({ isActive }) =>
                 isActive && "bg-[#eee] w-full h-full"
               }

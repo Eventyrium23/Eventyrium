@@ -95,7 +95,7 @@ function App() {
         <Route path="/admin/register" element={<RegisterAdmin />} />
         <Route path="/admin/login" element={<LoginAdmin />} />
 
-        <Route path="dashboard" element={<DashboardLayout />}>
+        <Route path="admin/dashboard" element={<DashboardLayout />}>
           <Route index element={<Profile />} />
           <Route path="organization" element={<Organization />} />
         </Route>
