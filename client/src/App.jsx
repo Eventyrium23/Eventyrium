@@ -18,19 +18,19 @@ const Location = lazy(() => import("./Components/AboutLayout/Location.jsx"));
 const History = lazy(() => import("./Components/AboutLayout/History.jsx"));
 const Getint = lazy(() => import("./Components/AboutLayout/Getintouch.jsx"));
 //User login && register
-const Register = lazy(() =>
-  import("./Components/authenticateUser/UserRegister.jsx")
+const Register = lazy(
+  () => import("./Components/authenticateUser/UserRegister.jsx")
 );
 const Login = lazy(() => import("./Components/authenticateUser/UserLogin.jsx"));
-const Verified = lazy(() =>
-  import("./Components/authenticateUser/Verified.jsx")
+const Verified = lazy(
+  () => import("./Components/authenticateUser/Verified.jsx")
 );
 // Admin:
-const LoginAdmin = lazy(() =>
-  import("./Components/authenticateUser/Admin/LoginAdmin.jsx")
+const LoginAdmin = lazy(
+  () => import("./Components/authenticateUser/Admin/LoginAdmin.jsx")
 );
-const RegisterAdmin = lazy(() =>
-  import("./Components/authenticateUser/Admin/RegisterAdmin.jsx")
+const RegisterAdmin = lazy(
+  () => import("./Components/authenticateUser/Admin/RegisterAdmin.jsx")
 );
 // Team:
 const OurTeam = lazy(() => import("./Components/Pages/OurTeam.jsx"));
@@ -43,12 +43,21 @@ const Places = lazy(() => import("./Components/Events/Places.jsx"));
 const Foods = lazy(() => import("./Components/Events/Foods.jsx"));
 const Decoration = lazy(() => import("./Components/Events/Decoration.jsx"));
 const Packs = lazy(() => import("./Components/Events/Packs.jsx"));
-const EventsDetails = lazy(() =>
-  import("./Components/Events/EventsDetails.jsx")
+const EventsDetails = lazy(
+  () => import("./Components/Events/EventsDetails.jsx")
 );
 const Inbox = lazy(() => import("./Components/User/Inbox.jsx"));
 
-
+//AdminDashboard
+const DashboardLayout = lazy(
+  () => import("./Components/DashboardAdmin/LayoutDashboard.jsx")
+);
+const Profile = lazy(
+  () => import("./Components/DashboardAdmin/LayoutComponants/Profile.jsx")
+);
+const Organization = lazy(
+  () => import("./Components/DashboardAdmin/LayoutComponants/Organization.jsx")
+);
 import Load from "./Components/Load/Load.jsx";
 function App() {
   const router = createBrowserRouter(
@@ -85,8 +94,11 @@ function App() {
 
         <Route path="/admin/register" element={<RegisterAdmin />} />
         <Route path="/admin/login" element={<LoginAdmin />} />
-     
-     
+
+        <Route path="dashboard" element={<DashboardLayout />}>
+          <Route index element={<Profile />} />
+          <Route path="organization" element={<Organization />} />
+        </Route>
       </>
     )
   );

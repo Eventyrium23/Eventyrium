@@ -46,7 +46,7 @@ function Login() {
           progress: undefined,
           theme: "light",
         });
-      } 
+      }
       if (err.response.status == 401) {
         toast.success("🦄 Before Login Go Check Email to verifie Please! ", {
           position: "bottom-center",
@@ -68,7 +68,7 @@ function Login() {
           draggable: true,
         });
       }
-    } 
+    }
     ClearData();
   };
 
@@ -76,7 +76,7 @@ function Login() {
     setEmail("");
     setPassword("");
   };
-  
+
   return (
     <div className="Login  ">
       <div className="container grid grid-cols-1 auto-rows-auto	 items-center	h-screen w-screen md:px-20 md:grid-cols-2		">
