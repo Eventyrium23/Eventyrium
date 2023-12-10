@@ -32,7 +32,7 @@ exports.getOne = async (req, res) => {
 };
 
 exports.reservedPack = async (req, res) => {
-  const { name, available, date } = req.body;
+  const { name, available, date, max_guests } = req.body;
 
   try {
     const onePack = await Packs.findOne({ where: { name: name } });
@@ -41,6 +41,7 @@ exports.reservedPack = async (req, res) => {
         {
           available: !available,
           date: date,
+          max_guests: max_guests,
         },
         {
           where: {
@@ -60,7 +61,7 @@ exports.checkReservedPack = async (req, res) => {
   try {
     const onePlace = await Packs.findOne({ where: { name: name, date: date } });
     if (onePlace) {
-      res.status(230).send("Reserved for this date"); 
+      res.status(230).send("Reserved for this date");
     } else {
       res.status(200).send("Not reserved for this date");
     }
