@@ -58,11 +58,19 @@ const Profile = lazy(
 const Organization = lazy(
   () => import("./Components/DashboardAdmin/LayoutComponants/Organization.jsx")
 );
+const TableClient = lazy(
+  () => import("./Components/DashboardAdmin/LayoutComponants/TableClients.jsx")
+);
 import Load from "./Components/Load/Load.jsx";
+import NotFound404 from "./Components/NotFound404.jsx";
+
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
+        <Route path='*' element={<NotFound404 />} />
+
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="team" element={<OurTeam />} />
@@ -98,6 +106,7 @@ function App() {
         <Route path="admin/dashboard" element={<DashboardLayout />}>
           <Route index element={<Profile />} />
           <Route path="organization" element={<Organization />} />
+          <Route path="clientsTable" element={<TableClient/>} />
         </Route>
       </>
     )

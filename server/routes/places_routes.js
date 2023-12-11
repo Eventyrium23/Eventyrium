@@ -4,8 +4,7 @@ route.get("/all", PlacesController.getAll);
 route.get("/:place", PlacesController.getOne);
 route.post("/reserved", PlacesController.reservedPlace);
 route.post("/checkReserved", PlacesController.checkReservedPlace);
-route.post("/", PlacesController.addPlace);
+route.post("/addPlace", PlacesController.addPlace);
 // route.put("/pack", PacksController.updatePlace);
-// route.put("/pack/reserved", PacksController.reservedPlace);
 
 module.exports = route;

@@ -26,8 +26,8 @@ function LoginAdmin() {
         data
       );
       const Token = response.data;
-      window.localStorage.setItem("Token", Token);
-      navigate(`/`);
+      window.localStorage.setItem("AdminToken", Token);
+      navigate(`/admin/dashboard`);
     } catch (err) {
       console.log(err);
     }

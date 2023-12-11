@@ -31,30 +31,6 @@ exports.getOne = async (req, res) => {
     res.status(400).send(err);
   }
 };
-exports.addPlace = async (req, res) => {
-  const { name, image, price, description, date, location } = req.body;
-  try {
-    const chechkPlace = await Places.findOne({ where: { name: name } });
-    if (chechkPlace) {
-      res.status(200).send("this location is exists");
-    } else {
-      if (location.length < 0) {
-        await Places.create({
-          name: name,
-          location: location,
-          image: image,
-          price: price,
-          description: description,
-          available: true,
-          date: date,
-        });
-        res.status(200).send(location);
-      }
-    }
-  } catch (err) {
-    res.status(400).send(err);
-  }
-};
 
 exports.updatePlace = async (req, res) => {
   const { name, location, image, price, description, available, date } =
@@ -86,7 +62,6 @@ exports.updatePlace = async (req, res) => {
   }
 };
 
-
 exports.reservedPlace = async (req, res) => {
   const { name, available, date } = req.body;
 
@@ -115,14 +90,38 @@ exports.checkReservedPlace = async (req, res) => {
   const { name, date } = req.body;
 
   try {
-    const onePlace = await Places.findOne({ where: { name: name, date: date } });
+    const onePlace = await Places.findOne({
+      where: { name: name, date: date },
+    });
     if (onePlace) {
-      res.status(230).send("Reserved for this date"); 
+      res.status(230).send("Reserved for this date");
     } else {
       res.status(200).send("Not reserved for this date");
     }
   } catch (err) {
     console.error(err);
     res.status(500).send("Internal Server Error");
+  }
+};
+
+exports.addPlace = async (req, res) => {
+  const { name, image, price, description, location } = req.body;
+  try {
+    const checkPlace = await Places.findOne({ where: { name: name } });
+    if (checkPlace) {
+      res.status(200).send("this location is exists");
+    } else {
+      await Places.create({
+        name: name,
+        location: location,
+        image: image,
+        price: price,
+        description: description,
+        available: true,
+      });
+      res.status(200).send("Location create");
+    }
+  } catch (err) {
+    res.status(400).send(err);
   }
 };
