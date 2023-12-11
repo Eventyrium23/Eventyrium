@@ -12,13 +12,18 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import axios from "axios";
+<<<<<<< HEAD
 // import cloudinaryConfig from "../../../../cloudinaryConfig.js";
 // import { Image, Transformation, CloudinaryContext, CloudinaryUploader } from 'cloudinary-react';
+=======
+
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
 
 
 function RegisterAdmin() {
   const mainColor = " #9ca38a";
   const [phone, setPhone] = useState("");
+<<<<<<< HEAD
   const [userName, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,20 +36,59 @@ function RegisterAdmin() {
   //     setImage(info.info.secure_url);
   //   }
   // };
+=======
+  const [adminName, setAdminName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // --------------------------------------Cloudinary
+  const [image, setImage] = useState('');
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader()
+      fileReader.readAsDataURL(file)
+
+      fileReader.onload = () => {
+        resolve(fileReader.result)
+      }
+      fileReader.onerror = (error) => {
+        reject(error)
+      }
+    })
+  };
+
+  const UploadImg = async (event) => {
+    const file = event.target.files[0];
+    const base64 = await convertBase64(file);
+
+    axios.post("http://localhost:8080/uploadImg", { image: base64 })
+      .then(res => { setImage(res.data) })
+      .catch(err => { console.log(err); });
+  };
+
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
   // ---------------------------------
   const Submit = async (e) => {
     e.preventDefault();
     const data = {
       phone,
+<<<<<<< HEAD
       userName,
       email,
       password,
+=======
+      adminName,
+      email,
+      password,
+      image
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
     };
     try {
       const response = await axios.post(
         "http://localhost:8080/admin/register",
         data
       );
+<<<<<<< HEAD
       toast.success("🦄 Go Check Email!", {
         position: "bottom-center",
         autoClose: 5000,
@@ -56,6 +100,8 @@ function RegisterAdmin() {
         theme: "light",
       });
       navigate("/user/login");
+=======
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
     } catch (err) {
       toast.error("Register failed. Please check your information.", {
         position: "bottom-center",
@@ -72,7 +118,11 @@ function RegisterAdmin() {
     setEmail("");
     setPassword("");
     setPhone("");
+<<<<<<< HEAD
     setUsername("");
+=======
+    setAdminName("");
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
   };
   return (
     <div className="register  ">
@@ -105,6 +155,7 @@ function RegisterAdmin() {
 
 
 
+<<<<<<< HEAD
               {/* <div>
                 <CloudinaryContext {...cloudinaryConfig}>
                   <CloudinaryUploader
@@ -125,6 +176,26 @@ function RegisterAdmin() {
                 </CloudinaryContext>
               </div>
  */}
+=======
+              <>
+                <Typography
+                  variant="h6"
+                  style={{ color: mainColor }}
+                  className="-mb-3"
+                >
+                  Your Image
+                </Typography>
+                <Input
+                  type="file"
+                  size="lg"
+                  onChange={UploadImg}
+                  className="!border-t-blue-gray-200 focus:!border-t-gray-900"
+                  labelProps={{
+                    className: "before:content-none after:content-none",
+                  }}
+                />
+              </>
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
 
 
 
@@ -144,8 +215,13 @@ function RegisterAdmin() {
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+<<<<<<< HEAD
                 onChange={(e) => setUsername(e.target.value)}
                 value={userName}
+=======
+                onChange={(e) => setAdminName(e.target.value)}
+                value={adminName}
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
               />
               <Typography
                 variant="h6"

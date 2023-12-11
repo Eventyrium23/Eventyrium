@@ -3,7 +3,6 @@ const Admins = db.Admins;
 const bcrypt = require("bcrypt");
 const joi = require("joi");
 const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
 
 const privateKey = "Eventyrium the best";
 
@@ -15,7 +14,7 @@ const SchemaValidation = joi.object({
 });
 
 exports.Register = async (req, res) => {
-  const { adminName, email, phone, password } = req.body;
+  const { adminName, email, phone, password, image } = req.body;
   try {
     const validation = SchemaValidation.validate({
       adminName,
@@ -33,18 +32,18 @@ exports.Register = async (req, res) => {
     if (existingAdmin.count !== 0) {
       return res.status(409).send("This email is already in use.");
     }
-    const token = jwt.sign({ adminName: adminName }, privateKey);
+    const id = crypto.randomUUID();
+    const token = jwt.sign({ id: id }, privateKey);
     const hashPassword = await bcrypt.hash(password, 10);
 
     await Admins.create({
+      id:id,
       adminName,
       password: hashPassword,
       email,
       phone,
       token,
       image,
-      description,
-      projects,
     });
 
     res.status(201).send("Welcome");
@@ -71,7 +70,7 @@ exports.Login = async (req, res) => {
 
       if (checkPassword) {
         const token = existingAdmin.token;
-        res.status(200).json(token);
+        res.status(200).send(token);
       } else {
         res.status(400).send("Invalid email and password");
       }
@@ -85,17 +84,18 @@ exports.Login = async (req, res) => {
 exports.getAll = async (req, res) => {
   try {
     const adminData = await Admins.findAll({});
-    res.status(200).json(adminData);
+    res.status(200).send(adminData);
   } catch (err) {
-    res.status(400).json("error happen in getAll Admins", err);
+    res.status(400).send("error happen in getAll Admins", err);
   }
 };
 exports.getOne = async (req, res) => {
-  const { adminName } = req.params;
+  const { id } = req.params;
   try {
-    const adminData = await Admins.findOne({ where: { adminName: adminName } });
-    res.status(200).json(adminData);
+    const adminData = await Admins.findOne({ where: { id: id } });
+console.log(id);
+    res.status(200).send(adminData);
   } catch (err) {
-    res.status(400).json("error happen in getAll Admins", err);
+    res.status(400).send("error happen in getAll Admins", err);
   }
 };

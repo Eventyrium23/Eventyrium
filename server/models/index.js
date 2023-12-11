@@ -1,7 +1,6 @@
 const dotenv = require("dotenv");
 const { Sequelize, DataTypes } = require("sequelize");
 
-dotenv.config({ path: "./config.env" });
 
 const dbHost = process.env.DB_HOST;
 const dbUser = process.env.DB_USER;

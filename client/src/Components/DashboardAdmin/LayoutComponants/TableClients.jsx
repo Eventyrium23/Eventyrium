@@ -1,19 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-<<<<<<< HEAD
-
-
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
-=======
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
-import AddItems from "./AddItems";
->>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
 import {
     Card,
     CardHeader,
-    Input,
     Typography,
     Button,
     CardBody,
@@ -26,43 +16,20 @@ import {
     CardFooter,
 } from "@material-tailwind/react";
 
-function Organization() {
+function TableClients() {
     const [data, setData] = useState([]);
-    const [placeD, setPlacesD] = useState([]);
-    const [packD, setPackD] = useState([]);
-    const [decorationD, setDecorationD] = useState([]);
-    const [foodD, setFoodD] = useState([]);
 
-    const [tab, setTab] = useState("all");
-    const [tabHead, setTabHead] = useState([]);
+
     const [currentData, setCurrentData] = useState([]);
     const [limitPage, setLimitPage] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
-<<<<<<< HEAD
-
-=======
-    const [addItemV, setAddItemV] = useState(false)
->>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
     const itemsPerPage = 5;
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const placesData = await axios.get('http://localhost:8080/places/all');
-                const decorationsData = await axios.get('http://localhost:8080/decorations/all');
-                const foodsData = await axios.get('http://localhost:8080/foods/all');
-                const packsData = await axios.get('http://localhost:8080/packs/all');
-                setData([
-                    ...packsData.data,
-                    ...placesData.data,
-                    ...decorationsData.data,
-                    ...foodsData.data,
-                ]);
-
-                setPlacesD(placesData.data);
-                setPackD(packsData.data);
-                setFoodD(foodsData.data);
-                setDecorationD(decorationsData.data);
+                const usersData = await axios.get('http://localhost:8080/user/getAll');
+                setData(usersData);
             } catch (err) {
                 console.log(err);
             }
@@ -70,56 +37,16 @@ function Organization() {
         fetchData();
     }, []);
 
-    const TABS = [
-        { label: "All", value: "all" },
-        { label: "Packs", value: "packs" },
-        { label: "Places", value: "places" },
-        { label: "Decorations", value: "decorations" },
-        { label: "Foods", value: "foods" },
-    ];
 
-    useEffect(() => {
-        switch (tab) {
-            case "places":
-            case "packs":
-                setTabHead(["Items", "Name", "Description", "Price", "Location", "Edit"]);
-                break;
-            case "decorations":
-                setTabHead(["Items", "Name", "Stock", "Price", "Edit"]);
-                break;
-            case "foods":
-                setTabHead(["Items", "Name", "Specialite", "Price", "Edit"]);
-                break;
-            default:
-                setTabHead(["Items", "Name", "Price", "Edit"]);
-        }
-        setLimitPage(Math.ceil(getDataForTab().length / itemsPerPage));
-        setCurrentPage(1);
-    }, [tab]);
 
     useEffect(() => {
         handelLimitData();
-    }, [currentPage, tab]);
+        setLimitPage(Math.ceil(data.length / itemsPerPage));
+    }, [currentPage]);
 
-    function getDataForTab() {
-        switch (tab) {
-            case "all":
-                return data;
-            case "places":
-                return placeD;
-            case "packs":
-                return packD;
-            case "decorations":
-                return decorationD;
-            case "foods":
-                return foodD;
-            default:
-                return data;
-        }
-    }
 
     function handelLimitData() {
-        const newData = getDataForTab();
+        const newData = data
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
         const slicedData = newData.slice(startIndex, endIndex);
@@ -137,68 +64,40 @@ function Organization() {
             setCurrentPage((prevPage) => prevPage - 1);
         }
     }
-
-    // --------------------------------------- 5 AM motetttttttt 10/12/2023
-<<<<<<< HEAD
-    async function addItem(e) {
-        e.preventDefault()
-        const response = await axios.post()
-    }
-
-
-    return (
-        <Card className="flex   m-auto h-full w-full  mt-10  max-w-6xl">
-=======
+    const tabHead = ["Client", "Phone", "Item", "Price", "Date", "Edit"]
 
 
 
     return (
         <Card className="flex h-full w-full mt-20 m-auto  md:mt-24  max-w-6xl">
-            <AddItems addItemForm={{ addItemV, setAddItemV }} />
->>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
             <CardHeader floated={false} shadow={false} className="rounded-none">
                 <div className="mb-8 flex items-center justify-between gap-8">
                     <div>
                         <Typography variant="h5" color="blue-gray">
-                            Items List
+                            Clients List
                         </Typography>
                         <Typography color="gray" className="mt-1 font-normal">
-                            See information about all items
+                            See information about all Users
                         </Typography>
                     </div>
                     <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
                         <Button onClick={() => setTab("all")} variant="outlined" size="sm">
                             view all
                         </Button>
-<<<<<<< HEAD
-                        <Button className="flex items-center gap-3" size="sm" onClick={addItem}>
-=======
-                        <Button className="flex items-center gap-3" size="sm" onClick={() => setAddItemV(true)}>
->>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
-                            <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add items
-                        </Button>
+
                     </div>
                 </div>
                 <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
                     <Tabs value="all" className="w-full md:w-max">
                         <TabsHeader >
-                            {TABS.map(({ label, value }) => (
-                                <Tab onClick={() => setTab(value)} key={value} value={value}>
-                                    &nbsp;&nbsp;{label}&nbsp;&nbsp;
-                                </Tab>
-                            ))}
+
+                            <Tab onClick={() => window.location.reload()}>
+                                &nbsp;&nbsp;ALL&nbsp;&nbsp;
+                            </Tab>
+
                         </TabsHeader>
                     </Tabs>
-<<<<<<< HEAD
-                    <div className="w-full md:w-72">
-                        <Input
-                            label="Search"
-                            icon={<MagnifyingGlassIcon className="h-5 w-5" />}
-                        />
-                    </div>
-=======
-              
->>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
+
                 </div>
             </CardHeader>
             <CardBody className="overflow-scroll px-0">
@@ -223,8 +122,8 @@ function Organization() {
                     </thead>
                     <tbody>
 
-                        {currentData.map(
-                            ({ image, name, location, description, price, specialite, stock }, index) => {
+                        {/* {currentData.map(
+                            ({ userName, email, phone, date }, index) => {
                                 return (
                                     <tr key={name}>
                                         <td className={name}>
@@ -289,7 +188,7 @@ function Organization() {
                                     </tr>
                                 );
                             },
-                        )}
+                        )} */}
                     </tbody>
                 </table>
             </CardBody>
@@ -310,4 +209,13 @@ function Organization() {
     );
 }
 
-export default Organization;
+export default TableClients;
+
+
+
+
+function Organization() {
+
+
+
+}

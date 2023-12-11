@@ -31,24 +31,25 @@ exports.getOne = async (req, res) => {
     res.status(400).send(err);
   }
 };
+
 exports.addPlace = async (req, res) => {
-  const { name, image, price, description, date, location } = req.body;
+  const { namePlace, image, price, description, date } = req.body;
   try {
-    const chechkPlace = await Places.findOne({ where: { name: name } });
-    if (chechkPlace) {
-      res.status(200).send("this location is exists");
+    const place = await Places.findOne({ where: { namePlace: namePlace } });
+    if (place) {
+      res.status(200).send("this place is exists");
     } else {
-      if (location.length < 0) {
+      if (place.length < 0) {
         await Places.create({
-          name: name,
-          location: location,
+          namePlace: namePlace,
+          place: place,
           image: image,
           price: price,
           description: description,
           available: true,
           date: date,
         });
-        res.status(200).send(location);
+        res.status(200).send(place);
       }
     }
   } catch (err) {
@@ -85,8 +86,6 @@ exports.updatePlace = async (req, res) => {
     res.status(400).send(err);
   }
 };
-
-
 exports.reservedPlace = async (req, res) => {
   const { name, available, date } = req.body;
 
@@ -108,21 +107,5 @@ exports.reservedPlace = async (req, res) => {
     }
   } catch (err) {
     res.status(400).send(err);
-  }
-};
-
-exports.checkReservedPlace = async (req, res) => {
-  const { name, date } = req.body;
-
-  try {
-    const onePlace = await Places.findOne({ where: { name: name, date: date } });
-    if (onePlace) {
-      res.status(230).send("Reserved for this date"); 
-    } else {
-      res.status(200).send("Not reserved for this date");
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Internal Server Error");
   }
 };

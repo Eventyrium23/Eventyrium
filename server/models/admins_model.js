@@ -1,4 +1,3 @@
-
 module.exports = (sequelize, DataTypes) => {
     const Admins = sequelize.define(
         "Admin",
@@ -6,10 +5,6 @@ module.exports = (sequelize, DataTypes) => {
             adminName: {
                 type: DataTypes.STRING,
                 allowNull: false,
-            },
-            email: {
-                type: DataTypes.STRING,
-                allowNull: false
             },
             image: {
                 type: DataTypes.STRING,
@@ -37,8 +32,7 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
 
-        { timestamps: false }
-    );
-    return Admins;
+    { timestamps: false }
+  );
+  return Admins;
 };
-

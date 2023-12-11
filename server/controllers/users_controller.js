@@ -40,10 +40,10 @@ exports.Register = async (req, res) => {
       return res.status(409).send("This email is already in use.");
     }
     const id = crypto.randomUUID();
-  
+
     const hashPassword = await bcrypt.hash(password, 10);
     const token = jwt.sign(
-      { userName: userName, id: id, confirmed: false},
+      { userName: userName, id: id, confirmed: false },
       privateKey
     );
     await Users.create({
@@ -98,6 +98,7 @@ exports.Login = async (req, res) => {
 };
 
 const VerifEmail = async (email, link) => {
+  const logo='../../client/src/assets/LOGO.png'
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -112,7 +113,62 @@ const VerifEmail = async (email, link) => {
       to: email,
       subject: "Account verification",
       text: "welcome in Eventyrium",
-      html: ` <button style="background-color: rgb(102, 208, 102);padding: 20px;font-size: 20px;border:none"><a style="color:white;text-decoration:none" href=${link}>Active Your Account</a></button> `,
+      html: `
+      <body
+      style="
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      "
+    >
+      <div
+        style="
+          max-width: 600px;
+          margin: 20px auto;
+          padding: 20px;
+          background-color: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <div style="text-align: center; margin-bottom: 20px">
+          <img
+            src="https://res.cloudinary.com/dc1cdbirz/image/upload/v1702251251/LOGO_eby6nq.png"
+            alt="Your Logo"
+            style="max-width: 100%; height: auto"
+          />
+        </div>
+  
+        <div style="text-align: center">
+          <h2>Welcome to Eventyrium!</h2>
+  
+          <p>
+            We're excited to have you on board. Click the button below to activate
+            your account:
+          </p>
+  
+          <a
+            href=${link}
+            style="
+              display: inline-block;
+              margin-top: 20px;
+              padding: 15px 30px;
+              background-color: #66d066;
+              color: #ffffff;
+              text-decoration: none;
+              font-size: 18px;
+              border-radius: 4px;
+              border: none;
+            "
+            >Activate Your Account</a
+          >
+  
+          <p>If you didn't sign up for Eventyrium, please ignore this email.</p>
+        </div>
+      </div>
+    </body>
+       `,
     });
   } catch (err) {
     res.send(err);
@@ -177,7 +233,7 @@ exports.getUser = (req, res) => {
 };
 
 exports.updateUserConfimation = async (req, res) => {
-  const {userId} = req.body;
+  const { userId } = req.body;
   try {
     const user = await Users.update(
       {
@@ -185,12 +241,19 @@ exports.updateUserConfimation = async (req, res) => {
       },
       { where: { id: userId } }
     );
-    res.status(200).send("done")
+    res.status(200).send("done");
   } catch (err) {
     res.status(400).send(err);
   }
 };
-
+exports.getAll = async (req, res) => {
+  try {
+    const result = await Users.findAll();
+    res.status(200).send(result);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
 //send SMS
 async function sendSMS(phoneNumber) {
   const client = new twilio(
@@ -206,13 +269,12 @@ async function sendSMS(phoneNumber) {
     });
 
     console.log(message.sid);
-    return message.sid; 
+    return message.sid;
   } catch (error) {
     console.error("Error sending SMS:", error);
-    throw error; 
+    throw error;
   }
 }
-
 
 // food
 exports.createFood = async (req, res) => {
@@ -285,8 +347,17 @@ exports.createPack = async (req, res) => {
 // place
 exports.createPlace = async (req, res) => {
   try {
-    const { name, location, image, price, description, phoneNumber  ,date, persons, userId } =
-      req.body;
+    const {
+      name,
+      location,
+      image,
+      price,
+      description,
+      phoneNumber,
+      date,
+      persons,
+      userId,
+    } = req.body;
 
     const placeItem = await Place.create({
       name,
@@ -297,7 +368,7 @@ exports.createPlace = async (req, res) => {
       available: false,
       date,
       persons,
-        userId,
+      userId,
     });
 
     console.log("Place item created for user:", placeItem);
