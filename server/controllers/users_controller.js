@@ -4,6 +4,7 @@ const Place = db.Places;
 const Decoration = db.Deco;
 const Pack = db.Packs;
 const Food = db.Foods;
+const FeedBacks = db.FeedBacks;
 const twilio = require("twilio");
 
 const bcrypt = require("bcrypt");
@@ -40,10 +41,10 @@ exports.Register = async (req, res) => {
       return res.status(409).send("This email is already in use.");
     }
     const id = crypto.randomUUID();
-  
+
     const hashPassword = await bcrypt.hash(password, 10);
     const token = jwt.sign(
-      { userName: userName, id: id, confirmed: false},
+      { userName: userName, id: id, confirmed: false },
       privateKey
     );
     await Users.create({
@@ -166,6 +167,10 @@ exports.getUser = (req, res) => {
         model: Pack,
         as: "pack",
       },
+      {
+        model: FeedBacks,
+        as: "FeedBack"
+      }
     ],
   })
     .then((user) => {
@@ -177,7 +182,7 @@ exports.getUser = (req, res) => {
 };
 
 exports.updateUserConfimation = async (req, res) => {
-  const {userId} = req.body;
+  const { userId } = req.body;
   try {
     const user = await Users.update(
       {
@@ -206,10 +211,10 @@ async function sendSMS(phoneNumber) {
     });
 
     console.log(message.sid);
-    return message.sid; 
+    return message.sid;
   } catch (error) {
     console.error("Error sending SMS:", error);
-    throw error; 
+    throw error;
   }
 }
 
@@ -285,7 +290,7 @@ exports.createPack = async (req, res) => {
 // place
 exports.createPlace = async (req, res) => {
   try {
-    const { name, location, image, price, description, phoneNumber  ,date, persons, userId } =
+    const { name, location, image, price, description, phoneNumber, date, persons, userId } =
       req.body;
 
     const placeItem = await Place.create({
@@ -297,7 +302,7 @@ exports.createPlace = async (req, res) => {
       available: false,
       date,
       persons,
-        userId,
+      userId,
     });
 
     console.log("Place item created for user:", placeItem);
@@ -308,3 +313,14 @@ exports.createPlace = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
+
+// feedBack:
+exports.createFeedBacks = async (req,res) => {
+  try {
+    const { feed, userId } = req.body
+    const feeds = await FeedBacks.create({ feed, userId })
+    res.status(200).json(feeds)
+  } catch (err) {
+    res.status(400).send(err)
+  }
+}

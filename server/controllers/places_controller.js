@@ -110,3 +110,19 @@ exports.reservedPlace = async (req, res) => {
     res.status(400).send(err);
   }
 };
+
+exports.checkReservedPlace = async (req, res) => {
+  const { name, date } = req.body;
+
+  try {
+    const onePlace = await Places.findOne({ where: { name: name, date: date } });
+    if (onePlace) {
+      res.status(230).send("Reserved for this date"); 
+    } else {
+      res.status(200).send("Not reserved for this date");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
+};

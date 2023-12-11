@@ -5,12 +5,12 @@ export const MyContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [user, setUser] = useState([]);
+  const [admins, setAdmins] = useState([]);
   const [date, setDate] = useState(new Date().toLocaleDateString());
   const [reserved, setReserved] = useState(true);
-  const [itemDetails,setItemDetails]=useState(null)
+  const [itemDetails, setItemDetails] = useState(null)
   const [places, setPlaces] = useState([]);
   const [foods, setFoods] = useState([]);
-  const [admins, setAdmins] = useState([]);
   const [decorations, setDecoretions] = useState([]);
   const [packs, setPacks] = useState([]);
   // --------------------
@@ -25,11 +25,11 @@ export const ContextProvider = ({ children }) => {
     fetchPacks(setPacks);
     fetchAdmins(setAdmins);
   }, []);
-  useEffect(()=>{
+  useEffect(() => {
     fetchCheckReservedPack(date, itemDetails, setReserved);
     fetchCheckReservedPlace(date, itemDetails, setReserved);
 
-  },[date,itemDetails])
+  }, [date, itemDetails])
   return (
     <MyContext.Provider
       value={{
@@ -50,7 +50,7 @@ export const ContextProvider = ({ children }) => {
         setDate,
         reserved,
         setReserved,
-        setItemDetails,itemDetails
+        setItemDetails, itemDetails
       }}
     >
       {children}

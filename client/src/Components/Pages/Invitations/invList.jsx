@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {
-  Drawer,
-  Button,
-  Typography,
-  IconButton,
-  Input,
-  Textarea,
-} from "@material-tailwind/react";
 import { MdOutlineInsertInvitation,MdNotifications } from "react-icons/md";
 import { FaRegCircleDot } from "react-icons/fa6";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 const InvitationList = () =>{
-  const [list,setList] = useState()
+  const [list,setList] = useState([])
   const {userName} = jwtDecode(JSON.stringify(window.localStorage.getItem("Token")))
 useEffect(()=>{
  const getList = ()=>{
@@ -20,6 +12,8 @@ useEffect(()=>{
   axios.post('http://localhost:8080/invite',obj)
   .then((res)=>{
     setList(res.data)
+  }).catch(err=>{
+    console.log("error happen in invitation",err);
   })
  }
  getList()

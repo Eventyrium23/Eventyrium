@@ -3,7 +3,6 @@ const Admins = db.Admins;
 const bcrypt = require("bcrypt");
 const joi = require("joi");
 const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
 
 const privateKey = "Eventyrium the best";
 
@@ -87,6 +86,6 @@ exports.getAll = async (req, res) => {
     const adminData = await Admins.findAll({});
     res.status(200).json(adminData);
   } catch (err) {
-    res.status(400).json("error happen in getAll Admins", err);
+    res.status(400).send("error happen in getAll Admins", err);
   }
 };

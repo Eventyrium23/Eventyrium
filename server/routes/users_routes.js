@@ -7,7 +7,7 @@ route.get("/:userId", UsersController.getUser);
 route.put("/confirmOrganisation", UsersController.updateUserConfimation);
 route.post("/createPlace", UsersController.createPlace);
 route.post("/createPack", UsersController.createPack);
-
+route.post("/addFeed", UsersController.createFeedBacks)
 route.post("/createDecoration", UsersController.createDeco);
 route.post("/createFood", UsersController.createFood);
 

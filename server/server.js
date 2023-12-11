@@ -28,6 +28,10 @@ app.use("/decorations", decorationRouter);
 const packRouter = require("./routes/packs_routes.js");
 app.use("/packs", packRouter);
 
+// feedbacks:
+const FeedBacks=require("./routes/feedbacks_routes.js");
+app.use("/feedback",FeedBacks)
+
 // For Admin:
 const adminRouter = require("./routes/admins_routes.js");
 app.use("/admin", adminRouter);

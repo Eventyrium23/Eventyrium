@@ -95,9 +95,8 @@ function Header() {
 
             <ChevronDownIcon
               strokeWidth={2.5}
-              className={`h-3 w-3 transition-transform ${
-                isMenuOpen ? "rotate-180" : ""
-              }`}
+              className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""
+                }`}
             />
           </Button>
         </MenuHandler>
@@ -108,11 +107,10 @@ function Header() {
               <MenuItem
                 key={label}
                 onClick={closeMenu}
-                className={`flex items-center gap-2 rounded ${
-                  isLastItem
+                className={`flex items-center gap-2 rounded ${isLastItem
                     ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
                     : ""
-                }`}
+                  }`}
               >
                 {React.createElement(icon, {
                   className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
@@ -140,25 +138,25 @@ function Header() {
   const navListMenuItems = [
     {
       title: "Place",
-      description: "Know more about us",
+      description: "Elegant venues, from mountain retreats to beachfront bliss, await to host your special events with style and charm.",
       path: "/events/places",
     },
     {
       title: "Food",
       description:
-        "Learn how to use @material-tailwind/react, packed with rich components for React.",
+        "Savor perfection with our world-class cuisine, expertly curated for an unforgettable culinary experience.",
       path: "/events/foods",
     },
     {
       title: "Decoration",
       description:
-        "A complete set of UI Elements for building faster websites in less time.",
+        "Transform your event with our chic decorations, meticulously designed for an effortlessly stylish and memorable celebration.",
       path: "/events/decorations",
     },
     {
       title: "Pack",
       description:
-        "A complete set of UI Elements for building faster websites in less time.",
+        "Elevate your event effortlessly with our all-inclusive packs, seamlessly combining stunning venues, delectable cuisine, and exquisite decorations for a memorable celebration.",
       path: "/events/packs",
     },
   ];
@@ -188,9 +186,8 @@ function Header() {
                 Events{" "}
                 <ChevronDownIcon
                   strokeWidth={2}
-                  className={`h-3 w-3 transition-transform ${
-                    isMenuOpen ? "rotate-180" : ""
-                  }`}
+                  className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""
+                    }`}
                 />
               </MenuItem>
             </Typography>
