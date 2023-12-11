@@ -12,50 +12,56 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import axios from "axios";
-// import cloudinaryConfig from "../../../../cloudinaryConfig.js";
-// import { Image, Transformation, CloudinaryContext, CloudinaryUploader } from 'cloudinary-react';
+
 
 
 function RegisterAdmin() {
   const mainColor = " #9ca38a";
   const [phone, setPhone] = useState("");
-  const [userName, setUsername] = useState("");
+  const [adminName, setAdminName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
   // --------------------------------------Cloudinary
-  // const [image, setImage] = useState('');
+  const [image, setImage] = useState('');
 
-  // const handleUpload = (info) => {
-  //   if (info.event === 'success') {
-  //     setImage(info.info.secure_url);
-  //   }
-  // };
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader()
+      fileReader.readAsDataURL(file)
+
+      fileReader.onload = () => {
+        resolve(fileReader.result)
+      }
+      fileReader.onerror = (error) => {
+        reject(error)
+      }
+    })
+  };
+
+  const UploadImg = async (event) => {
+    const file = event.target.files[0];
+    const base64 = await convertBase64(file);
+
+    axios.post("http://localhost:8080/uploadImg", { image: base64 })
+      .then(res => { setImage(res.data) })
+      .catch(err => { console.log(err); });
+  };
+
   // ---------------------------------
   const Submit = async (e) => {
     e.preventDefault();
     const data = {
       phone,
-      userName,
+      adminName,
       email,
       password,
+      image
     };
     try {
       const response = await axios.post(
         "http://localhost:8080/admin/register",
         data
       );
-      toast.success("🦄 Go Check Email!", {
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      navigate("/user/login");
     } catch (err) {
       toast.error("Register failed. Please check your information.", {
         position: "bottom-center",
@@ -72,7 +78,7 @@ function RegisterAdmin() {
     setEmail("");
     setPassword("");
     setPhone("");
-    setUsername("");
+    setAdminName("");
   };
   return (
     <div className="register  ">
@@ -105,26 +111,24 @@ function RegisterAdmin() {
 
 
 
-              {/* <div>
-                <CloudinaryContext {...cloudinaryConfig}>
-                  <CloudinaryUploader
-                    folder="your-upload-folder"
-                    tags={['your', 'tags']}
-                    resourceType="auto"
-                    uploadPreset="your-upload-preset"
-                    publicId="unique-public-id"
-                    onUpload={handleUpload}
-                    onError={(err) => console.log('Error:', err)}
-                    onStart={() => console.log('Upload started')}
-                  />
-                  {image && (
-                    <Image publicId={image} width="300" height="200">
-                      <Transformation crop="fill" />
-                    </Image>
-                  )}
-                </CloudinaryContext>
-              </div>
- */}
+              <>
+                <Typography
+                  variant="h6"
+                  style={{ color: mainColor }}
+                  className="-mb-3"
+                >
+                  Your Image
+                </Typography>
+                <Input
+                  type="file"
+                  size="lg"
+                  onChange={UploadImg}
+                  className="!border-t-blue-gray-200 focus:!border-t-gray-900"
+                  labelProps={{
+                    className: "before:content-none after:content-none",
+                  }}
+                />
+              </>
 
 
 
@@ -144,8 +148,8 @@ function RegisterAdmin() {
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
-                onChange={(e) => setUsername(e.target.value)}
-                value={userName}
+                onChange={(e) => setAdminName(e.target.value)}
+                value={adminName}
               />
               <Typography
                 variant="h6"

@@ -4,6 +4,11 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const PORT = process.env.PORT || 8000;
 const app = express();
+const bodyParser = require("body-parser");
+
+// Increase the request size limit
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 /* Middleware */
 app.use(express.json());
@@ -18,7 +23,6 @@ app.use("/user", userRouter);
 const placeRouter = require("./routes/places_routes.js");
 app.use("/places", placeRouter);
 
-
 const foodRouter = require("./routes/foods_routes.js");
 app.use("/foods", foodRouter);
 
@@ -32,9 +36,12 @@ app.use("/packs", packRouter);
 const adminRouter = require("./routes/admins_routes.js");
 app.use("/admin", adminRouter);
 
-// invite 
-const InviteRouter = require('./routes/invitation_routes.js')
- app.use("/invite",InviteRouter) 
+// invite
+const InviteRouter = require("./routes/invitation_routes.js");
+app.use("/invite", InviteRouter);
+//upload img
+const UploadRoute = require("./routes/uploadImg_route.js");
+app.use("/uploadImg", UploadRoute);
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);

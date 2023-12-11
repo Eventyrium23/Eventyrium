@@ -1,6 +1,5 @@
 import { FaRegEye } from "react-icons/fa";
 import "react-calendar/dist/Calendar.css";
-// import data from "../../Datafood.json";
 import { NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
 import { MyContext } from "../../MyContext.jsx";
