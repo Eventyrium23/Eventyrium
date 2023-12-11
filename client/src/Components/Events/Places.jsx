@@ -1,5 +1,9 @@
 import { FaRegEye } from "react-icons/fa";
 
+<<<<<<< HEAD
+// import data from "../../data.json";
+=======
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
 import { NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
 import { MyContext } from "../../MyContext.jsx";

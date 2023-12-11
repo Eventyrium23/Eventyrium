@@ -1,8 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+<<<<<<< HEAD
+
+
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
+=======
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
 import AddItems from "./AddItems";
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
 import {
     Card,
     CardHeader,
@@ -31,7 +38,11 @@ function Organization() {
     const [currentData, setCurrentData] = useState([]);
     const [limitPage, setLimitPage] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
+<<<<<<< HEAD
+
+=======
     const [addItemV, setAddItemV] = useState(false)
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
     const itemsPerPage = 5;
 
     useEffect(() => {
@@ -128,12 +139,23 @@ function Organization() {
     }
 
     // --------------------------------------- 5 AM motetttttttt 10/12/2023
+<<<<<<< HEAD
+    async function addItem(e) {
+        e.preventDefault()
+        const response = await axios.post()
+    }
+
+
+    return (
+        <Card className="flex   m-auto h-full w-full  mt-10  max-w-6xl">
+=======
 
 
 
     return (
         <Card className="flex h-full w-full mt-20 m-auto  md:mt-24  max-w-6xl">
             <AddItems addItemForm={{ addItemV, setAddItemV }} />
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
             <CardHeader floated={false} shadow={false} className="rounded-none">
                 <div className="mb-8 flex items-center justify-between gap-8">
                     <div>
@@ -148,7 +170,11 @@ function Organization() {
                         <Button onClick={() => setTab("all")} variant="outlined" size="sm">
                             view all
                         </Button>
+<<<<<<< HEAD
+                        <Button className="flex items-center gap-3" size="sm" onClick={addItem}>
+=======
                         <Button className="flex items-center gap-3" size="sm" onClick={() => setAddItemV(true)}>
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
                             <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add items
                         </Button>
                     </div>
@@ -163,7 +189,16 @@ function Organization() {
                             ))}
                         </TabsHeader>
                     </Tabs>
+<<<<<<< HEAD
+                    <div className="w-full md:w-72">
+                        <Input
+                            label="Search"
+                            icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+                        />
+                    </div>
+=======
               
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
                 </div>
             </CardHeader>
             <CardBody className="overflow-scroll px-0">
