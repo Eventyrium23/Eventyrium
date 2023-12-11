@@ -56,7 +56,7 @@ function Decriptions() {
         Eventyruim Planner{" "}
       </Typography>
       <br />
-      <Typography variant="paragraph" align="center" className="mr-20 ml-20">
+      <Typography variant="paragraph" align="center" className="m-auto max-w-4xl leading-9 md-w-full px-8 ">
         Welcome to Eventyruim, where we turn your events into extraordinary
         experiences. With a dedicated team of creative professionals, we
         specialize in crafting personalized and memorable moments for every
@@ -73,13 +73,13 @@ function Decriptions() {
       <Typography
         variant="h5"
         color="red"
-        className=" text-red-400 font-serif ml-16 font-bold"
+        className=" text-red-400 text-center mb-4 text-2xl font-serif ml-16 font-bold"
       >
         Party Planner:
       </Typography>
       <Typography
         color="gary"
-        className="font-normal text-gray-600 text-center "
+        className="font-normal text-center m-auto  max-w-6xl leading-8 md-w-full px-8"
       >
         {" "}
         Our experienced party planners at Eventyruim will work beside
@@ -106,7 +106,7 @@ function Decriptions() {
 // Middle Images :
 function CarouselTransition() {
   return (
-    <Carousel transition={{ duration: 1 }} className="rounded-xl">
+    <Carousel transition={{ duration: 1 }} className="rounded-xl w-full  ">
       <div>
         <img
           src="https://www.dualav.com/wp-content/uploads/2022/11/AdobeStock_300239831-1024x683.jpeg"
@@ -182,10 +182,10 @@ function CardDefault() {
 // Call the functions above for the home:
 function Home() {
   return (
-    <div className=" bg-gray-100">
+    <div className=" bg-gray-100 flex justify-center flex-col items-center">
       {CoverImage()}
       <br />
-      <div className="px-28 flex justify-center flex-col items-center">
+      <div className=" flex justify-center flex-col items-center">
         {Decriptions()}
       </div>
       <br />

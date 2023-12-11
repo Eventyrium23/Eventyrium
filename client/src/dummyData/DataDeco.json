@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Balloon-Arch",
+    "image": "https://funnfrolic.co.uk/cdn/shop/products/organicsulham_551x.jpg?v=1623766810",
+    "stock": 50,
+    "price": 5000
+  },
+  {
+    "name": "Fairy-Lights",
+    "image": "https://i5.walmartimages.com/asr/cb286644-1267-45d1-8781-477e522b0ce2_1.488896c14c56bb65248d7e0c6b86efda.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
+    "stock": 80,
+    "price": 8000
+  },
+  {
+    "name": "Tassel-Garland",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2sbFpThN8NTC_2zXsw7HpRUyNWNrCFbQfLBuNQsSI_E24aSk0ipHbTMlgUezUE_uBWJo&usqp=CAU",
+    "stock": 30,
+    "price": 3500
+  },
+  {
+    "name": "Confetti-Cannons",
+    "image": "https://confettimaster.com/wp-content/uploads/2023/08/Confetti-outside-church.jpeg",
+    "stock": 20,
+    "price": 6000
+  },
+  {
+    "name": "Photo-Booth-Props",
+    "image": "https://m.media-amazon.com/images/I/81vcw-esYjL._AC_UF894,1000_QL80_.jpg",
+    "stock": 40,
+    "price": 4500
+  },
+  {
+    "name": "Table-Centerpieces",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdW6W4_E6eTvqkqwMHc6tZUJxgRX6cxwZUOQ&usqp=CAU",
+    "stock": 60,
+    "price": 7000
+  },
+  {
+    "name": "Streamer-Curtains",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDGj82PYGor408K1iZv204x7ttnzsVEAsLaA&usqp=CAU",
+    "stock": 25,
+    "price": 5500
+  },
+  {
+    "name": "LED-Dance-Floor",
+    "image": "https://eventechuk.co.uk/wp-content/uploads/2018/02/White-LED-Dancefloor.jpg",
+    "stock": 10,
+    "price": 15000
+  },
+  {
+    "name": "Themed-Banners",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6qI7XIK3TSHPtaIbfUNklaD7HtG-ekHREKA&usqp=CAU",
+    "stock": 45,
+    "price": 4000
+  },
+  {
+    "name": "Hanging-Lanterns",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqwoFx9IrqLvBAe8Mxd--Lf78GIX2OPmXNSQ&usqp=CAU",
+    "stock": 35,
+    "price": 9000
+  },
+  {
+    "name": "Chair-Covers-with-Sashes",
+    "image": "https://i.etsystatic.com/11751361/r/il/e1b7d5/1591498330/il_570xN.1591498330_cr5l.jpg",
+    "stock": 70,
+    "price": 5500
+  },
+  {
+    "name": "Floral-Arrangements",
+    "image": "https://media.architecturaldigest.com/photos/56d60ca065e378730c184cbe/16:9/w_2560%2Cc_limit/1gorgeous-flower-arrangement-ideas-03.jpg",
+    "stock": 55,
+    "price": 10000
+  },
+  {
+    "name": "Glow-in-the-Dark-Decor",
+    "image": "https://www.peerspace.com/resources/wp-content/uploads/los-angeles-club-hills-1024x684.jpeg",
+    "stock": 15,
+    "price": 12000
+  },
+  {
+    "name": "Customized-Cake-Toppers",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbMf4BhBXD9HMNB3W5yFG9kyz6Q9QYtvt5vA&usqp=CAU",
+    "stock": 65,
+    "price": 3000
+  },
+  {
+    "name": "Candy-Buffet",
+    "image": "https://m.media-amazon.com/images/I/51%2BEwmgM3AL._AC_SY200_QL15_.jpg",
+    "stock": 90,
+    "price": 7500
+  }
+]

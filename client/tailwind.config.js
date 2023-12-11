@@ -12,5 +12,6 @@ module.exports = withMT({
       mainHeader:"#d8bcbc" ,
     },
   },
-  plugins: [],
+  plugins: ['prettier-plugin-tailwindcss'],
+
 });

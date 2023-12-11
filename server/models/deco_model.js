@@ -3,15 +3,15 @@ module.exports = (sequelize, DataTypes) => {
     const Deco = sequelize.define(
       "Deco",
       {
-        img: {
-          type: DataTypes.STRING,
-          allowNull: false,
-        },
         name: {
           type: DataTypes.STRING,
           allowNull: false,
         },
-        stack: {
+        image: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        stock: {
           type: DataTypes.STRING,
           allowNull: false,
         },

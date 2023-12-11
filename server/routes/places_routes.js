@@ -1,8 +1,11 @@
 const PlacesController = require("../controllers/places_controller.js");
 const route = require("express").Router();
 route.get("/all", PlacesController.getAll);
-route.get("/place/:place", PlacesController.getOne);
-route.post("/addPlaces", PlacesController.addPlace);
-route.put("/place", PlacesController.updatePlace);
-route.put("/place/reserved", PlacesController.reservedPlace);
+route.get("/:place", PlacesController.getOne);
+route.post("/reserved", PlacesController.reservedPlace);
+route.post("/checkReserved", PlacesController.checkReservedPlace);
+route.post("/", PlacesController.addPlace);
+// route.put("/pack", PacksController.updatePlace);
+// route.put("/pack/reserved", PacksController.reservedPlace);
+
 module.exports = route;

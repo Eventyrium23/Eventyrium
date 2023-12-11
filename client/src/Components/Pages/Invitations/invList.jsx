@@ -1,4 +1,12 @@
 import React, { useEffect, useState } from "react";
+import {
+  Drawer,
+  Button,
+  Typography,
+  IconButton,
+  Input,
+  Textarea,
+} from "@material-tailwind/react";
 import { MdOutlineInsertInvitation,MdNotifications } from "react-icons/md";
 import { FaRegCircleDot } from "react-icons/fa6";
 import axios from "axios";
@@ -12,8 +20,6 @@ useEffect(()=>{
   axios.post('http://localhost:8080/invite',obj)
   .then((res)=>{
     setList(res.data)
-  }).catch(err=>{
-    console.log("error happen in invitation",err);
   })
  }
  getList()

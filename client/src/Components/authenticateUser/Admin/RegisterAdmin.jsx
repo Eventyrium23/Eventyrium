@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import LOGO from "../../assets/LOGO.png";
+import LOGO from "../../../assets/AdminsPic/LOGO.png";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -7,22 +7,31 @@ import "react-toastify/dist/ReactToastify.css";
 import {
   Card,
   Input,
-  Checkbox,
   Button,
   Typography,
 } from "@material-tailwind/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-import Load from "../Load/Load";
-function Register() {
+// import cloudinaryConfig from "../../../../cloudinaryConfig.js";
+// import { Image, Transformation, CloudinaryContext, CloudinaryUploader } from 'cloudinary-react';
+
+
+function RegisterAdmin() {
   const mainColor = " #9ca38a";
   const [phone, setPhone] = useState("");
   const [userName, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  // --------------------------------------Cloudinary
+  // const [image, setImage] = useState('');
 
-
+  // const handleUpload = (info) => {
+  //   if (info.event === 'success') {
+  //     setImage(info.info.secure_url);
+  //   }
+  // };
+  // ---------------------------------
   const Submit = async (e) => {
     e.preventDefault();
     const data = {
@@ -33,7 +42,7 @@ function Register() {
     };
     try {
       const response = await axios.post(
-        "http://localhost:8080/user/register",
+        "http://localhost:8080/admin/register",
         data
       );
       toast.success("🦄 Go Check Email!", {
@@ -77,7 +86,7 @@ function Register() {
           shadow={false}
         >
           <Typography variant="h4" color="blue-gray">
-            Register
+            Admin Register
           </Typography>
           <Typography color="gray" className="mt-1 font-normal">
             Nice to meet you! Enter your details to register.
@@ -87,7 +96,40 @@ function Register() {
             onSubmit={Submit}
             className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
           >
+
+
+
+
+
             <div className="mb-1 flex flex-col gap-6">
+
+
+
+              {/* <div>
+                <CloudinaryContext {...cloudinaryConfig}>
+                  <CloudinaryUploader
+                    folder="your-upload-folder"
+                    tags={['your', 'tags']}
+                    resourceType="auto"
+                    uploadPreset="your-upload-preset"
+                    publicId="unique-public-id"
+                    onUpload={handleUpload}
+                    onError={(err) => console.log('Error:', err)}
+                    onStart={() => console.log('Upload started')}
+                  />
+                  {image && (
+                    <Image publicId={image} width="300" height="200">
+                      <Transformation crop="fill" />
+                    </Image>
+                  )}
+                </CloudinaryContext>
+              </div>
+ */}
+
+
+
+
+
               <Typography
                 variant="h6"
                 style={{ color: { mainColor } }}
@@ -160,24 +202,7 @@ function Register() {
                 value={password}
               />
             </div>
-            <Checkbox
-              label={
-                <Typography
-                  variant="small"
-                  color="gray"
-                  className="flex items-center font-normal"
-                >
-                  I agree the
-                  <a
-                    href="#"
-                    className="font-medium transition-colors hover:text-gray-900"
-                  >
-                    &nbsp;Terms and Conditions
-                  </a>
-                </Typography>
-              }
-              containerProps={{ className: "-ml-2.5" }}
-            />
+
             <Button
               style={{ background: mainColor }}
               type="submit"
@@ -186,12 +211,7 @@ function Register() {
             >
               sign up
             </Button>
-            <Typography color="gray" className="mt-4 text-center font-normal">
-              Already have an account?{" "}
-              <Link to="/user/login" className="font-medium text-gray-900">
-                Login
-              </Link>
-            </Typography>
+
           </form>
         </Card>
       </div>
@@ -200,4 +220,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default RegisterAdmin;

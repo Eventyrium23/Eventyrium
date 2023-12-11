@@ -3,11 +3,11 @@ module.exports = (sequelize, DataTypes) => {
     const Food = sequelize.define(
       "Food",
       {
-        img: {
+        name: {
           type: DataTypes.STRING,
           allowNull: false,
         },
-        name: {
+        image: {
           type: DataTypes.STRING,
           allowNull: false,
         },

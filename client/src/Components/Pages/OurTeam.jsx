@@ -9,7 +9,7 @@ import {
 } from "@material-tailwind/react";
 import axios from "axios";
 import { useContext } from "react";
-import { MyContext } from "../../MyContext";
+import { MyContext } from "../../MyContext.jsx";
 function OurTeam() {
     const { admins } = useContext(MyContext)
     return (
