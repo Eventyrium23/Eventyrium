@@ -32,6 +32,7 @@ exports.getOne = async (req, res) => {
   }
 };
 
+// adding Places:
 exports.addPlace = async (req, res) => {
   const { namePlace, image, price, description, date } = req.body;
   try {
