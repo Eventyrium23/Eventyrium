@@ -12,12 +12,31 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import axios from "axios";
+<<<<<<< HEAD
+// import cloudinaryConfig from "../../../../cloudinaryConfig.js";
+// import { Image, Transformation, CloudinaryContext, CloudinaryUploader } from 'cloudinary-react';
+=======
 
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
 
 
 function RegisterAdmin() {
   const mainColor = " #9ca38a";
   const [phone, setPhone] = useState("");
+<<<<<<< HEAD
+  const [userName, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  // --------------------------------------Cloudinary
+  // const [image, setImage] = useState('');
+
+  // const handleUpload = (info) => {
+  //   if (info.event === 'success') {
+  //     setImage(info.info.secure_url);
+  //   }
+  // };
+=======
   const [adminName, setAdminName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,21 +66,42 @@ function RegisterAdmin() {
       .catch(err => { console.log(err); });
   };
 
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
   // ---------------------------------
   const Submit = async (e) => {
     e.preventDefault();
     const data = {
       phone,
+<<<<<<< HEAD
+      userName,
+      email,
+      password,
+=======
       adminName,
       email,
       password,
       image
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
     };
     try {
       const response = await axios.post(
         "http://localhost:8080/admin/register",
         data
       );
+<<<<<<< HEAD
+      toast.success("🦄 Go Check Email!", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      navigate("/user/login");
+=======
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
     } catch (err) {
       toast.error("Register failed. Please check your information.", {
         position: "bottom-center",
@@ -78,7 +118,11 @@ function RegisterAdmin() {
     setEmail("");
     setPassword("");
     setPhone("");
+<<<<<<< HEAD
+    setUsername("");
+=======
     setAdminName("");
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
   };
   return (
     <div className="register  ">
@@ -111,6 +155,28 @@ function RegisterAdmin() {
 
 
 
+<<<<<<< HEAD
+              {/* <div>
+                <CloudinaryContext {...cloudinaryConfig}>
+                  <CloudinaryUploader
+                    folder="your-upload-folder"
+                    tags={['your', 'tags']}
+                    resourceType="auto"
+                    uploadPreset="your-upload-preset"
+                    publicId="unique-public-id"
+                    onUpload={handleUpload}
+                    onError={(err) => console.log('Error:', err)}
+                    onStart={() => console.log('Upload started')}
+                  />
+                  {image && (
+                    <Image publicId={image} width="300" height="200">
+                      <Transformation crop="fill" />
+                    </Image>
+                  )}
+                </CloudinaryContext>
+              </div>
+ */}
+=======
               <>
                 <Typography
                   variant="h6"
@@ -129,6 +195,7 @@ function RegisterAdmin() {
                   }}
                 />
               </>
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
 
 
 
@@ -148,8 +215,13 @@ function RegisterAdmin() {
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+<<<<<<< HEAD
+                onChange={(e) => setUsername(e.target.value)}
+                value={userName}
+=======
                 onChange={(e) => setAdminName(e.target.value)}
                 value={adminName}
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
               />
               <Typography
                 variant="h6"
