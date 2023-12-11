@@ -23,7 +23,7 @@ function RegisterAdmin() {
   const [password, setPassword] = useState("");
   // --------------------------------------Cloudinary
   const [image, setImage] = useState('');
-
+  const navigate = useNavigate()
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader()
@@ -62,6 +62,7 @@ function RegisterAdmin() {
         "http://localhost:8080/admin/register",
         data
       );
+      navigate("admin/dashboard")
     } catch (err) {
       toast.error("Register failed. Please check your information.", {
         position: "bottom-center",
