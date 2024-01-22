@@ -58,9 +58,12 @@ const Profile = lazy(
 const Organization = lazy(
   () => import("./Components/DashboardAdmin/LayoutComponants/Organization.jsx")
 );
+<<<<<<< HEAD
+=======
 const TableClient = lazy(
   () => import("./Components/DashboardAdmin/LayoutComponants/TableClients.jsx")
 );
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
 import Load from "./Components/Load/Load.jsx";
 import NotFound404 from "./Components/NotFound404.jsx";
 
@@ -106,7 +109,10 @@ function App() {
         <Route path="admin/dashboard" element={<DashboardLayout />}>
           <Route index element={<Profile />} />
           <Route path="organization" element={<Organization />} />
+<<<<<<< HEAD
+=======
           <Route path="clientsTable" element={<TableClient/>} />
+>>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
         </Route>
       </>
     )
