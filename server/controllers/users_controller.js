@@ -336,7 +336,7 @@ exports.createPack = async (req, res) => {
     });
 
     console.log("Pack item created for user:", packItem);
-    // sendSMS(phoneNumber);
+    sendSMS(phoneNumber);
     res.send(packItem);
   } catch (error) {
     console.error("Error creating pack item:", error);
@@ -373,7 +373,7 @@ exports.createPlace = async (req, res) => {
 
     console.log("Place item created for user:", placeItem);
     res.send(placeItem);
-    // sendSMS(phoneNumber);
+    sendSMS(phoneNumber);
   } catch (error) {
     console.error("Error creating place item:", error);
     res.status(500).send("Internal Server Error");

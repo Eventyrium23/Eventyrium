@@ -11,9 +11,9 @@ exports.makeInv = async (req, res) => {
     };
     await Invitation.create(newInvitation);
 
-    res.status(200).json("invite sent");
+    res.status(200).send("invite sent");
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).send(err);
   }
 };
 
@@ -21,9 +21,9 @@ exports.allInv = async (req, res) => {
   const { sender } = req.body;
   try {
     var data = await Invitation.findAll({ where: { sender: sender } });
-    res.json(data);
+    res.send(data);
   } catch (err) {
-    res.json(err);
+    res.send(err);
   }
 };
 exports.acceptInv = async (req, res) => {
@@ -49,9 +49,9 @@ exports.declineInv = async (req, res) => {
         id: id,
       },
     });
-    res.status(200).json("Invite Deleted");
+    res.status(200).send("Invite Deleted");
   } catch (err) {
-    res.status(420).json("err");
+    res.status(420).send("err");
   }
 };
 
@@ -65,8 +65,8 @@ exports.changeAvenue = async (req, res) => {
         where: { event: event },
       }
     );
-    res.status(200).json("Avenue Changed");
+    res.status(200).send("Avenue Changed");
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).send(err);
   }
 };
