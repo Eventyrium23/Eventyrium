@@ -5,7 +5,7 @@ function LayoutDashboard() {
   const checkAdmin = window.localStorage.getItem("AdminToken")
 
   return checkAdmin ? (
-    <div className="dashboard flex  ">
+    <div className="dashboard flex">
       <Sidebar />
       <Outlet />
     </div>

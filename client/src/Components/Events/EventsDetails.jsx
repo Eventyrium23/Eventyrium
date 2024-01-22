@@ -24,7 +24,11 @@ export default function EventsDetails() {
   const { route } = useParams();
   const paths = location.pathname.split("/");
   const url = paths.slice(2, paths.length - 1);
-  const decodedToken = jwtDecode(window.localStorage.getItem("Token"));
+  let decodedToken
+  if (window.localStorage.getItem("Token")) {
+
+    decodedToken = jwtDecode(window.localStorage.getItem("Token"));
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -305,8 +309,8 @@ function showDetailsPack(data, Save, reserved) {
         <p>
           <strong>Available:</strong>{" "}
           {reserved
-            ? " sorry this place is not available for this day "
-            : "this place available"}
+            ? " sorry this pack is not available for this day "
+            : "this pack available"}
         </p>
         {!reserved && (
           <button
