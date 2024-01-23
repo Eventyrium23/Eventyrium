@@ -39,19 +39,14 @@ app.use("/packs", packRouter);
 // For Admin:
 const adminRouter = require("./routes/admins_routes.js");
 app.use("/admin", adminRouter);
-
-<<<<<<< HEAD
 // invite 
 const InviteRouter = require('./routes/invitation_routes.js')
  app.use("/invite",InviteRouter) 
-=======
-// invite
-const InviteRouter = require("./routes/invitation_routes.js");
-app.use("/invite", InviteRouter);
+
 //upload img
 const UploadRoute = require("./routes/uploadImg_route.js");
 app.use("/uploadImg", UploadRoute);
->>>>>>> 8431062b1fe158cec689ffee32eeabf3e8629e4b
+
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
